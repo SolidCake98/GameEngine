@@ -92,6 +92,12 @@
 		<Unit filename="/home/danil/CLionProjects/GE/CTimer/CTimer.h">
 			<Option target="GameEngine"/>
 		</Unit>
+		<Unit filename="/home/danil/CLionProjects/GE/FakeWindow.cpp">
+			<Option target="GameEngine"/>
+		</Unit>
+		<Unit filename="/home/danil/CLionProjects/GE/FakeWindow.h">
+			<Option target="GameEngine"/>
+		</Unit>
 		<Unit filename="/home/danil/CLionProjects/GE/InputSystem/CKeyboard.cpp">
 			<Option target="GameEngine"/>
 		</Unit>

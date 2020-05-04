@@ -150,6 +150,33 @@ CTimer/CTimer.cpp.s:
 	$(MAKE) -f CMakeFiles/GameEngine.dir/build.make CMakeFiles/GameEngine.dir/CTimer/CTimer.cpp.s
 .PHONY : CTimer/CTimer.cpp.s
 
+FakeWindow.o: FakeWindow.cpp.o
+
+.PHONY : FakeWindow.o
+
+# target to build an object file
+FakeWindow.cpp.o:
+	$(MAKE) -f CMakeFiles/GameEngine.dir/build.make CMakeFiles/GameEngine.dir/FakeWindow.cpp.o
+.PHONY : FakeWindow.cpp.o
+
+FakeWindow.i: FakeWindow.cpp.i
+
+.PHONY : FakeWindow.i
+
+# target to preprocess a source file
+FakeWindow.cpp.i:
+	$(MAKE) -f CMakeFiles/GameEngine.dir/build.make CMakeFiles/GameEngine.dir/FakeWindow.cpp.i
+.PHONY : FakeWindow.cpp.i
+
+FakeWindow.s: FakeWindow.cpp.s
+
+.PHONY : FakeWindow.s
+
+# target to generate assembly for a file
+FakeWindow.cpp.s:
+	$(MAKE) -f CMakeFiles/GameEngine.dir/build.make CMakeFiles/GameEngine.dir/FakeWindow.cpp.s
+.PHONY : FakeWindow.cpp.s
+
 InputSystem/CKeyboard.o: InputSystem/CKeyboard.cpp.o
 
 .PHONY : InputSystem/CKeyboard.o
@@ -243,6 +270,9 @@ help:
 	@echo "... CTimer/CTimer.o"
 	@echo "... CTimer/CTimer.i"
 	@echo "... CTimer/CTimer.s"
+	@echo "... FakeWindow.o"
+	@echo "... FakeWindow.i"
+	@echo "... FakeWindow.s"
 	@echo "... InputSystem/CKeyboard.o"
 	@echo "... InputSystem/CKeyboard.i"
 	@echo "... InputSystem/CKeyboard.s"

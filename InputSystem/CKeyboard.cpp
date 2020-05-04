@@ -67,3 +67,14 @@ CKeyboard::~CKeyboard()
 }
 
 
+void CKeyboard::GetKeyboardState(short* key_map)
+{
+    for(int i = 0; i < KEY_CNT; i++)
+    {
+        auto state = keyboard_st->keys[i];
+        key_map[i] = state;
+    }
+
+}
+
+

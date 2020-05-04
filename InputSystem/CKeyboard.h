@@ -23,6 +23,7 @@ public:
     static void* Loop(void* obj);
     void ReadEv();
     short GetKeyState(short key);
+    void GetKeyboardState(short* key_map);
 
 private:
     pthread_t thread;

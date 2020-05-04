@@ -22,8 +22,13 @@ public:
 
     void Update();
 
+public:
+    static InputSystem* get();
+
 private:
     std::vector<InputListener*> listeners;
     CKeyboard cKeyboard;
+    short keyMap[KEY_CNT];
+    short oldKeyMap[KEY_CNT];
 };
 #endif //GAMEENGINE_INPUTSYSTEM_H

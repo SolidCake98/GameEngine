@@ -2,6 +2,7 @@
 // Created by root on 30.03.2020.
 //
 #include <algorithm>
+#include <cstring>
 #include "InputSystem.h"
 
 InputSystem::InputSystem() {}
@@ -22,5 +23,38 @@ void InputSystem::RemoveListener(InputListener *listener)
 
 void InputSystem::Update()
 {
+    cKeyboard.GetKeyboardState(keyMap);
+    for(short i = 0; i < KEY_CNT; i++)
+    {
+        //KEY IS DOWN
+        if(keyMap[i])
+        {
+            auto it = listeners.begin();
+            while(it != listeners.end())
+            {
+                InputListener* listener = *it;
+                listener->OnKeyDown(i);
+                ++it;
+            }
+        }
+        else
+        {
+            if(keyMap[i] != oldKeyMap[i])
+            {
+                auto it = listeners.begin();
+                while(it != listeners.end())
+                {
+                    InputListener* listener = *it;
+                    listener->OnKeyUp(i);
+                    ++it;
+                }
+            }
+        }
+    }
+    ::memcpy(oldKeyMap, keyMap, sizeof(short) * KEY_CNT);
+}
 
+InputSystem *InputSystem::get() {
+    static InputSystem system;
+    return &system;
 }

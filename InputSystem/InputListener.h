@@ -15,8 +15,8 @@ public:
     {
     }
 
-    virtual void OnKeyDown() = 0;
-    virtual void OnKeyUp() = 0;
+    virtual void OnKeyDown(int key) = 0;
+    virtual void OnKeyUp(int key) = 0;
 
 };
 #endif //GAMEENGINE_INPUTLISTENER_H

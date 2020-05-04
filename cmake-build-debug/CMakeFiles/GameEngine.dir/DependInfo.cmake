@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/danil/CLionProjects/GE/CTimer/CTimer.cpp" "/home/danil/CLionProjects/GE/cmake-build-debug/CMakeFiles/GameEngine.dir/CTimer/CTimer.cpp.o"
+  "/home/danil/CLionProjects/GE/FakeWindow.cpp" "/home/danil/CLionProjects/GE/cmake-build-debug/CMakeFiles/GameEngine.dir/FakeWindow.cpp.o"
   "/home/danil/CLionProjects/GE/InputSystem/CKeyboard.cpp" "/home/danil/CLionProjects/GE/cmake-build-debug/CMakeFiles/GameEngine.dir/InputSystem/CKeyboard.cpp.o"
   "/home/danil/CLionProjects/GE/InputSystem/InputSystem.cpp" "/home/danil/CLionProjects/GE/cmake-build-debug/CMakeFiles/GameEngine.dir/InputSystem/InputSystem.cpp.o"
   "/home/danil/CLionProjects/GE/main.cpp" "/home/danil/CLionProjects/GE/cmake-build-debug/CMakeFiles/GameEngine.dir/main.cpp.o"
