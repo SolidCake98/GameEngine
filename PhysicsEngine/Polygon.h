@@ -9,6 +9,8 @@ class Mathematics;
 class Physics;
 class Rigidbody;
 
+// Описание:
+// класс, описывающий полигон общего вида
 class Polygon : public Shape
 {
 	friend class Mathematics;

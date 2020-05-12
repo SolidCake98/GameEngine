@@ -2,11 +2,13 @@
 
 #include "Point.h"
 
+// Описание:
+// класс, определяющий вершину полигона
 struct Vertex
 {
 public:
-	Point position;
-	Vertex* next = nullptr;
+	Point position; // позиция вершины в локальных координатах фигуры
+	Vertex* next = nullptr; // указатель на следующую вершину
 
 	Vertex();
 	Vertex(Point position);

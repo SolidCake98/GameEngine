@@ -2,6 +2,8 @@
 
 #include "Rigidbody.h"
 
+// Описание:
+// структура, описывающая пару столкнувшихся тел
 struct BodyPair
 {
 	Rigidbody* first;

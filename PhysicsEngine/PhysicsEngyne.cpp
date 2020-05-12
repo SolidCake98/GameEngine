@@ -41,7 +41,7 @@ void PhysicsEngyne::Remove(Rigidbody& rb)
 void PhysicsEngyne::Add(Rigidbody& rb)
 {
 	const std::lock_guard<std::mutex> guard(bodyMutex);
-	body.insert(&rb);
+	if (!Contain(rb)) { body.insert(&rb); }
 }
 
 inline bool PhysicsEngyne::Contain(Rigidbody& rb)
@@ -63,7 +63,7 @@ void PhysicsEngyne::Work()
 		accumulator += now - prev;
 		prev = now;
 
-		// Èçáàâëÿåìñÿ îò "ñïèðàëè ñìåðòè"
+		// Ð¸Ð·Ð±Ð°Ð²Ð»ÑÐµÐ¼ÑÑ Ð¾Ñ‚ "Ð¿ÐµÑ‚Ð»Ð¸ ÑÐ¼ÐµÑ€Ñ‚Ð¸"
 		if (accumulator > 3 * dt) { accumulator = 3 * dt; }
 
 		while (accumulator > dt)

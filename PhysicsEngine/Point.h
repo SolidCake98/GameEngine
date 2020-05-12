@@ -1,5 +1,7 @@
 #pragma once
 
+// Описание:
+// структура, описывающая точку
 struct Point
 {
 public:

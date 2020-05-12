@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include "Polygon.h"
 
+// Описание:
+// класс, описывающий выпуклый полигон
 class ConvexPolygon : public Polygon
 {
 	friend class ShapeFactory;

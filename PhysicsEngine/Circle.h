@@ -4,6 +4,8 @@
 #include "Shape.h"
 #include "Point.h"
 
+// Описание:
+// класс, описывающий окружность
 class Circle : public Shape
 {
 	friend class Mathematics;

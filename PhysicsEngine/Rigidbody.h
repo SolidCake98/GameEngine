@@ -4,6 +4,8 @@
 #include "Circle.h"
 #include "Mathematics.h"
 
+// Описание:
+// класс, определяющий твердое тело
 class Rigidbody
 {
 public:	
