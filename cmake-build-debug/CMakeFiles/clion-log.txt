@@ -1,7 +1,0 @@
-/home/danil/JetBrains/clion-2019.3.5/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/danil/CLionProjects/GE
-opengl found
-include dir: /usr/include
-link libraries: /usr/lib/x86_64-linux-gnu/libOpenGL.so;/usr/lib/x86_64-linux-gnu/libGLX.so;/usr/lib/x86_64-linux-gnu/libGLU.so
--- Configuring done
--- Generating done
--- Build files have been written to: /home/danil/CLionProjects/GE/cmake-build-debug
