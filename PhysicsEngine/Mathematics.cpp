@@ -114,8 +114,8 @@ Polygon* Mathematics::ConvPolyConvPolyIntersection(ConvexPolygon& P, ConvexPolyg
 	Vertex* p = P.GetStart();
 	Vertex* q = Q.GetStart();
 	
-	Vertex* first = nullptr; // первая точка результирующего полигона
-	Vertex* current = nullptr; // текущая точка результирующего полигона
+	Vertex* first = nullptr; // РїРµСЂРІР°СЏ С‚РѕС‡РєР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµРіРѕ РїРѕР»РёРіРѕРЅР°
+	Vertex* current = nullptr; // С‚РµРєСѓС‰Р°СЏ С‚РѕС‡РєР° СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµРіРѕ РїРѕР»РёРіРѕРЅР°
 
 	Point c;
 
@@ -182,7 +182,7 @@ bool Mathematics::IsDotInCircle(Circle& circle, Point& p)
 
 Vertex* Mathematics::CircleLineIntersection(Circle& circle, Point& a, Point& b)
 {
-	// переход в начало координат
+    // РїРµСЂРµС…РѕРґ РІ РЅР°С‡Р°Р»Рѕ РєРѕРѕСЂРґРёРЅР°С‚
 	Point na = a - circle.GetCenter();
 	Point nb = b - circle.GetCenter();
 
@@ -213,7 +213,7 @@ Vertex* Mathematics::CircleLineIntersection(Circle& circle, Point& a, Point& b)
 		float x2 = x0 - B * mult;
 		float y2 = y0 + A * mult;
 
-		// возврат к исходным координатам
+        // РІРѕР·РІСЂР°С‚ Рє РёСЃС…РѕРґРЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј
 		Vertex* v1 = new Vertex(x1 + circle.GetCenter().x, y1 + circle.GetCenter().y);
 		Vertex* v2 = new Vertex(x2 + circle.GetCenter().x, y2 + circle.GetCenter().y);
 		v1->next = v2;
@@ -318,8 +318,8 @@ Polygon* Mathematics::ConvPolyCircleIntersection(ConvexPolygon& convPoly, Circle
 
 Polygon* Mathematics::CircleCircleIntersection(Circle& c1, Circle& c2)
 {
-	Circle nc1 = Circle(Point(0, 0), c1.GetR()); // первая окружность, перенесенная в начало координат
-	Circle nc2 = Circle(c2.GetCenter() - c1.GetCenter(), c2.GetR()); // перенесенная соответственно вторая окружность
+	Circle nc1 = Circle(Point(0, 0), c1.GetR()); // РїРµСЂРІР°СЏ РѕРєСЂСѓР¶РЅРѕСЃС‚СЊ, РїРµСЂРµРЅРµСЃРµРЅРЅР°СЏ РІ РЅР°С‡Р°Р»Рѕ РєРѕРѕСЂРґРёРЅР°С‚
+	Circle nc2 = Circle(c2.GetCenter() - c1.GetCenter(), c2.GetR()); // РїРµСЂРµРЅРµСЃРµРЅРЅР°СЏ СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ РІС‚РѕСЂР°СЏ РѕРєСЂСѓР¶РЅРѕСЃС‚СЊпїЅ
 
 	Vertex* first;
 	Vertex* current;
@@ -332,17 +332,17 @@ Polygon* Mathematics::CircleCircleIntersection(Circle& c1, Circle& c2)
 	Point p2(-C / A, 0);
 	Vertex* inters = CircleLineIntersection(nc1, p1, p2);
 
-	if (inters == nullptr) // нет пересечений
+	if (inters == nullptr) // РЅРµС‚ РїРµСЂРµСЃРµС‡РµРЅРёР№
 	{
 		return nullptr;
 	}
-	else if (inters->next == nullptr) // 1 точка пересечения
+	else if (inters->next == nullptr) // 1 С‚РѕС‡РєР° РїРµСЂРµСЃРµС‡РµРЅРёСЏ
 	{
 		inters->next = inters;
 		inters->position += c1.GetCenter();
 		return new Polygon(inters);
 	}
-	else // 2 точки пересечения
+	else // 2 С‚РѕС‡РєРё РїРµСЂРµСЃРµС‡РµРЅРёСЏ
 	{
 		current = first = new Vertex(SearchSectorHPoint(nc1, inters->position, inters->next->position) + c1.GetCenter());
 		current->next = new Vertex(inters->position + c1.GetCenter());

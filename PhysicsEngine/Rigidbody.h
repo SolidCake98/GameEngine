@@ -44,16 +44,16 @@ public:
 	Shape* GetActualShape() const;
 
 private:
-	Shape* _shape; // форма тела
-	Circle* _bound;
-	float _M; // масса тела
-	float _I; // момент инерции
-	float _angle; // угол поворота тела
-	float _W; // угловая скорость
-	Point _position; // позиция тела
-	Point _Rc; // центр масс
-	Point _V; // скорость	
-	bool _isStatic; // статичное ли тело
+	Shape* _shape; // С„РѕСЂРјР° С‚РµР»Р°
+	Circle* _bound; // РѕРіСЂР°РЅРёС‡РёРІР°СЋС‰Р°СЏ РѕРєСЂСѓР¶РЅРѕСЃС‚СЊ
+	float _M; // РјР°СЃСЃР° С‚РµР»Р°
+	float _I; // РјРѕРјРµРЅС‚ РёРЅРµСЂС†РёРё
+	float _angle; // СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р° С‚РµР»Р°
+	float _W; // СѓРіР»РѕРІР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ С‚РµР»Р°
+	Point _position; // РїРѕР·РёС†РёСЏ С‚РµР»Р°
+	Point _Rc; // С†РµРЅС‚СЂ РјР°СЃСЃ
+	Point _V; // СЃРєРѕСЂРѕСЃС‚СЊ С‚РµР»Р°
+	bool _isStatic; // СЃС‚Р°С‚РёС‡РЅРѕ Р»Рё С‚РµР»Рѕ
 
 	void Init(float M, float I, bool isStatic);
 };

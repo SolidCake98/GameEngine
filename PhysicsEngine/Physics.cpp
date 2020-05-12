@@ -25,15 +25,15 @@ float Physics::CalculateImpulse(const Rigidbody& rb1, const Rigidbody& rb2, Poin
 	Point R1 = cp - rb1.GetActualRc();
 	Point R2 = cp - rb2.GetActualRc();
 
-	// относительная скорость точек тел по контакту
+    // РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ С‚РѕС‡РµРє С‚РµР» РїРѕ РєРѕРЅС‚Р°РєС‚Сѓ
 	float V12 = n.x * (rb1.GetV().x - rb1.GetW() * R1.y - rb2.GetV().x + rb2.GetW() * R2.y) +
 		n.y * (rb1.GetV().y + rb1.GetW() * R1.x - rb2.GetV().y - rb2.GetW() * R2.x);
 
-	// плечи
+	// РїР»РµС‡Рё
 	float Z1 = (n.y * R1.x - n.x * R1.y) / rb1.GetM();
 	float Z2 = (n.y * R2.x - n.x * R2.y) / rb2.GetM();
 
-	// вспомагательная величина
+    // РІСЃРїРѕРјР°РіР°С‚РµР»СЊРЅР°СЏ РІРµР»РёС‡РёРЅР°
 	float J = n.x * (n.x / rb1.GetM() - R1.y * Z1 + n.x / rb2.GetM() + R2.y * Z2)
 		+ n.y * (n.y / rb1.GetM() + R1.x * Z1 / rb1.GetM() + n.y / rb2.GetM() - R2.x * Z2 / rb2.GetM());
 

@@ -6,7 +6,7 @@ Rigidbody::Rigidbody(ConvexPolygon& polygon, float M, float I, bool isStatic)
 	_shape = &polygon;
 	Vertex* v = polygon.GetStart();
 
-	// íàõîäèì öåíòð ìàññ
+    // Ð½Ð°Ñ…Ð¾Ð´Ð¸Ð¼ Ñ†ÐµÐ½Ñ‚Ñ€ Ð¼Ð°ÑÑ
 	for (int i = polygon.GetPower(); i > 0; i--, v = v->next)
 	{
 		_Rc += v->position;
@@ -17,7 +17,7 @@ Rigidbody::Rigidbody(ConvexPolygon& polygon, float M, float I, bool isStatic)
 	v = polygon.GetStart();
 	Vertex* mv = v;
 
-	// èùåì îãðàíè÷åâàþùóþ îêðóæíîñòü
+    // Ð¸Ñ‰ÐµÐ¼ Ð¾Ð³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ²Ð°ÑŽÑ‰ÑƒÑŽ Ð¾ÐºÑ€ÑƒÐ¶Ð½Ð¾ÑÑ‚ÑŒ
 	for (int i = polygon.GetPower(); i > 0; i--, v = v->next)
 	{
 		if (Mathematics::Distance(_Rc, v->position) > Mathematics::Distance(_Rc, mv->position))
