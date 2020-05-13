@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(GameEngine)
 
-set(SOURCE_FILES main.cpp InputSystem/InputListener.h InputSystem/InputSystem.h InputSystem/InputSystem.cpp InputSystem/CKeyboard.h InputSystem/CKeyboard.cpp CTimer/CTimer.h CTimer/CTimer.cpp FakeWindow.cpp FakeWindow.h)
+set(SOURCE_FILES main.cpp InputSystem/InputListener.h InputSystem/InputSystem.h InputSystem/InputSystem.cpp InputSystem/CKeyboard.h InputSystem/CKeyboard.cpp CTimer/CTimer.h CTimer/CTimer.cpp FakeWindow.cpp FakeWindow.h EngineCore/Components/ComponentBase.h EngineCore/Components/PositionComponent.cpp EngineCore/Components/PositionComponent.h EngineCore/Components/VelocityComponent.cpp EngineCore/Components/VelocityComponent.h EngineCore/Components/BodyComponent.cpp EngineCore/Components/BodyComponent.h)
 add_executable(GameEngine ${SOURCE_FILES})
 
 find_package(OpenGL REQUIRED)
