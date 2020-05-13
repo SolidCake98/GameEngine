@@ -44,6 +44,10 @@ public:
 	void Add(Rigidbody& rb);
 
 	// Описание:
+	// метод удаляет все тела из движка
+	void Clear();
+
+	// Описание:
 	// метод проверяет наличие тела в движке
 	bool Contain(Rigidbody& rb);
 
@@ -52,7 +56,8 @@ private:
 
 	const float FPS = 30;
 	const unsigned int DT = 1000 / FPS;
-	bool _isWork;	
+	bool _isWork;
+	std::thread* physicsThread;
 	std::mutex bodyMutex;
 
 	// Описание:

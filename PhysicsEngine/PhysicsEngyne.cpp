@@ -7,19 +7,23 @@ PhysicsEngyne::PhysicsEngyne()
 
 PhysicsEngyne::~PhysicsEngyne()
 {
-	body.clear();
+    _isWork = false;
+    physicsThread->join();
+    delete physicsThread;
 }
 
 void PhysicsEngyne::Start()
 {
 	_isWork = true;
-	std::thread t(&PhysicsEngyne::Work, this);
+	physicsThread = new std::thread t(&PhysicsEngyne::Work, this);
 	t.join();
 }
 
 void PhysicsEngyne::Stop()
 {
 	_isWork = false;
+    physicsThread->join();
+    delete physicsThread;
 }
 
 PhysicsEngyne::iterator PhysicsEngyne::begin()
@@ -42,6 +46,12 @@ void PhysicsEngyne::Add(Rigidbody& rb)
 {
 	const std::lock_guard<std::mutex> guard(bodyMutex);
 	if (!Contain(rb)) { body.insert(&rb); }
+}
+
+void PhysicsEngyne::Clear()
+{
+    const std::lock_guard<std::mutex> guard(bodyMutex);
+    body.clear();
 }
 
 inline bool PhysicsEngyne::Contain(Rigidbody& rb)
