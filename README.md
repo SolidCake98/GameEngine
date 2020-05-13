@@ -5,4 +5,4 @@ sudo apt-get install cmake libx11-dev xorg-dev libglu1-mesa-dev freeglut3-dev li
 
 После загрузки проекта в ide CLion нажать правой кнопкой мыши на файл CMakeLists.txt и выбрать опцию "Reload CMake Project"
 
-при необходимости, дать необходимые права на доступ к "/dev/input/event4"
+при необходимости, дать права на доступ к "/dev/input/event4"
