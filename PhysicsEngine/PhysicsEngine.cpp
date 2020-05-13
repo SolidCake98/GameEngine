@@ -1,65 +1,64 @@
 #include "PhysicsEngine.h"
 
-PhysicsEngyne::PhysicsEngyne()
+PhysicsEngine::PhysicsEngine()
 {
 	_isWork = false;
 }
 
-PhysicsEngyne::~PhysicsEngyne()
+PhysicsEngine::~PhysicsEngine()
 {
     _isWork = false;
     physicsThread->join();
     delete physicsThread;
 }
 
-void PhysicsEngyne::Start()
+void PhysicsEngine::Start()
 {
 	_isWork = true;
-	physicsThread = new std::thread t(&PhysicsEngyne::Work, this);
-	t.join();
+	physicsThread = new std::thread(&PhysicsEngine::Work, this);
 }
 
-void PhysicsEngyne::Stop()
+void PhysicsEngine::Stop()
 {
 	_isWork = false;
     physicsThread->join();
     delete physicsThread;
 }
 
-PhysicsEngyne::iterator PhysicsEngyne::begin()
+PhysicsEngine::const_iterator PhysicsEngine::begin()
 {
 	return body.begin();
 }
 
-PhysicsEngyne::iterator PhysicsEngyne::end()
+PhysicsEngine::const_iterator PhysicsEngine::end()
 {
 	return body.end();
 }
 
-void PhysicsEngyne::Remove(Rigidbody& rb)
+void PhysicsEngine::Remove(Rigidbody& rb)
 {
 	const std::lock_guard<std::mutex> guard(bodyMutex);
 	body.erase(&rb);
 }
 
-void PhysicsEngyne::Add(Rigidbody& rb)
+void PhysicsEngine::Add(Rigidbody& rb)
 {
 	const std::lock_guard<std::mutex> guard(bodyMutex);
 	if (!Contain(rb)) { body.insert(&rb); }
 }
 
-void PhysicsEngyne::Clear()
+void PhysicsEngine::Clear()
 {
     const std::lock_guard<std::mutex> guard(bodyMutex);
     body.clear();
 }
 
-inline bool PhysicsEngyne::Contain(Rigidbody& rb)
+inline bool PhysicsEngine::Contain(Rigidbody& rb)
 {
 	return std::find(begin(), end(), &rb) != end();
 }
 
-void PhysicsEngyne::Work()
+void PhysicsEngine::Work()
 {
 	auto prev = std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());
 	std::chrono::microseconds accumulator;
@@ -90,7 +89,7 @@ void PhysicsEngyne::Work()
 	}
 }
 
-std::set<BodyPair> PhysicsEngyne::WidePhase()
+std::set<BodyPair> PhysicsEngine::WidePhase()
 {
 	std::set<BodyPair> potentials;
 
@@ -108,12 +107,12 @@ std::set<BodyPair> PhysicsEngyne::WidePhase()
 	return potentials;
 }
 
-bool PhysicsEngyne::CanCollided(Rigidbody& rb1, Rigidbody& rb2)
+bool PhysicsEngine::CanCollided(Rigidbody& rb1, Rigidbody& rb2)
 {
 	return Mathematics::Distance(rb1.GetActualRc(), rb2.GetActualRc()) < rb1.GetBound()->GetR() + rb2.GetBound()->GetR();
 }
 
-void PhysicsEngyne::NarrowPhase(std::set<BodyPair> potentials)
+void PhysicsEngine::NarrowPhase(std::set<BodyPair> potentials)
 {
 	for (auto pair : potentials)
 	{
@@ -131,22 +130,22 @@ void PhysicsEngyne::NarrowPhase(std::set<BodyPair> potentials)
 	}
 }
 
-Polygon* PhysicsEngyne::ConvPolyConvPoly(const Rigidbody& rb1, const Rigidbody& rb2)
+Polygon* PhysicsEngine::ConvPolyConvPoly(const Rigidbody& rb1, const Rigidbody& rb2)
 {
 	return Mathematics::ConvPolyConvPolyIntersection(*((ConvexPolygon*)rb1.GetActualShape()), *((ConvexPolygon*)rb2.GetActualShape()));
 }
 
-Polygon* PhysicsEngyne::ConvPolyCircle(const Rigidbody& rb1, const Rigidbody& rb2)
+Polygon* PhysicsEngine::ConvPolyCircle(const Rigidbody& rb1, const Rigidbody& rb2)
 {
 	return Mathematics::ConvPolyCircleIntersection(*((ConvexPolygon*)rb1.GetActualShape()), *((Circle*)rb2.GetActualShape()));
 }
 
-Polygon* PhysicsEngyne::CircleCircle(const Rigidbody& rb1, const Rigidbody& rb2)
+Polygon* PhysicsEngine::CircleCircle(const Rigidbody& rb1, const Rigidbody& rb2)
 {
 	return Mathematics::CircleCircleIntersection(*((Circle*)rb1.GetActualShape()), *((Circle*)rb2.GetActualShape()));
 }
 
-Polygon* PhysicsEngyne::CircleConvPoly(const Rigidbody& rb1, const Rigidbody& rb2)
+Polygon* PhysicsEngine::CircleConvPoly(const Rigidbody& rb1, const Rigidbody& rb2)
 {
 	return Mathematics::CircleConvPolyIntersection(*((Circle*)rb1.GetActualShape()), *((ConvexPolygon*)rb2.GetActualShape()));
 }

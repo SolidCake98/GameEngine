@@ -18,8 +18,8 @@ public:
     float GetI();
 
 private:
-    float _M;
-    float _I;
+    float _M; // масса тела
+    float _I; // момент инерции
 };
 
 

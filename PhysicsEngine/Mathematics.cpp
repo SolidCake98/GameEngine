@@ -109,7 +109,7 @@ bool Mathematics::IsDotInConvexPolygon(ConvexPolygon& P, Point& p)
 
 Polygon* Mathematics::ConvPolyConvPolyIntersection(ConvexPolygon& P, ConvexPolygon& Q)
 {
-	static enum { Undefined, InsideQ, InsideP, };
+	enum { Undefined, InsideQ, InsideP, };
 
 	Vertex* p = P.GetStart();
 	Vertex* q = Q.GetStart();
@@ -260,7 +260,7 @@ Point Mathematics::SearchSectorHPoint(Circle& circle, Point& p1, Point& p2)
 
 Polygon* Mathematics::CircleConvPolyIntersection(Circle& circle, ConvexPolygon& convPoly)
 {
-	static enum { InCircle, OutCircle };
+	enum { InCircle, OutCircle };
 
 	Vertex* v = convPoly.GetStart();
 	Vertex* first = new Vertex();

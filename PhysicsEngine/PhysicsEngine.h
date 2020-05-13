@@ -15,7 +15,7 @@
 class PhysicsEngine
 {
 public:
-	typedef std::set<Rigidbody*>::iterator const_iterator;
+	typedef std::set<Rigidbody*>::const_iterator const_iterator;
 
     std::set<Rigidbody*> body;
 
@@ -32,8 +32,8 @@ public:
 
 	// даем возможность просмотреть твердые тела, добавленные в движок
 	// (позволяем воспользоваться константным итератором множества)
-	iterator begin();
-	iterator end();
+    const_iterator begin();
+    const_iterator end();
 
 	// Описание:
 	// метод удаляет тело из движка
