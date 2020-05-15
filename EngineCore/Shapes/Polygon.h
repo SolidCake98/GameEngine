@@ -11,7 +11,8 @@
 class Polygon : public Shape
 {
 public:
-    Polygon(Point* points, int length);
+    Polygon(Point points[], int length);
+    Polygon(const Polygon& p);
     ~Polygon();
 
     int GetLength();
@@ -20,6 +21,8 @@ public:
 private:
     Point* _points;
     int _length;
+
+    void InitPoints(Point* points, int length);
 };
 
 

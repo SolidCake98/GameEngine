@@ -11,14 +11,13 @@
 class ShapeComponent : ComponentBase
 {
 public:
-    ShapeComponent(Shape& shape);
-    ~ShapeComponent();
+    ShapeComponent(Shape shape);
 
     std::string GetName() override;
     const Shape& GetShape();
 
 private:
-    Shape* _shape;
+    Shape _shape;
 };
 
 
