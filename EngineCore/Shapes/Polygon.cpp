@@ -3,3 +3,16 @@
 //
 
 #include "Polygon.h"
+
+Polygon::Polygon(Point points[], int length)
+{
+    _points = points;
+    _length = length;
+}
+
+int Polygon::GetLength() { return _length; }
+
+const Point &Polygon::operator[](int index)
+{
+    return _points[index];
+}

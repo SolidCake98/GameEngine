@@ -15,7 +15,6 @@ public:
     PositionComponent(float x, float y, float angle);
 
     std::string GetName() override;
-
     float GetX();
     float GetY();
     float GetAngle();

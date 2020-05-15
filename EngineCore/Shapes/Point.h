@@ -5,17 +5,14 @@
 #ifndef GAMEENGINE_POINT_H
 #define GAMEENGINE_POINT_H
 
-class Point
+struct Point
 {
 public:
+    float x;
+    float y;
+
+    Point();
     Point(float x, float y);
-
-    float GetX();
-    float GetY();
-
-private:
-    float _x;
-    float _y;
 };
 
 #endif //GAMEENGINE_POINT_H

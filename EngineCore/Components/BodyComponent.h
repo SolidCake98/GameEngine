@@ -13,7 +13,6 @@ public:
     BodyComponent(float M, float I);
 
     std::string GetName() override;
-
     float GetM();
     float GetI();
 

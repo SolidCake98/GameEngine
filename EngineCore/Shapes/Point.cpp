@@ -4,11 +4,15 @@
 
 #include "Point.h"
 
-Point::Point(float x, float y)
+Point::Point()
 {
-    _x = x;
-    _y = y;
+    this->x = 0;
+    this->y = 0;
 }
 
-float Point::GetX() { return _x; }
-float Point::GetY() {return _y; }
+Point::Point(float x, float y)
+{
+    this->x = x;
+    this->y = y;
+}
+

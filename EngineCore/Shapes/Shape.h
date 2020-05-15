@@ -8,7 +8,8 @@
 
 class Shape
 {
-
+protected:
+    Shape() {};
 };
 
 

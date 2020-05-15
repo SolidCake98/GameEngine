@@ -4,11 +4,11 @@
 
 #include "VelocityComponent.h"
 
-VelocityComponent::VelocityComponent(float x, float y, float w)
+VelocityComponent::VelocityComponent(float x, float y, float W)
 {
     _x = x;
     _y = y;
-    _w = w;
+    _W = W;
 }
 
 std::string VelocityComponent::GetName() { return "VelocityComponent"; }
@@ -17,4 +17,4 @@ float VelocityComponent::GetX() { return _x; }
 
 float VelocityComponent::GetY() { return _y; }
 
-float VelocityComponent::GetW() { return _w; }
+float VelocityComponent::GetW() { return _W; }

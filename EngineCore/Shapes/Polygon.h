@@ -5,14 +5,20 @@
 #ifndef GAMEENGINE_POLYGON_H
 #define GAMEENGINE_POLYGON_H
 
+#include "Shape.h"
+#include "Point.h"
 
-class Polygon
+class Polygon : public Shape
 {
 public:
+    Polygon(Point points[], int length);
 
+    int GetLength();
+    const Point& operator[](int index);
 
 private:
-
+    Point* _points;
+    int _length
 };
 
 
