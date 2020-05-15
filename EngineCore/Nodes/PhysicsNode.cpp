@@ -13,7 +13,17 @@ PhysicsNode::PhysicsNode(PositionComponent& position, VelocityComponent& velocit
     _shape = &shape;
 }
 
+PhysicsNode::~PhysicsNode()
+{
+    delete _position;
+    delete _velocity;
+    delete _body;
+    delete _shape;
+}
+
 const PositionComponent& PhysicsNode::GetPosition() { return *_position; }
 const VelocityComponent& PhysicsNode::GetVelocity() { return *_velocity; }
 const BodyComponent& PhysicsNode::GetBody() { return *_body; }
 const ShapeComponent& PhysicsNode::GetShape() { return *_shape; }
+
+

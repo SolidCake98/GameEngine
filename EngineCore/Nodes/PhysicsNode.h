@@ -19,6 +19,8 @@ public:
                 BodyComponent& body,
                 ShapeComponent& shape);
 
+    ~PhysicsNode();
+
     const PositionComponent& GetPosition();
     const VelocityComponent& GetVelocity();
     const BodyComponent& GetBody();

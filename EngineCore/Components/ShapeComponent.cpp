@@ -9,8 +9,15 @@ ShapeComponent::ShapeComponent(Shape& shape)
     _shape = &shape;
 }
 
+ShapeComponent::~ShapeComponent()
+{
+    delete _shape;
+}
+
 std::string ShapeComponent::GetName() { return "ShapeComponent"; }
 
 const Shape& ShapeComponent::GetShape() { return *_shape; }
+
+
 
 

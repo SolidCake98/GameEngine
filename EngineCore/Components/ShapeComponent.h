@@ -12,6 +12,7 @@ class ShapeComponent : ComponentBase
 {
 public:
     ShapeComponent(Shape& shape);
+    ~ShapeComponent();
 
     std::string GetName() override;
     const Shape& GetShape();

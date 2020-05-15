@@ -33,7 +33,7 @@ namespace PEngine
         // points - массив точек полигона в локальных координатах фигуры
         // len - длина массива точек
         // произвольный полигон
-        static Polygon* CreatePolygon(Point points[], int len);
+        static Polygon* CreatePolygon(Point* points, int len);
 
         // Описание:
         // Метод создает выпуклый полигон
@@ -42,7 +42,7 @@ namespace PEngine
         // len - длина массива точек
         // Возвращает:
         // выпуклый полигон
-        static ConvexPolygon* CreateConvexPolygon(Point points[], int len);
+        static ConvexPolygon* CreateConvexPolygon(Point* points, int len);
 
     private:
         // Описание:

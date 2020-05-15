@@ -4,6 +4,7 @@ using namespace PEngine;
 
 Circle::Circle(Point center, float R)
 {
+    if (R <= 0) throw std::invalid_argument("R is less or equal then zero");
 	_center = center;
 	_R = R;
 }

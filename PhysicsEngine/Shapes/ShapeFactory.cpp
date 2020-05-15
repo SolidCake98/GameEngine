@@ -12,12 +12,12 @@ Circle* ShapeFactory::CreateCircle(float x, float y, float R)
 	return new Circle(x, y, R);
 }
 
-Polygon* ShapeFactory::CreatePolygon(Point points[], int len)
+Polygon* ShapeFactory::CreatePolygon(Point* points, int len)
 {
 	return new Polygon(ArrToVertexes(points, len));
 }
 
-ConvexPolygon* ShapeFactory::CreateConvexPolygon(Point points[], int len)
+ConvexPolygon* ShapeFactory::CreateConvexPolygon(Point* points, int len)
 {
 	return new ConvexPolygon(ArrToVertexes(points, len));
 }

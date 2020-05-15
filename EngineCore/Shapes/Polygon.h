@@ -11,7 +11,8 @@
 class Polygon : public Shape
 {
 public:
-    Polygon(Point points[], int length);
+    Polygon(Point* points, int length);
+    ~Polygon();
 
     int GetLength();
     const Point& operator[](int index);
