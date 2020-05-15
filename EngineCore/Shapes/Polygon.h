@@ -18,7 +18,7 @@ public:
 
 private:
     Point* _points;
-    int _length
+    int _length;
 };
 
 
