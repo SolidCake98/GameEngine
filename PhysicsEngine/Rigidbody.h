@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Polygon.h"
-#include "Circle.h"
+#include "Shapes/Polygon.h"
+#include "Shapes/Circle.h"
 #include "Mathematics.h"
 
 namespace PEngine

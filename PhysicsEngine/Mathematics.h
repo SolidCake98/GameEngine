@@ -1,8 +1,8 @@
 #pragma once
 
 #include <math.h>
-#include "ConvexPolygon.h"
-#include "Circle.h"
+#include "Shapes/ConvexPolygon.h"
+#include "Shapes/Circle.h"
 
 #define EPS 1E-6
 
