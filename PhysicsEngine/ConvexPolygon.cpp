@@ -1,5 +1,7 @@
 #include "ConvexPolygon.h"
 
+using namespace PEngine;
+
 ConvexPolygon::ConvexPolygon(Vertex* start) : Polygon(start)
 {
 	if (_power > 2)

@@ -1,5 +1,7 @@
 #include "PhysicsEngine.h"
 
+using namespace PEngine;
+
 PhysicsEngine::PhysicsEngine()
 {
 	_isWork = false;

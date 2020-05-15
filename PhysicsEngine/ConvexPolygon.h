@@ -3,16 +3,19 @@
 #include <stdexcept>
 #include "Polygon.h"
 
-// Описание:
-// класс, описывающий выпуклый полигон
-class ConvexPolygon : public Polygon
+namespace PEngine
 {
-	friend class ShapeFactory;
+    // Описание:
+    // класс, описывающий выпуклый полигон
+    class ConvexPolygon : public Polygon
+    {
+        friend class ShapeFactory;
 
-public:	
-	std::string GetName() const override;
+    public:
+        std::string GetName() const override;
 
-private:
-	ConvexPolygon(Vertex* start);
-	bool CheckVertex(Vertex* v);
-};
+    private:
+        ConvexPolygon(Vertex* start);
+        bool CheckVertex(Vertex* v);
+    };
+}

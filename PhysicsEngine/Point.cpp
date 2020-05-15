@@ -1,5 +1,7 @@
 #include "Point.h"
 
+using namespace PEngine;
+
 Point::Point()
 {
 	x = y = 0;
@@ -39,22 +41,25 @@ Point& Point::operator /= (float num)
 	return *this;
 }
 
-Point operator + (const Point& p1, const Point& p2)
+namespace PEngine
 {
-	return Point(p1.x + p2.x, p1.y + p2.y);
-}
+    Point operator + (const Point& p1, const Point& p2)
+    {
+        return Point(p1.x + p2.x, p1.y + p2.y);
+    }
 
-Point operator - (const Point& p1, const Point& p2)
-{
-	return Point(p1.x - p2.x, p1.y - p2.y);
-}
+    Point operator - (const Point& p1, const Point& p2)
+    {
+        return Point(p1.x - p2.x, p1.y - p2.y);
+    }
 
-Point operator / (const Point& p, const float num)
-{
-	return Point(p.x / num, p.y / num);
-}
+    Point operator / (const Point& p, float num)
+    {
+        return Point(p.x / num, p.y / num);
+    }
 
-Point operator * (const Point& p, const float num)
-{
-	return Point(p.x * num, p.y * num);
+    Point operator * (const Point& p, float num)
+    {
+        return Point(p.x * num, p.y * num);
+    }
 }

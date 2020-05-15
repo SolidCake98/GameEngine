@@ -1,5 +1,7 @@
 #include "Vertex.h"
 
+using namespace PEngine;
+
 Vertex::Vertex()
 {
 	position = Point(0, 0);

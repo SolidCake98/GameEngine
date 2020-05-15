@@ -1,5 +1,7 @@
 #include "Rigidbody.h"
 
+using namespace PEngine;
+
 Rigidbody::Rigidbody(ConvexPolygon& polygon, float M, float I, bool isStatic)
 {
 	Init(M, I, isStatic);

@@ -1,5 +1,7 @@
 #include "Polygon.h"
 
+using namespace PEngine;
+
 Polygon::Polygon(Vertex* vertex)
 {
 	_start = vertex;

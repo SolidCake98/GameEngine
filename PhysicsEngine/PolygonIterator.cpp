@@ -1,5 +1,7 @@
 #include "PolygonIterator.h"
 
+using namespace PEngine;
+
 bool PolygonIterator::operator!= (const PolygonIterator& other) const
 {
 	return _current != other._current;

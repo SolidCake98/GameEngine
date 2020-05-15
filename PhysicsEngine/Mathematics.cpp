@@ -1,5 +1,7 @@
 #include "Mathematics.h"
 
+using namespace PEngine;
+
 inline float Mathematics::SQR(float num)
 {
 	return num * num;

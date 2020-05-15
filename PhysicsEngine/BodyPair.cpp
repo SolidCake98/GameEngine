@@ -1,5 +1,7 @@
 #include "BodyPair.h"
 
+using namespace PEngine;
+
 BodyPair::BodyPair(Rigidbody* rb1, Rigidbody* rb2)
 {
 	if (rb1 < rb2)

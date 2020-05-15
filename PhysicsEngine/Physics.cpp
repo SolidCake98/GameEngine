@@ -1,5 +1,7 @@
 #include "Physics.h"
 
+using namespace PEngine;
+
 Point Physics::CenterOfMass(const Polygon& P)
 {
 	Vertex* v = P.GetStart();

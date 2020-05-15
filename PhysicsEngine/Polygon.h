@@ -5,49 +5,52 @@
 #include "Vertex.h"
 #include "PolygonIterator.h"
 
-class Mathematics;
-class Physics;
-class Rigidbody;
-
-// Описание:
-// класс, описывающий полигон общего вида
-class Polygon : public Shape
+namespace PEngine
 {
-	friend class Mathematics;
-	friend class Physics;
-	friend class Rigidbody;
-	friend class ShapeFactory;
+    class Mathematics;
+    class Physics;
+    class Rigidbody;
 
-public:	
-	typedef PolygonIterator const_iterator;
+    // Описание:
+    // класс, описывающий полигон общего вида
+    class Polygon : public Shape
+    {
+        friend class Mathematics;
+        friend class Physics;
+        friend class Rigidbody;
+        friend class ShapeFactory;
 
-	~Polygon()
-	{
-		Vertex* current = _start;
-		Vertex* prev;
+    public:
+        typedef PolygonIterator const_iterator;
 
-		while (current != _start)
-		{
-			prev = current;
-			current = current->next;
-			delete prev;
-		}
+        ~Polygon()
+        {
+            Vertex* current = _start;
+            Vertex* prev;
 
-		delete _start;
-	}
+            while (current != _start)
+            {
+                prev = current;
+                current = current->next;
+                delete prev;
+            }
 
-	std::string GetName() const override;
-	Shape* Paralax(const Point& p, float angle) override;
-	int GetPower() const;
+            delete _start;
+        }
 
-	const_iterator begin() const;
-	const_iterator end() const;
+        std::string GetName() const override;
+        Shape* Paralax(const Point& p, float angle) override;
+        int GetPower() const;
 
-protected:	
-	Vertex* _start;
-	int _power;
+        const_iterator begin() const;
+        const_iterator end() const;
 
-	Polygon(Vertex* vertex);
-	Vertex* GetStart() const;
-	Point Rotate(const Point& p, float angle);
-};
+    protected:
+        Vertex* _start;
+        int _power;
+
+        Polygon(Vertex* vertex);
+        Vertex* GetStart() const;
+        Point Rotate(const Point& p, float angle);
+    };
+}

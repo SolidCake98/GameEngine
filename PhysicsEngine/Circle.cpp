@@ -1,5 +1,7 @@
 #include "Circle.h"
 
+using namespace PEngine;
+
 Circle::Circle(Point center, float R)
 {
 	_center = center;

@@ -1,5 +1,7 @@
 #include "ShapeFactory.h"
 
+using namespace PEngine;
+
 Circle* ShapeFactory::CreateCircle(Point center, float R)
 {
 	return new Circle(center, R);
