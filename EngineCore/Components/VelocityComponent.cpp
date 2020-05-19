@@ -18,3 +18,5 @@ float VelocityComponent::GetX() { return _x; }
 float VelocityComponent::GetY() { return _y; }
 
 float VelocityComponent::GetW() { return _W; }
+
+
