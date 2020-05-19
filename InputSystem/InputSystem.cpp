@@ -49,6 +49,15 @@ void InputSystem::Update()
                     ++it;
                 }
             }
+            else
+            {
+                auto it = listeners.begin();
+                while(it != listeners.end()) {
+                    InputListener *listener = *it;
+                    listener->OnKeyNothing(i);
+                    ++it;
+                }
+            }
         }
     }
     ::memcpy(oldKeyMap, keyMap, sizeof(short) * KEY_CNT);

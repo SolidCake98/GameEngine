@@ -4,42 +4,43 @@
 
 #include "FakeWindow.h"
 #include "InputSystem/InputSystem.h"
+#include "InputSystem/Input.h"
 
-void FakeWindow::OnKeyDown(int key)
+void FakeWindow::KeyDown()
 {
-    if (key == KEY_W)
+    if (Input::GetKeyDown(KEY_W))
     {
         std::cout << "up is pressed" << std::endl;
     }
-    if (key == KEY_S)
+    if (Input::GetKeyDown(KEY_S))
     {
         std::cout << "down is pressed" << std::endl;
     }
-    if (key == KEY_A)
+    if (Input::GetKeyDown(KEY_A))
     {
         std::cout << "left is pressed" << std::endl;
     }
-    if (key == KEY_D)
+    if (Input::GetKeyDown(KEY_D))
     {
         std::cout << "right is pressed" << std::endl;
     }
 }
 
-void FakeWindow::OnKeyUp(int key)
+void FakeWindow::KeyUp()
 {
-    if (key == KEY_W)
+    if (Input::GetKeyUp(KEY_W))
     {
         std::cout << "up is unpressed" << std::endl;
     }
-    if (key == KEY_S)
+    if (Input::GetKeyUp(KEY_S))
     {
         std::cout << "down is unpressed" << std::endl;
     }
-    if (key == KEY_A)
+    if (Input::GetKeyUp(KEY_A))
     {
         std::cout << "left is unpressed" << std::endl;
     }
-    if (key == KEY_D)
+    if (Input::GetKeyUp(KEY_D))
     {
         std::cout << "right is unpressed" << std::endl;
     }
@@ -47,10 +48,12 @@ void FakeWindow::OnKeyUp(int key)
 
 void FakeWindow::OnCreate()
 {
-    InputSystem::get()->AddListener(this);
+
 }
 
 void FakeWindow::OnUpdate()
 {
     InputSystem::get()->Update();
+    KeyDown();
+    KeyUp();
 }
