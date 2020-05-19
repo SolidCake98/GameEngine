@@ -8,13 +8,13 @@
 
 #include "InputSystem/InputListener.h"
 
-class FakeWindow: public InputListener
+class FakeWindow
 {
 public:
     void OnCreate();
     void OnUpdate();
-    void OnKeyDown(int key) override;
-    void OnKeyUp(int key) override;
+    void KeyDown();
+    void KeyUp();
 };
 
 
