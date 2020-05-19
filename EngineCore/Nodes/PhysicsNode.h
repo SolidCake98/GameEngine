@@ -14,10 +14,10 @@
 class PhysicsNode : NodeBase
 {
 public:
-    PhysicsNode(PositionComponent position,
-                VelocityComponent velocity,
-                BodyComponent body,
-                ShapeComponent shape);
+    PhysicsNode(PositionComponent& position,
+                VelocityComponent& velocity,
+                BodyComponent& body,
+                ShapeComponent& shape);
 
     const PositionComponent& GetPosition();
     const VelocityComponent& GetVelocity();
@@ -25,10 +25,10 @@ public:
     const ShapeComponent& GetShape();
 
 private:
-    PositionComponent _position;
-    VelocityComponent _velocity;
-    BodyComponent _body;
-    ShapeComponent _shape;
+    PositionComponent* _position;
+    VelocityComponent* _velocity;
+    BodyComponent* _body;
+    ShapeComponent* _shape;
 };
 
 
