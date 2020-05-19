@@ -7,6 +7,7 @@
 
 #include <map>
 #include "SystemBase.h"
+#include "../Nodes/PhysicsNode.h"
 #include "../../PhysicsEngine/PhysicsEngine.h"
 
 class PhysicsSystem : public SystemBase
@@ -16,6 +17,8 @@ public:
     void Register(Entity entity) override;
 
 private:
+    std::map<PhysicsNode, PEngine::Rigidbody> _nodeBodyPairs;
+    PEngine::PhysicsEngine _pEnginde;
 
 };
 
