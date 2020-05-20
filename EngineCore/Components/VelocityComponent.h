@@ -14,8 +14,11 @@ public:
 
     std::string GetName() const override;
     float GetX() const;
+    void SetX(float x);
     float GetY() const;
+    void SetY(float y);
     float GetW() const;
+    void SetW(float W);
 
 private:
     float _x; // скорость по оси абсцисс

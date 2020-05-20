@@ -16,8 +16,11 @@ public:
 
     std::string GetName() const override;
     float GetX() const;
+    void SetX(float x);
     float GetY() const;
+    void SetY(float y);
     float GetAngle() const;
+    void SetAngle(float angle);
 
 private:
     float _x; // позиция тела по оси абсцисс

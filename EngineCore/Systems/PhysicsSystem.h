@@ -17,6 +17,9 @@
 class PhysicsSystem : public SystemBase
 {
 public:
+    PhysicsSystem();
+    ~PhysicsSystem();
+
     void Update() override;
     void Register(Entity& entity) override;
 
