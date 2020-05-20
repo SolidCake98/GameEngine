@@ -11,12 +11,12 @@ VelocityComponent::VelocityComponent(float x, float y, float W)
     _W = W;
 }
 
-std::string VelocityComponent::GetName() { return "VelocityComponent"; }
+std::string VelocityComponent::GetName() const { return "VelocityComponent"; }
 
-float VelocityComponent::GetX() { return _x; }
+float VelocityComponent::GetX() const { return _x; }
 
-float VelocityComponent::GetY() { return _y; }
+float VelocityComponent::GetY() const { return _y; }
 
-float VelocityComponent::GetW() { return _W; }
+float VelocityComponent::GetW() const { return _W; }
 
 

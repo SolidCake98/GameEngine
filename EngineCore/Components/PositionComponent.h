@@ -14,10 +14,10 @@ class PositionComponent : public ComponentBase
 public:
     PositionComponent(float x, float y, float angle);
 
-    std::string GetName() override;
-    float GetX();
-    float GetY();
-    float GetAngle();
+    std::string GetName() const override;
+    float GetX() const;
+    float GetY() const;
+    float GetAngle() const;
 
 private:
     float _x; // позиция тела по оси абсцисс

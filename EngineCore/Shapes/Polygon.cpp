@@ -19,9 +19,11 @@ Polygon::~Polygon()
     delete _points;
 }
 
-int Polygon::GetLength() { return _length; }
+std::string Polygon::GetName() const { return "Polygon"; }
 
-const Point &Polygon::operator[](int index)
+int Polygon::GetLength() const { return _length; }
+
+const Point &Polygon::operator[](int index) const
 {
     return _points[index];
 }

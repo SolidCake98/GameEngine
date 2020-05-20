@@ -11,10 +11,10 @@ PositionComponent::PositionComponent(float x, float y, float angle)
     _angle = angle;
 }
 
-std::string PositionComponent::GetName() { return "PositionComponent"; }
+std::string PositionComponent::GetName() const { return "PositionComponent"; }
 
-float PositionComponent::GetX() { return _x; }
+float PositionComponent::GetX() const { return _x; }
 
-float PositionComponent::GetY() { return _y; }
+float PositionComponent::GetY() const { return _y; }
 
-float PositionComponent::GetAngle() { return _angle; }
+float PositionComponent::GetAngle() const { return _angle; }

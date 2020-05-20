@@ -5,15 +5,17 @@
 #ifndef GAMEENGINE_CIRCLE_H
 #define GAMEENGINE_CIRCLE_H
 
+#include "Shape.h"
 #include "Point.h"
 
-class Circle
+class Circle : public Shape
 {
 public:
     Circle(Point center, float R);
 
-    Point GetCenter();
-    float GetR();
+    std::string GetName() const;
+    Point GetCenter() const;
+    float GetR() const;
 
 private:
     Point _center;

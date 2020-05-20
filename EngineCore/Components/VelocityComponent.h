@@ -12,10 +12,10 @@ class VelocityComponent : public ComponentBase
 public:
     VelocityComponent(float x, float y, float W);
 
-    std::string GetName() override;
-    float GetX();
-    float GetY();
-    float GetW();
+    std::string GetName() const override;
+    float GetX() const;
+    float GetY() const;
+    float GetW() const;
 
 private:
     float _x; // скорость по оси абсцисс

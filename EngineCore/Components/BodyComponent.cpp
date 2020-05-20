@@ -10,10 +10,10 @@ BodyComponent::BodyComponent(float M, float I)
     _I = I;
 }
 
-std::string BodyComponent::GetName() { return "BodyComponent"; }
+std::string BodyComponent::GetName() const { return "BodyComponent"; }
 
-float BodyComponent::GetM() { return _M; }
+float BodyComponent::GetM() const { return _M; }
 
-float BodyComponent::GetI() { return _I; }
+float BodyComponent::GetI() const { return _I; }
 
 

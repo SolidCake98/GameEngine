@@ -23,20 +23,7 @@ namespace PEngine
     public:
         typedef PolygonIterator const_iterator;
 
-        ~Polygon()
-        {
-            Vertex* current = _start;
-            Vertex* prev;
-
-            while (current != _start)
-            {
-                prev = current;
-                current = current->next;
-                delete prev;
-            }
-
-            delete _start;
-        }
+        ~Polygon();
 
         std::string GetName() const override;
         Shape* Paralax(const Point& p, float angle) override;

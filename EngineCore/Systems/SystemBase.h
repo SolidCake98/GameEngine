@@ -12,7 +12,7 @@ class SystemBase
 {
 public:
     virtual void Update() = 0;
-    virtual void Register(Entity entity) = 0;
+    virtual void Register(Entity& entity) = 0;
 };
 
 

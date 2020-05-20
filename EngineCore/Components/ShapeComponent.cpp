@@ -4,15 +4,14 @@
 
 #include "ShapeComponent.h"
 
-ShapeComponent::ShapeComponent(Shape shape) :
-    _shape(shape)
+ShapeComponent::ShapeComponent(Shape& shape)
 {
-
+    _shape = &shape;
 }
 
-std::string ShapeComponent::GetName() { return "ShapeComponent"; }
+std::string ShapeComponent::GetName() const { return "ShapeComponent"; }
 
-const Shape& ShapeComponent::GetShape() { return _shape; }
+const Shape& ShapeComponent::GetShape() const { return *_shape; }
 
 
 

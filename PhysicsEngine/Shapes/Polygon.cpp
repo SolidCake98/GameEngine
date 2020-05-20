@@ -13,6 +13,21 @@ Polygon::Polygon(Vertex* vertex)
 	}
 }
 
+Polygon::~Polygon()
+{
+    Vertex* current = _start;
+    Vertex* prev;
+
+    while (current != _start)
+    {
+        prev = current;
+        current = current->next;
+        delete prev;
+    }
+
+    delete _start;
+}
+
 std::string Polygon::GetName() const
 {
 	return "Polygon";

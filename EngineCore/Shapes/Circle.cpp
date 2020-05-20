@@ -10,12 +10,14 @@ Circle::Circle(Point center, float R)
     _R = R;
 }
 
-Point Circle::GetCenter()
+std::string Circle::GetName() const { return "Circle"; }
+
+Point Circle::GetCenter() const
 {
     return _center;
 }
 
-float Circle::GetR()
+float Circle::GetR() const
 {
     return _R;
 }

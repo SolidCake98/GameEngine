@@ -12,9 +12,9 @@ class BodyComponent : public ComponentBase
 public:
     BodyComponent(float M, float I);
 
-    std::string GetName() override;
-    float GetM();
-    float GetI();
+    std::string GetName() const override;
+    float GetM() const;
+    float GetI() const;
 
 private:
     float _M; // масса тела

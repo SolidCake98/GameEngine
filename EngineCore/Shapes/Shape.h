@@ -5,11 +5,12 @@
 #ifndef GAMEENGINE_SHAPE_H
 #define GAMEENGINE_SHAPE_H
 
+#include <string>
 
 class Shape
 {
-protected:
-    Shape() {};
+public:
+    virtual std::string GetName() const = 0;
 };
 
 

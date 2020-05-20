@@ -15,8 +15,9 @@ public:
     Polygon(const Polygon& p);
     ~Polygon();
 
-    int GetLength();
-    const Point& operator[](int index);
+    std::string GetName() const override;
+    int GetLength() const;
+    const Point& operator[](int index) const;
 
 private:
     Point* _points;

@@ -12,7 +12,7 @@
 class ComponentBase
 {
 public:
-    virtual std::string GetName() = 0;
+    virtual std::string GetName() const = 0;
 };
 
 #endif //GAMEENGINE_COMPONENTBASE_H
