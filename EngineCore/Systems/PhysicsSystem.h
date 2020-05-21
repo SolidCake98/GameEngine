@@ -6,6 +6,7 @@
 #define GAMEENGINE_PHYSICSSYSTEM_H
 
 #include <map>
+#include <list>
 #include <stdexcept>
 #include "SystemBase.h"
 #include "../Nodes/PhysicsNode.h"
@@ -14,6 +15,8 @@
 #include "../../PhysicsEngine/PhysicsEngine.h"
 #include "../../PhysicsEngine/Shapes/ShapeFactory.h"
 
+// Описание:
+// Система, ответственная за обработку физических взаимодействий.
 class PhysicsSystem : public SystemBase
 {
 public:
@@ -24,8 +27,16 @@ public:
     void Register(Entity& entity) override;
 
 private:
+    struct NodeBodyPair
+    {
+        PhysicsNode* node;
+        PEngine::Rigidbody* body;
+
+        NodeBodyPair(PhysicsNode* node, PEngine::Rigidbody* body);
+    };
+
     std::map<Entity*, PhysicsNode*> _registeredEntitys;
-    std::map<PhysicsNode*, PEngine::Rigidbody*> _nodeBodyPairs;
+    std::list<NodeBodyPair> _nodeBodyPairs;
     PEngine::PhysicsEngine _pEnginde;
 
     PEngine::Rigidbody* CreateRigidbody(PhysicsNode& node);

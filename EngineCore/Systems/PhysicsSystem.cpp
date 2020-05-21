@@ -11,12 +11,12 @@ PhysicsSystem::PhysicsSystem()
 
 PhysicsSystem::~PhysicsSystem()
 {
-    _registeredEntitys.clear();
+    _pEnginde.Stop();
 
     for (auto pair : _nodeBodyPairs)
     {
-        _pEnginde.Remove(*pair.second);
-        delete pair.second;
+        _pEnginde.Remove(*pair.body);
+        delete pair.body;
     }
 
     _nodeBodyPairs.clear();
@@ -31,7 +31,19 @@ PhysicsSystem::~PhysicsSystem()
 
 void PhysicsSystem::Update()
 {
+    // TODO: применение импульсов
+    for (auto pair : _nodeBodyPairs)
+    {
+        auto position = pair.node->GetPosition();
+        position.SetX(pair.body->GetPosition().x);
+        position.SetY(pair.body->GetPosition().y);
+        position.SetAngle(pair.body->GetAngle());
 
+        auto velocity = pair.node->GetVelocity();
+        velocity.SetX(pair.body->GetV().x);
+        velocity.SetY(pair.body->GetV().y);
+        velocity.SetW(pair.body->GetW());
+    }
 }
 
 void PhysicsSystem::Register(Entity& entity)
@@ -49,7 +61,7 @@ void PhysicsSystem::Register(Entity& entity)
 
     _registeredEntitys[&entity] = node;
     auto rb = CreateRigidbody(*node);
-    _nodeBodyPairs[node] = rb;
+    _nodeBodyPairs.emplace_back(node, rb);
     _pEnginde.Add(*rb);
 }
 
@@ -88,4 +100,10 @@ PEngine::Rigidbody* PhysicsSystem::CreateRigidbody(PhysicsNode &node)
     rb->SetW(node.GetVelocity().GetW());
 
     return rb;
+}
+
+PhysicsSystem::NodeBodyPair::NodeBodyPair(PhysicsNode* node, PEngine::Rigidbody* body)
+{
+    this->node = node;
+    this->body = body;
 }
