@@ -61,6 +61,25 @@ void Core::RemoveSystem(std::string systemName)
     }
 }
 
+SystemBase* Core::GetSystem(int priority)
+{
+    auto it = _systems.find(priority);
+    return (it == _systems.end()) ? nullptr : it->second;
+}
+
+SystemBase* Core::GetSystem(std::string systemName)
+{
+    for (auto pair : _systems)
+    {
+        if (pair.second->GetName() == systemName)
+        {
+            return pair.second;
+        }
+    }
+
+    return nullptr;
+}
+
 void Core::AddEntity(Entity &entity)
 {
     if (!_entitys.insert(&entity).second)
@@ -71,15 +90,36 @@ void Core::AddEntity(Entity &entity)
 
 void Core::RemoveEntity(Entity &entity)
 {
-
+    _entitys.erase(&entity);
+    // TODO: удаление из систем;
 }
 
 void Core::RegisterEntity(Entity &entity, SystemBase &system)
 {
-
+    if (_entitys.find(&entity) != _entitys.end())
+    {
+        for (auto pair : _systems)
+        {
+            if (pair.second == &system)
+            {
+                system.Register(entity);
+                break;
+            }
+        }
+    }
 }
 
 void Core::RegisterEntity(Entity &entity, std::string systemName)
 {
-
+    if (_entitys.find(&entity) != _entitys.end())
+    {
+        for (auto pair : _systems)
+        {
+            if (pair.second->GetName() == systemName)
+            {
+                pair.second->Register(entity);
+                break;
+            }
+        }
+    }
 }

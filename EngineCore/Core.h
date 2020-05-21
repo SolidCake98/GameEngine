@@ -19,6 +19,8 @@ public:
     void RemoveSystem(int priority);
     void RemoveSystem(SystemBase& system);
     void RemoveSystem(std::string systemName);
+    SystemBase* GetSystem(int priority);
+    SystemBase* GetSystem(std::string systemName);
     void AddEntity(Entity& entity);
     void RemoveEntity(Entity& entity);
     void RegisterEntity(Entity& entity, SystemBase& system);
