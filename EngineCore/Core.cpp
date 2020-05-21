@@ -16,13 +16,13 @@ void Core::Stop()
 
 void Core::AddSystem(SystemBase &system, int priority)
 {
-    if (_systems.find(priority) != _systems.end())
-    {
-        throw std::invalid_argument("Priority is already taken!");
-    }
-
     for (auto pair : _systems)
     {
+        if (pair.first == priority)
+        {
+            throw std::invalid_argument("Priority is already taken!");
+        }
+
         if (pair.second->GetName() == system.GetName())
         {
             throw std::invalid_argument("System is already registered!");
