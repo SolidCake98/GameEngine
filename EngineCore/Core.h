@@ -5,7 +5,9 @@
 #ifndef GAMEENGINE_CORE_H
 #define GAMEENGINE_CORE_H
 
-#include <list>
+#include <set>
+#include <map>
+#include <stdexcept>
 #include "Systems/SystemBase.h"
 
 class Core
@@ -14,6 +16,7 @@ public:
     void Start();
     void Stop();
     void AddSystem(SystemBase& system, int priority);
+    void RemoveSystem(int priority);
     void RemoveSystem(SystemBase& system);
     void RemoveSystem(std::string systemName);
     void AddEntity(Entity& entity);
@@ -22,8 +25,8 @@ public:
     void RegisterEntity(Entity& entity, std::string systemName);
 
 private:
-    std::list<Entity*> _entitys;
-
+    std::set<Entity*> _entitys;
+    std::map<int, SystemBase*> _systems;
 };
 
 
