@@ -23,6 +23,7 @@ public:
     PhysicsSystem();
     ~PhysicsSystem();
 
+    std::string GetName() const override;
     void Update() override;
     void Register(Entity& entity) override;
 

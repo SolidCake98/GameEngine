@@ -5,6 +5,7 @@
 #ifndef GAMEENGINE_SYSTEMBASE_H
 #define GAMEENGINE_SYSTEMBASE_H
 
+#include <string>
 #include "../Entity.h"
 
 // Описание:
@@ -18,6 +19,7 @@ public:
     // Описание:
     // Метод, регестрирующий сущности в системе (как правило, это подразумевает регистрацию необходимых системе узлов)
     virtual void Register(Entity& entity) = 0;
+    virtual std::string GetName() const = 0;
 };
 
 

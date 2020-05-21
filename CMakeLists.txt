@@ -62,7 +62,9 @@ set(SOURCE_FILES
         EngineCore/Systems/PhysicsSystem.cpp
         EngineCore/Systems/PhysicsSystem.h
         InputSystem/Input.h
-        InputSystem/Input.cpp)
+        InputSystem/Input.cpp
+        EngineCore/Core.cpp
+        EngineCore/Core.h)
 add_executable(GameEngine ${SOURCE_FILES})
 
 find_package(OpenGL REQUIRED)

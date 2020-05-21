@@ -29,6 +29,8 @@ PhysicsSystem::~PhysicsSystem()
     _registeredEntitys.clear();
 }
 
+std::string PhysicsSystem::GetName() const { return "PhysicsSystem"; }
+
 void PhysicsSystem::Update()
 {
     // TODO: применение импульсов
