@@ -10,6 +10,8 @@
 #include <stdexcept>
 #include "Systems/SystemBase.h"
 
+// Описание:
+// Ядро движка. Оно объединяет в себе работу всех систем.
 class Core
 {
 public:
