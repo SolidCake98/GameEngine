@@ -90,8 +90,15 @@ void Core::AddEntity(Entity &entity)
 
 void Core::RemoveEntity(Entity &entity)
 {
+    if (_entitys.find(&entity) != _entitys.end())
+    {
+        for (auto pair : _systems)
+        {
+            pair.second->Unregister(entity);
+        }
+    }
+
     _entitys.erase(&entity);
-    // TODO: удаление из систем;
 }
 
 void Core::RegisterEntity(Entity &entity, SystemBase &system)
@@ -121,5 +128,14 @@ void Core::RegisterEntity(Entity &entity, std::string systemName)
                 break;
             }
         }
+    }
+}
+
+void Core::Work()
+{
+    // TODO: потоки и петли смерти
+    for (auto pair : _systems)
+    {
+        pair.second->Update();
     }
 }

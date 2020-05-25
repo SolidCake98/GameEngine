@@ -31,6 +31,8 @@ public:
 private:
     std::set<Entity*> _entitys;
     std::map<int, SystemBase*> _systems;
+
+    void Work();
 };
 
 
