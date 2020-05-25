@@ -13,7 +13,7 @@ class Circle : public Shape
 public:
     Circle(Point center, float R);
 
-    std::string GetName() const;
+    std::string GetName() const override;
     Point GetCenter() const;
     float GetR() const;
 
