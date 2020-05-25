@@ -67,6 +67,22 @@ void PhysicsSystem::Register(Entity& entity)
     _pEnginde.Add(*rb);
 }
 
+void PhysicsSystem::Unregister(Entity &entity)
+{
+    for (auto pair : _nodeBodyPairs)
+    {
+        if (pair.node == _registeredEntitys[&entity])
+        {
+            _pEnginde.Remove(*pair.body);
+            delete pair.body;
+            _nodeBodyPairs.remove(pair);
+            delete _registeredEntitys[&entity];
+            _registeredEntitys.erase(&entity);
+            break;
+        }
+    }
+}
+
 PEngine::Rigidbody* PhysicsSystem::CreateRigidbody(PhysicsNode &node)
 {
     PEngine::Rigidbody* rb;

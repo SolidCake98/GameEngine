@@ -26,6 +26,7 @@ public:
     std::string GetName() const override;
     void Update() override;
     void Register(Entity& entity) override;
+    void Unregister(Entity& entity) override;
 
 private:
     struct NodeBodyPair
