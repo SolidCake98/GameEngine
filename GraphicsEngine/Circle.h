@@ -16,14 +16,14 @@
 
 #include "Point.h"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
 
 #include "ViewObject.h"
 
-class Circle : public ViewObject
-{
-public:
-	Circle(GLfloat, GLfloat, GLfloat, GLfloat);
-};
-
+namespace GraphicsEngine {
+    class Circle : public ViewObject {
+    public:
+        Circle(GLfloat, GLfloat, GLfloat, GLfloat);
+    };
+}

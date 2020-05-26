@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.15)
 project(GameEngine)
 
+include_directories(GraphicsEngine/Includes/glm)
+include_directories(GraphicsEngine/Includes/glm/detail)
+include_directories(GraphicsEngine/Includes/glm/ext)
+include_directories(GraphicsEngine/Includes/glm/gtc)
+include_directories(GraphicsEngine/Includes/glm/gtx)
+include_directories(GraphicsEngine/Includes/glm/simd)
+
 set(SOURCE_FILES
         main.cpp
         InputSystem/InputListener.h
@@ -64,8 +71,53 @@ set(SOURCE_FILES
         InputSystem/Input.h
         InputSystem/Input.cpp
         EngineCore/Core.cpp
-        EngineCore/Core.h)
+        EngineCore/Core.h
+        GraphicsEngine/Circle.cpp
+        GraphicsEngine/Circle.h
+        GraphicsEngine/IndexBuffer.cpp
+        GraphicsEngine/IndexBuffer.h
+        GraphicsEngine/Point.h
+        GraphicsEngine/Rectangle.cpp
+        GraphicsEngine/Rectangle.h
+        GraphicsEngine/Renderer.cpp
+        GraphicsEngine/Renderer.h
+        GraphicsEngine/Shader.cpp
+        GraphicsEngine/Shader.h
+        GraphicsEngine/Triangle.cpp
+        GraphicsEngine/Triangle.h
+        GraphicsEngine/Types.h
+        GraphicsEngine/VertexArray.cpp
+        GraphicsEngine/VertexArray.h
+        GraphicsEngine/VertexBuffer.cpp
+        GraphicsEngine/VertexBuffer.h
+        GraphicsEngine/VertexBufferLayout.h
+        GraphicsEngine/Viewer.cpp
+        GraphicsEngine/Viewer.h
+        GraphicsEngine/ViewObject.cpp
+        GraphicsEngine/ViewObject.h
+        EngineCore/Nodes/GraphicsNode.cpp
+        EngineCore/Nodes/GraphicsNode.h
+        EngineCore/Systems/GraphicsSystem.cpp
+        EngineCore/Systems/GraphicsSystem.h)
+        
 add_executable(GameEngine ${SOURCE_FILES})
+
+set(_glm_HEADER_SEARCH_DIRS
+        "/GraphicsEngine/Includes/glm")
+
+FIND_PATH(GLM_INCLUDE_DIR "glm/glm.hpp"
+        PATHS ${_glm_HEADER_SEARCH_DIRS})
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLM DEFAULT_MSG
+        GLM_INCLUDE_DIR)
+
+IF(GLM_FOUND)
+    SET(GLM_INCLUDE_DIRS "${GLM_INCLUDE_DIR}")
+
+    MESSAGE(STATUS "GLM_INCLUDE_DIR = ${GLM_INCLUDE_DIR}")
+ENDIF(GLM_FOUND)
+
 
 find_package(OpenGL REQUIRED)
 

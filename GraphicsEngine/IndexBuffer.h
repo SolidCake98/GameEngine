@@ -1,18 +1,20 @@
 #pragma once
 
-class IndexBuffer
-{
-private:
-	unsigned int m_RendererID;
-	unsigned int m_Count;
+namespace GraphicsEngine {
+    class IndexBuffer {
+    private:
+        unsigned int m_RendererID;
+        unsigned int m_Count;
 
-public:
-	IndexBuffer(const unsigned int*, unsigned int);
-	~IndexBuffer();
+    public:
+        IndexBuffer(const unsigned int *, unsigned int);
 
-	void Bind() const;
-	void Unbind() const;
+        ~IndexBuffer();
 
-	inline unsigned int GetCount() const { return m_Count; }
-};
+        void Bind() const;
 
+        void Unbind() const;
+
+        inline unsigned int GetCount() const { return m_Count; }
+    };
+}

@@ -1,16 +1,17 @@
 #pragma once
 
-class VertexBuffer
-{
-private:
-	unsigned int m_RendererID;
+namespace GraphicsEngine {
+    class VertexBuffer {
+    private:
+        unsigned int m_RendererID;
 
-public:
-	VertexBuffer(const void*, unsigned int);
-	~VertexBuffer();
+    public:
+        VertexBuffer(const void *, unsigned int);
 
-	void Bind() const;
-	void Unbind() const;
+        ~VertexBuffer();
 
-};
+        void Bind() const;
 
+        void Unbind() const;
+    };
+}

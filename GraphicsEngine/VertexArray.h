@@ -2,20 +2,22 @@
 
 #include "VertexBuffer.h"
 
-class VertexBufferLayout;
+namespace GraphicsEngine {
+    class VertexBufferLayout;
 
-class VertexArray
-{
-private:
-	unsigned int m_RendererID;
+    class VertexArray {
+    private:
+        unsigned int m_RendererID;
 
-public:
-	VertexArray();
-	~VertexArray();
+    public:
+        VertexArray();
 
-	void AddBuffer(const VertexBuffer&, const VertexBufferLayout&);
+        ~VertexArray();
 
-	void Bind() const;
-	void Unbind() const;
-};
+        void AddBuffer(const VertexBuffer &, const VertexBufferLayout &);
 
+        void Bind() const;
+
+        void Unbind() const;
+    };
+}

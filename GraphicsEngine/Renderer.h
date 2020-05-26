@@ -8,9 +8,9 @@
 #include "VertexArray.h"
 #include "Shader.h"
 
-
-class Renderer
-{
-public:
-	void Draw(const VertexArray&, const IndexBuffer&, const Shader&) const;
-};
+namespace GraphicsEngine {
+    class Renderer {
+    public:
+        void Draw(const VertexArray &, const IndexBuffer &, const Shader &) const;
+    };
+}

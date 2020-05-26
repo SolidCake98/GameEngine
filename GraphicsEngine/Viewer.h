@@ -18,34 +18,40 @@
 
 #include "Types.h"
 
-class Viewer
-{
-private:
-	int counter;
+namespace GraphicsEngine {
+    class Viewer {
+    private:
+        int counter;
 
-	GLFWwindow* window;
+        GLFWwindow *window;
 
-	std::vector<ViewObject*>* m_ObjectsVect;
+        std::vector<ViewObject *> *m_ObjectsVect;
 
-	int m_Width;
-	int m_Height;
+        int m_Width;
+        int m_Height;
 
-	int initOG(int, int);
-	void gameCycle();
+        int initOG(int, int);
 
-public:
-	Viewer(int, int);
-	void run();
+        void gameCycle();
 
-	std::vector<ViewObject*>* getAllObjects();
+    public:
+        Viewer(int, int);
 
-	ViewObject* getObjectByID(int);
-	
-	int generateId();
+        void run();
 
-	int addCircleToPool(Point, float);
-	int addRectToPool(Point, GLfloat[]);
-	int addTriangleToPool(Point, GLfloat[]);
+        std::vector<ViewObject *> *getAllObjects();
 
-};
+        ViewObject *getObjectByID(int);
 
+        int generateId();
+
+        int addObjectToPool(ViewObject&);
+
+        int addCircleToPool(Point, float);
+
+        int addRectToPool(Point, GLfloat[]);
+
+        int addTriangleToPool(Point, GLfloat[]);
+
+    };
+}

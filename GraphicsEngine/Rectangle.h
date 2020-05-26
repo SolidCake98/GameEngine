@@ -13,12 +13,13 @@
 
 #include "Point.h"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
 
-class Rectangle : public ViewObject
-{
-public:
-	Rectangle(float, float, GLfloat[]);
-};
+namespace GraphicsEngine {
+    class Rectangle : public ViewObject {
+    public:
+        Rectangle(float, float, GLfloat[]);
+    };
+}
 

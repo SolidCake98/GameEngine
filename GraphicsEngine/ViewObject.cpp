@@ -1,92 +1,98 @@
 #include "ViewObject.h"
+#include <filesystem>
+#include <iostream>
 
-ViewObject::ViewObject()
-{
-	m_Shader = new Shader("Basic.shader");
+#include <unistd.h>
 
-	m_Color = new float[3]{ 1.0, 1.0, 1.0 };
+namespace GraphicsEngine {
+    ViewObject::ViewObject() {
+        m_Shader = new Shader("../GraphicsEngine/Basic.shader");
 
-	m_MVP = glm::mat4(1.0f);
-	m_Position = glm::vec3(1.f, 1.f, 1.f);
-}
+        m_Color = new float[3]{1.0, 1.0, 1.0};
 
-int ViewObject::getID()
-{
-	return m_ID;
-}
+        m_MVP = glm::mat4(1.0f);
+        m_Position = glm::vec3(1.f, 1.f, 1.f);
+    }
 
-void ViewObject::setID(int _id)
-{
-	m_ID = _id;
-}
+    int ViewObject::getID() {
+        return m_ID;
+    }
 
-void ViewObject::setColor(float _c[])
-{
-	delete m_Color;
-	m_Color = _c;
-}
+    void ViewObject::setID(int _id) {
+        m_ID = _id;
+    }
 
-void ViewObject::setShader(Shader& _shader)
-{
-	m_Shader = &_shader;
-	m_Shader->Unbind();
-}
+    void ViewObject::setColor(float _c[]) {
+        delete m_Color;
+        m_Color = _c;
+    }
 
-void ViewObject::setMVP(glm::mat4 mat)
-{
-    m_MVP = mat;
-}
+    void ViewObject::setShader(Shader &_shader) {
+        m_Shader = &_shader;
+        m_Shader->Unbind();
+    }
 
-void ViewObject::setCurrentPosition(glm::vec3 vec)
-{
-    m_MVP = glm::translate(m_MVP, -m_Position);
-    m_Position = vec;
-    m_MVP = glm::translate(m_MVP, m_Position);
-}
+    void ViewObject::setMVP(glm::mat4 mat) {
+        m_MVP = mat;
+    }
 
-void ViewObject::setRotation(float angle, glm::vec3 vec_1, glm::vec3 vec_2)
-{
-    m_MVP = glm::rotate(m_MVP, glm::radians(angle), vec_2 - vec_1);
-   // m_MVP = glm::rotate(m_MVP, glm::radians(angle), vec_2);
-}
+    void ViewObject::setCurrentPosition(glm::vec3 vec) {
+        setTranslation(-m_Position);
+        m_Position = vec;
+        setTranslation(m_Position);
+    }
 
-void ViewObject::setTranslation(glm::vec3 vec)
-{
-    m_MVP = glm::translate(m_MVP, vec);
-}
+    void ViewObject::setCurrentRotation(float angle, glm::vec3 vec) {
+        setRotation(-m_CurAngle, m_CurRot);
+        m_CurAngle = angle;
+        m_CurRot = vec;
+        setRotation(m_CurAngle, m_CurRot);
+    }
 
-void ViewObject::setScale(glm::vec3 vec)
-{
-    m_MVP = glm::scale(m_MVP, vec);
-}
+    void ViewObject::setRotation(float angle, glm::vec3 vec) {
+        m_MVP = glm::rotate(m_MVP, glm::radians(angle), vec);
+        // m_MVP = glm::rotate(m_MVP, glm::radians(angle), vec_2);
+    }
 
-bool ViewObject::zip()
-{
-    m_VA = new VertexArray;
-    m_VB = new VertexBuffer(m_VertexBufferData, sizeof(float) * m_CountVert * m_Dem);
+    void ViewObject::setRotation(float angle, glm::vec3 vec_1, glm::vec3 vec_2) {
+        m_MVP = glm::rotate(m_MVP, glm::radians(angle), vec_2 - vec_1);
+        // m_MVP = glm::rotate(m_MVP, glm::radians(angle), vec_2);
+    }
 
-    m_Layout = new VertexBufferLayout();
-    m_Layout->Push<float>(m_Dem);
-    m_VA->AddBuffer(*m_VB, *m_Layout);
+    void ViewObject::setTranslation(glm::vec3 vec) {
+        m_MVP = glm::translate(m_MVP, vec);
+    }
 
-    //m_IB = new IndexBuffer(m_Indeces, (m_CountVert - 1) * 3);
-    m_IB = new IndexBuffer(m_Indeces, m_CountInd);
+    void ViewObject::setScale(glm::vec3 vec) {
+        m_MVP = glm::scale(m_MVP, vec);
+    }
 
-	return true;
-}
+    bool ViewObject::zip() {
+        m_VA = new VertexArray;
+        m_VB = new VertexBuffer(m_VertexBufferData, sizeof(float) * m_CountVert * m_Dem);
 
-void ViewObject::draw()
-{
-	if (!zip())
-		return;
+        m_Layout = new VertexBufferLayout();
+        m_Layout->Push(GL_FLOAT, m_Dem);
+        m_VA->AddBuffer(*m_VB, *m_Layout);
 
-	Renderer renderer;
+        //m_IB = new IndexBuffer(m_Indeces, (m_CountVert - 1) * 3);
+        m_IB = new IndexBuffer(m_Indeces, m_CountInd);
 
-	m_Shader->Bind();
+        return true;
+    }
 
-	m_Shader->SetUniformMat4f("u_MVP", m_MVP);
-	m_Shader->SetUniform4f("u_Color", m_Color[0], m_Color[1], m_Color[2], 1.0f);
-	//m_Shader->SetUniformVec3f("u_Tr", glm::vec3(0.2f, 0.3f, 0.0f));
-	renderer.Draw(*m_VA, *m_IB, *m_Shader);
-	m_Shader->Unbind();
+    void ViewObject::draw() {
+        if (!zip())
+            return;
+
+        Renderer renderer;
+
+        m_Shader->Bind();
+
+        m_Shader->SetUniformMat4f("u_MVP", m_MVP);
+        m_Shader->SetUniform4f("u_Color", m_Color[0], m_Color[1], m_Color[2], 1.0f);
+        //m_Shader->SetUniformVec3f("u_Tr", glm::vec3(0.2f, 0.3f, 0.0f));
+        renderer.Draw(*m_VA, *m_IB, *m_Shader);
+        m_Shader->Unbind();
+    }
 }
