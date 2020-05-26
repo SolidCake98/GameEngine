@@ -69,13 +69,13 @@ void PhysicsSystem::Register(Entity& entity)
 
 void PhysicsSystem::Unregister(Entity &entity)
 {
-    for (auto pair : _nodeBodyPairs)
+    for (auto it = _nodeBodyPairs.begin(); it != _nodeBodyPairs.end(); it++)
     {
-        if (pair.node == _registeredEntitys[&entity])
+        if (it->node == _registeredEntitys[&entity])
         {
-            _pEnginde.Remove(*pair.body);
-            delete pair.body;
-            _nodeBodyPairs.remove(pair);
+            _pEnginde.Remove(*it->body);
+            delete it->body;
+            _nodeBodyPairs.erase(it);
             delete _registeredEntitys[&entity];
             _registeredEntitys.erase(&entity);
             break;
