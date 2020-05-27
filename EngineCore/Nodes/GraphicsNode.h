@@ -19,8 +19,8 @@ public:
     GraphicsNode(PositionComponent& position,
                 ShapeComponent& shape);
 
-    const PositionComponent& GetPosition() const;
-    const ShapeComponent& GetShape() const;
+    PositionComponent& GetPosition() const;
+    ShapeComponent& GetShape() const;
 
 private:
     PositionComponent* _position;

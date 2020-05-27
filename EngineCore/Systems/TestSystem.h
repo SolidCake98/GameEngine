@@ -6,8 +6,10 @@
 #define GAMEENGINE_TESTSYSTEM_H
 
 #include <cmath>
+#include <map>
 #include "SystemBase.h"
 #include "../Components/PositionComponent.h"
+#include "../Nodes/TestNode.h"
 #include "../../CTimer/CTimer.h"
 
 class TestSystem : public SystemBase
@@ -19,7 +21,7 @@ public:
     void Unregister(Entity& entity) override;
 
 private:
-    PositionComponent* _position;
+    std::map<Entity*, TestNode*> _testPairs;
     CTimer _timer;
 };
 

@@ -15,6 +15,6 @@ GraphicsNode::GraphicsNode(PositionComponent& position, ShapeComponent& shape)
     _shape = &shape;
 }
 
-const PositionComponent& GraphicsNode::GetPosition() const { return *_position; }
-const ShapeComponent& GraphicsNode::GetShape() const { return *_shape; }
+PositionComponent& GraphicsNode::GetPosition() const { return *_position; }
+ShapeComponent& GraphicsNode::GetShape() const { return *_shape; }
 

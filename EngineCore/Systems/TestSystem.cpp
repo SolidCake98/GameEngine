@@ -8,19 +8,34 @@ std::string TestSystem::GetName() const { return "TestSystem"; }
 
 void TestSystem::Update()
 {
+    for (auto pair : _testPairs)
+    {
+        PositionComponent& start = pair.second->GetStartPosition();
+        PositionComponent& position = pair.second->GetPosition();
 
-    _position->SetY(20.0f * sin(_timer.Elapsed(false)) + 100);
-    _position->SetAngle(20.f * sin(_timer.Elapsed(false)));
+        position.SetX(start.GetX() + 20.f * sin(_timer.Elapsed(false)));
+        position.SetY(start.GetY() + 20.f * sin(_timer.Elapsed(false)));
+        position.SetAngle(20.f * sin(_timer.Elapsed(false)));
+    }
 }
 
 void TestSystem::Register(Entity &entity)
 {
-    _position = (PositionComponent*)entity.Get("PositionComponent");
+    if (_testPairs.find(&entity) == _testPairs.end())
+    {
+        _testPairs[&entity] = new TestNode(*(PositionComponent*)entity.Get("PositionComponent"));
+    }
 }
 
 void TestSystem::Unregister(Entity &entity)
 {
-    _position = nullptr;
+    auto it = _testPairs.find(&entity);
+
+    if (it != _testPairs.end())
+    {
+        delete it->second;
+        _testPairs.erase(it);
+    }
 }
 
 

@@ -98,7 +98,7 @@ set(SOURCE_FILES
         EngineCore/Nodes/GraphicsNode.cpp
         EngineCore/Nodes/GraphicsNode.h
         EngineCore/Systems/GraphicsSystem.cpp
-        EngineCore/Systems/GraphicsSystem.h EngineCore/Systems/TestSystem.cpp EngineCore/Systems/TestSystem.h)
+        EngineCore/Systems/GraphicsSystem.h EngineCore/Systems/TestSystem.cpp EngineCore/Systems/TestSystem.h EngineCore/Nodes/TestNode.cpp EngineCore/Nodes/TestNode.h)
         
 add_executable(GameEngine ${SOURCE_FILES})
 

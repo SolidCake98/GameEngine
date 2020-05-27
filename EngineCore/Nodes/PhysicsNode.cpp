@@ -14,9 +14,9 @@ PhysicsNode::PhysicsNode(PositionComponent& position, VelocityComponent& velocit
 }
 
 
-const PositionComponent& PhysicsNode::GetPosition() const { return *_position; }
-const VelocityComponent& PhysicsNode::GetVelocity() const { return *_velocity; }
-const BodyComponent& PhysicsNode::GetBody() const { return *_body; }
-const ShapeComponent& PhysicsNode::GetShape() const { return *_shape; }
+PositionComponent& PhysicsNode::GetPosition() const { return *_position; }
+VelocityComponent& PhysicsNode::GetVelocity() const { return *_velocity; }
+BodyComponent& PhysicsNode::GetBody() const { return *_body; }
+ShapeComponent& PhysicsNode::GetShape() const { return *_shape; }
 
 

@@ -19,10 +19,10 @@ public:
                 BodyComponent& body,
                 ShapeComponent& shape);
 
-    const PositionComponent& GetPosition() const;
-    const VelocityComponent& GetVelocity() const;
-    const BodyComponent& GetBody() const;
-    const ShapeComponent& GetShape() const;
+    PositionComponent& GetPosition() const;
+    VelocityComponent& GetVelocity() const;
+    BodyComponent& GetBody() const;
+    ShapeComponent& GetShape() const;
 
 private:
     PositionComponent* _position;
