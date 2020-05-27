@@ -47,5 +47,9 @@ namespace GraphicsEngine {
         m_Indeces[(numberOfSides - 1) * 3 + 2] = 1;
 
         m_CountInd = numberOfSides * 3;
+        
+        m_Position = glm::vec3(x, y, 0);
+
+        m_MVP = glm::translate(m_MVP, m_Position);
     }
 }

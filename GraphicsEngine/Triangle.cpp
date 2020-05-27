@@ -12,5 +12,8 @@ namespace GraphicsEngine {
 
         m_Position = glm::vec3(x, y, 0.f);
         m_VertexBufferData = _vp;
+        
+        
+        m_MVP = glm::translate(m_MVP, m_Position);
     }
 }

@@ -14,5 +14,7 @@ namespace GraphicsEngine {
 
         m_Indeces = new unsigned int[m_CountInd]{0, 1, 3,
                                                  1, 3, 2};
+        
+        m_MVP = glm::translate(m_MVP, m_Position);
     }
 }

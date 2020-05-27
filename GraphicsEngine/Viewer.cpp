@@ -96,7 +96,7 @@ namespace GraphicsEngine {
         return counter++;
     }
 
-    int Viewer::addObjectToPool(ViewObject& vo)
+    void Viewer::addObjectToPool(ViewObject& vo)
     {
         m_ObjectsVect->push_back(&vo);
     }

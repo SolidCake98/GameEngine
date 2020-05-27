@@ -45,7 +45,7 @@ namespace GraphicsEngine {
 
         int generateId();
 
-        int addObjectToPool(ViewObject&);
+        void addObjectToPool(ViewObject&);
 
         int addCircleToPool(Point, float);
 

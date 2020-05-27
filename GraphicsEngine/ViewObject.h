@@ -22,8 +22,8 @@ namespace GraphicsEngine {
 
         Types m_Type;
         glm::vec3 m_Position;
-        glm::vec3 m_CurRot;
-        float m_CurAngle;
+        glm::vec3 m_Scale;
+        float m_Angle;
 
         unsigned int m_Dem;
         unsigned int m_CountVert;
@@ -58,14 +58,10 @@ namespace GraphicsEngine {
 
         void setMVP(glm::mat4);
 
-        void setCurrentPosition(glm::vec3);
-
-        void setCurrentRotation(float, glm::vec3);
-
         void setRotation(float, glm::vec3);
         void setRotation(float, glm::vec3, glm::vec3);
 
-        void setTranslation(glm::vec3);
+        void setPosition(glm::vec3);
 
         void setScale(glm::vec3);
 

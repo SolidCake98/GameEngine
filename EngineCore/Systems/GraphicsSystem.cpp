@@ -25,10 +25,10 @@ void GraphicsSystem::Update()
     for(auto updVO : m_registeredEntitys)
     {
         auto position = updVO.second->gn->GetPosition();
-        updVO.second->vo->setCurrentPosition(glm::vec3(position.GetX(), position.GetY(), 0));
+        updVO.second->vo->setPosition(glm::vec3(position.GetX(), position.GetY(), 0));
 
         auto rotation = updVO.second->gn->GetPosition().GetAngle();
-        updVO.second->vo->setCurrentRotation(rotation, glm::vec3(0.f,0.f,1.f));
+        updVO.second->vo->setRotation(rotation, glm::vec3(0.f,0.f,1.f));
     }
 }
 
