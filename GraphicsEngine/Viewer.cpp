@@ -7,9 +7,9 @@ namespace GraphicsEngine {
         m_Width = width;
         m_Height = height;
 
-        counter = 0;
+        initOG(m_Width, m_Height);
 
-        initOG(width, height);
+        counter = 0;
     }
 
     int Viewer::initOG(int width, int height) {
@@ -48,35 +48,31 @@ namespace GraphicsEngine {
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        glViewport(0.0f, 0.0f, m_Width, m_Height);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, m_Width, 0, m_Height, 0, 1);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-
         return 0;
     }
 
     void Viewer::gameCycle() {
+        //initOG(m_Width, m_Height);
+
         do {
             glClear(GL_COLOR_BUFFER_BIT);
 
             for (auto obj : *m_ObjectsVect) {
+                //obj->setRotation(10.f, glm::vec3(0.f), glm::vec3(0.f, 1.f, 0.f));
                 obj->draw();
             }
             glfwSwapBuffers(window);
             glfwPollEvents();
 
-        } while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+        } while (m_IsWork && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
                  glfwWindowShouldClose(window) == 0);
-
 
         glfwTerminate();
     }
 
     void Viewer::run() {
-        gameCycle();
+        m_IsWork = true;
+        //m_GraphicsThread = new std::thread(&Viewer::gameCycle, this);
     }
 
     std::vector<ViewObject *> *Viewer::getAllObjects() {
@@ -126,5 +122,24 @@ namespace GraphicsEngine {
         m_ObjectsVect->push_back(triang);
 
         return id;
+    }
+
+    Viewer::~Viewer() {
+        m_IsWork = false;
+        m_GraphicsThread->join();
+        delete m_GraphicsThread;
+    }
+
+    void Viewer::clear() {
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
+
+    void Viewer::draw() {
+        for (auto obj : *m_ObjectsVect) {
+            //obj->setRotation(10.f, glm::vec3(0.f), glm::vec3(0.f, 1.f, 0.f));
+            obj->draw();
+        }
+        glfwSwapBuffers(window);
+        glfwPollEvents();
     }
 }

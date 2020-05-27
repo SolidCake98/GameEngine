@@ -22,6 +22,8 @@ std::string GraphicsSystem::GetName() const
 
 void GraphicsSystem::Update()
 {
+    m_Viewer->clear();
+
     for(auto updVO : m_registeredEntitys)
     {
         auto position = updVO.second->gn->GetPosition();
@@ -30,6 +32,8 @@ void GraphicsSystem::Update()
         auto rotation = updVO.second->gn->GetPosition().GetAngle();
         updVO.second->vo->setRotation(rotation, glm::vec3(0.f,0.f,1.f));
     }
+
+    m_Viewer->draw();
 }
 
 void GraphicsSystem::Register(Entity& entity)
@@ -45,7 +49,7 @@ void GraphicsSystem::Register(Entity& entity)
 
     GraphicsEngine::ViewObject* vo = nullptr;
 
-    auto name = node->GetShape().GetName();
+    auto name = node->GetShape().GetShape().GetName();
     if (name == "Circle")
     {
         auto circle = ((const Circle&)node->GetShape().GetShape());

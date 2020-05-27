@@ -39,11 +39,13 @@ int main()
     PositionComponent pc(0, 0, 0);
     e.Add(pc);
 
-    Circle c(Point(0, 0), 3);
+    Circle c(Point(0, 0), 300);
     ShapeComponent sc(c);
     e.Add(sc);
 
     graphics.Register(e);
+
+    //graphics.Start();
 
     core.Start();
 }
