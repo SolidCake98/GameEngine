@@ -62,22 +62,23 @@ inline bool PhysicsEngine::Contain(Rigidbody& rb)
 
 void PhysicsEngine::Work()
 {
-	auto prev = std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());
-	std::chrono::microseconds accumulator;
-	std::chrono::microseconds dt(DT);
+    const double FPS = 60;
+    const double DT = 1/FPS;
+    CTimer t;
+    double accumulator = 0;
 
 	while (_isWork)
 	{
 		const std::lock_guard<std::mutex> guard(bodyMutex);
 
-		auto now = std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());
-		accumulator += now - prev;
-		prev = now;
+        accumulator += t.Elapsed(true);
 
-		// избавляемся от "петли смерти"
-		if (accumulator > 3 * dt) { accumulator = 3 * dt; }
+        if (accumulator > 3 * DT)
+        {
+            accumulator = 3 * DT;
+        }
 
-		while (accumulator > dt)
+		while (accumulator > DT)
 		{
 			NarrowPhase(WidePhase());
 
@@ -86,7 +87,7 @@ void PhysicsEngine::Work()
 				Physics::UpdatePosition(*b, DT);
 			}
 
-			accumulator -= dt;
+			accumulator -= DT;
 		}
 	}
 }

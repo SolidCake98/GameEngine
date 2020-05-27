@@ -5,6 +5,7 @@
 #include "EngineCore/Core.h"
 #include "EngineCore/Systems/GraphicsSystem.h"
 #include "EngineCore/Systems/TestSystem.h"
+#include "EngineCore/Systems/PhysicsSystem.h"
 
 void TestInput()
 {
@@ -86,9 +87,42 @@ void TestGraphics()
     core.Start();
 }
 
+void TestPhysics()
+{
+    Core core;
+
+    PhysicsSystem physics;
+    core.AddSystem(physics, 1);
+
+    GraphicsSystem graphics;
+    core.AddSystem(graphics, 2);
+
+    Entity entity;
+
+    Point points[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
+    Polygon p(points, 3);
+
+    PositionComponent pc(100, 100, 0);
+    ShapeComponent sc(p);
+    VelocityComponent vc(10, 0, 0);
+    BodyComponent bc(2, 1);
+
+    entity.Add(pc);
+    entity.Add(sc);
+    entity.Add(vc);
+    entity.Add(bc);
+
+    physics.Register(entity);
+    graphics.Register(entity);
+
+    core.Start();
+}
+
 int main()
 {
-    TestGraphics();
+    //TestInput();
+    //TestGraphics();
+    TestPhysics();
 }
 
 

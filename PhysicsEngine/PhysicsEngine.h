@@ -9,6 +9,7 @@
 #include <chrono>
 #include "Physics.h"
 #include "BodyPair.h"
+#include "../CTimer/CTimer.h"
 
 namespace PEngine
 {
@@ -56,8 +57,6 @@ namespace PEngine
     private:
         typedef Polygon* (*pfunc)(const Rigidbody&, const Rigidbody&);
 
-        const float FPS = 30;
-        const unsigned int DT = 1000 / FPS;
         bool _isWork;
         std::thread* physicsThread;
         std::mutex bodyMutex;

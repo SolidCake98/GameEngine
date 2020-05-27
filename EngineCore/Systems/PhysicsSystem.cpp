@@ -87,9 +87,9 @@ PEngine::Rigidbody* PhysicsSystem::CreateRigidbody(PhysicsNode &node)
 {
     PEngine::Rigidbody* rb;
 
-    if (node.GetShape().GetName() == "Polygon")
+    if (node.GetShape().GetShape().GetName() == "Polygon")
     {
-        auto poly = (const Polygon&)node.GetShape();
+        auto poly = (Polygon&)node.GetShape().GetShape();
         auto points = new PEngine::Point[poly.GetLength()];
 
         for (int i = 0; i < poly.GetLength(); i++)
@@ -104,7 +104,7 @@ PEngine::Rigidbody* PhysicsSystem::CreateRigidbody(PhysicsNode &node)
     }
     else
     {
-        auto circle = (const Circle&)node.GetShape();
+        auto circle = (Circle&)node.GetShape();
 
         rb = new PEngine::Rigidbody(
                 *PEngine::ShapeFactory::CreateCircle(circle.GetCenter().x, circle.GetCenter().y, circle.GetR()),
