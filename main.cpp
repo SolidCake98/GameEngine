@@ -39,14 +39,17 @@ int main()
     PositionComponent pc(100, 100, 0);
     e.Add(pc);
 
-    Circle c(Point(0, 0), 50);
-    ShapeComponent sc(c);
+    //Circle c(Point(0, 0), 50);
+    Point points[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
+    Polygon p(points, 3);
+
+    ShapeComponent sc(p);
     e.Add(sc);
 
     graphics.Register(e);
 
     TestSystem test;
-    core.AddSystem(test, 2);
+    //core.AddSystem(test, 2);
 
     test.Register(e);
 
