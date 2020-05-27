@@ -58,7 +58,6 @@ namespace GraphicsEngine {
             glClear(GL_COLOR_BUFFER_BIT);
 
             for (auto obj : *m_ObjectsVect) {
-                //obj->setRotation(10.f, glm::vec3(0.f), glm::vec3(0.f, 1.f, 0.f));
                 obj->draw();
             }
             glfwSwapBuffers(window);
@@ -72,6 +71,7 @@ namespace GraphicsEngine {
 
     void Viewer::run() {
         m_IsWork = true;
+        gameCycle();
         //m_GraphicsThread = new std::thread(&Viewer::gameCycle, this);
     }
 
@@ -92,9 +92,9 @@ namespace GraphicsEngine {
         return counter++;
     }
 
-    void Viewer::addObjectToPool(ViewObject& vo)
+    void Viewer::addObjectToPool(ViewObject* vo)
     {
-        m_ObjectsVect->push_back(&vo);
+        m_ObjectsVect->push_back(vo);
     }
 
     int Viewer::addCircleToPool(Point pos, float radius) {

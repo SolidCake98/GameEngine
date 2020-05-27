@@ -3,6 +3,7 @@
 //
 
 
+
 #include "GraphicsSystem.h"
 
 GraphicsSystem::GraphicsSystem()
@@ -55,7 +56,7 @@ void GraphicsSystem::Register(Entity& entity)
         auto circle = ((const Circle&)node->GetShape().GetShape());
         vo = new GraphicsEngine::Circle(
                 circle.GetCenter().x, circle.GetCenter().y, 0, circle.GetR());
-        m_Viewer->addObjectToPool(*vo);
+        m_Viewer->addObjectToPool(vo);
     }
     else if(name == "Polygon")
     {
@@ -64,7 +65,7 @@ void GraphicsSystem::Register(Entity& entity)
         switch(size)
         {
             case 4: {
-                float pos[4 * 3]{0.f};
+                auto pos = new float[4 * 3]{0.f};
                 for(int i = 0; i < size; i ++)
                 {
                     pos[(i * 3)] = pol[i].x;
@@ -72,11 +73,11 @@ void GraphicsSystem::Register(Entity& entity)
                     pos[(i * 3) + 2] = 0;
                 }
                 vo = new GraphicsEngine::Rectangle(node->GetPosition().GetX(), node->GetPosition().GetY(), pos);
-                m_Viewer->addObjectToPool(*vo);
+                m_Viewer->addObjectToPool(vo);
                 break;
             }
             case 3: {
-                float pos[3 * 3]{0.f};
+                auto pos = new float[3 * 3]{0.f};
                 for(int i = 0; i < size; i ++)
                 {
                     pos[(i * 3)] = pol[i].x;
@@ -84,7 +85,7 @@ void GraphicsSystem::Register(Entity& entity)
                     pos[(i * 3) + 2] = 0;
                 }
                 vo = new GraphicsEngine::Triangle(node->GetPosition().GetX(), node->GetPosition().GetY(), pos);
-                m_Viewer->addObjectToPool(*vo);
+                m_Viewer->addObjectToPool(vo);
                 break;
             }
             default:

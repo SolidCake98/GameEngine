@@ -8,7 +8,9 @@ std::string TestSystem::GetName() const { return "TestSystem"; }
 
 void TestSystem::Update()
 {
+
     _position->SetY(20.0f * sin(_timer.Elapsed(false)) + 100);
+    _position->SetAngle(20.f * sin(_timer.Elapsed(false)));
 }
 
 void TestSystem::Register(Entity &entity)

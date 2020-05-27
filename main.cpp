@@ -36,12 +36,14 @@ int main()
 
     Entity e;
 
-    PositionComponent pc(100, 100, 0);
+    PositionComponent pc(100, 100, 45);
     e.Add(pc);
 
+
+
     //Circle c(Point(0, 0), 50);
-    Point points[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
-    Polygon p(points, 3);
+    Point points[] = {Point(-10, -10), Point(10, -10), Point(0, 10), Point(0, -5)};
+    Polygon p(points, 4);
 
     ShapeComponent sc(p);
     e.Add(sc);
@@ -49,7 +51,7 @@ int main()
     graphics.Register(e);
 
     TestSystem test;
-    //core.AddSystem(test, 2);
+    core.AddSystem(test, 2);
 
     test.Register(e);
 

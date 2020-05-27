@@ -92,7 +92,6 @@ namespace GraphicsEngine {
 
         m_Shader->SetUniformMat4f("u_MVP", m_MVP);
         m_Shader->SetUniform4f("u_Color", m_Color[0], m_Color[1], m_Color[2], 1.0f);
-        //m_Shader->SetUniformVec3f("u_Tr", glm::vec3(0.2f, 0.3f, 0.0f));
         renderer.Draw(*m_VA, *m_IB, *m_Shader);
         m_Shader->Unbind();
     }

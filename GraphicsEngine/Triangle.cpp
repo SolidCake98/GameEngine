@@ -1,5 +1,7 @@
 #include "Triangle.h"
 
+#include <iostream>
+
 namespace GraphicsEngine {
     Triangle::Triangle(float x, float y, GLfloat _vp[]) {
         m_Type = T_Triangle;
@@ -12,7 +14,11 @@ namespace GraphicsEngine {
 
         m_Position = glm::vec3(x, y, 0.f);
         m_VertexBufferData = _vp;
-        
+
+        for(int i = 0; i < 9; i++)
+        {
+            std::cout << m_VertexBufferData[i] << " ";
+        }
         
         m_MVP = glm::translate(m_MVP, m_Position);
     }
