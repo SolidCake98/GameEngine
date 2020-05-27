@@ -6,29 +6,32 @@
 #include "EngineCore/Systems/GraphicsSystem.h"
 #include "EngineCore/Systems/TestSystem.h"
 
-int main()
+void TestInput()
 {
-//    const double FPS = 60;
-//    const double DT = 1/FPS;
-//
-//    FakeWindow window;
-//    CTimer t;
-//
-//    window.OnCreate();
-//
-//
-//    double accumulator = 0;
-//
-//    while (true)
-//    {
-//        accumulator += t.Elapsed(true);
-//        while(accumulator > DT)
-//        {
-//            window.OnUpdate();
-//            accumulator -= DT;
-//        }
-//    }
+    const double FPS = 60;
+    const double DT = 1/FPS;
 
+    FakeWindow window;
+    CTimer t;
+
+    window.OnCreate();
+
+
+    double accumulator = 0;
+
+    while (true)
+    {
+        accumulator += t.Elapsed(true);
+        while(accumulator > DT)
+        {
+            window.OnUpdate();
+            accumulator -= DT;
+        }
+    }
+}
+
+void TestGraphics()
+{
     Core core;
 
     GraphicsSystem graphics;
@@ -81,6 +84,11 @@ int main()
     test.Register(e3);
 
     core.Start();
+}
+
+int main()
+{
+    TestGraphics();
 }
 
 
