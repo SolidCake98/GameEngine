@@ -6,12 +6,13 @@
 
 void Core::Start()
 {
-
+    _isWork = true;
+    Work();
 }
 
 void Core::Stop()
 {
-
+    _isWork = false;
 }
 
 void Core::AddSystem(SystemBase &system, int priority)
@@ -133,9 +134,28 @@ void Core::RegisterEntity(Entity &entity, std::string systemName)
 
 void Core::Work()
 {
-    // TODO: потоки и петли смерти
-    for (auto pair : _systems)
+    const double FPS = 60;
+    const double DT = 1/FPS;
+    CTimer t;
+    double accumulator = 0;
+
+    while (_isWork)
     {
-        pair.second->Update();
+        accumulator += t.Elapsed(true);
+
+        if (accumulator > 3 * DT)
+        {
+            accumulator = 3 * DT;
+        }
+
+        while(accumulator > DT)
+        {
+            accumulator -= DT;
+
+            for (auto pair : _systems)
+            {
+                pair.second->Update();
+            }
+        }
     }
 }

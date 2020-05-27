@@ -9,6 +9,7 @@
 #include <map>
 #include <stdexcept>
 #include "Systems/SystemBase.h"
+#include "../CTimer/CTimer.h"
 
 // Описание:
 // Ядро движка. Оно объединяет в себе работу всех систем.
@@ -31,6 +32,7 @@ public:
 private:
     std::set<Entity*> _entitys;
     std::map<int, SystemBase*> _systems;
+    bool _isWork;
 
     void Work();
 };

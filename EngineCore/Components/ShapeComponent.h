@@ -8,7 +8,7 @@
 #include "ComponentBase.h"
 #include "../Shapes/Shape.h"
 
-class ShapeComponent : ComponentBase
+class ShapeComponent : public ComponentBase
 {
 public:
     ShapeComponent(Shape& shape);
