@@ -4,6 +4,7 @@
 #include "FakeWindow.h"
 #include "EngineCore/Core.h"
 #include "EngineCore/Systems/GraphicsSystem.h"
+#include "EngineCore/Systems/TestSystem.h"
 
 int main()
 {
@@ -31,21 +32,23 @@ int main()
     Core core;
 
     GraphicsSystem graphics;
-
     core.AddSystem(graphics, 1);
 
     Entity e;
 
-    PositionComponent pc(0, 0, 0);
+    PositionComponent pc(100, 100, 0);
     e.Add(pc);
 
-    Circle c(Point(0, 0), 300);
+    Circle c(Point(0, 0), 50);
     ShapeComponent sc(c);
     e.Add(sc);
 
     graphics.Register(e);
 
-    //graphics.Start();
+    TestSystem test;
+    core.AddSystem(test, 2);
+
+    test.Register(e);
 
     core.Start();
 }
