@@ -104,6 +104,10 @@ void GraphicsSystem::Unregister(Entity& entity)
     m_registeredEntitys.erase(&entity);
 }
 
+void GraphicsSystem::Start() {
+    m_Viewer->run();
+}
+
 GraphicsSystem::GNodeVOPair::GNodeVOPair(GraphicsNode* _gn, GraphicsEngine::ViewObject* _vo)
 {
     this->gn = _gn;

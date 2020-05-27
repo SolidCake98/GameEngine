@@ -22,6 +22,7 @@ public:
     void Update() override;
     void Register(Entity&) override;
     void Unregister(Entity&) override;
+    void Start();
 
 private:
     struct GNodeVOPair
