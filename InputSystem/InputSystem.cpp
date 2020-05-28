@@ -11,26 +11,26 @@ InputSystem::~InputSystem() {}
 
 void InputSystem::AddListener(InputListener *listener)
 {
-    listeners.push_back(listener);
+    _listeners.push_back(listener);
 }
 
 void InputSystem::RemoveListener(InputListener *listener)
 {
-    auto position = std::find(listeners.begin(), listeners.end(), listener);
-    if (position != listeners.end()) // == myVector.end() means the element was not found
-        listeners.erase(position);
+    auto position = std::find(_listeners.begin(), _listeners.end(), listener);
+    if (position != _listeners.end()) // == myVector.end() means the element was not found
+        _listeners.erase(position);
 }
 
 void InputSystem::Update()
 {
-    cKeyboard.GetKeyboardState(keyMap);
+    _cKeyboard.GetKeyboardState(_keyMap);
     for(short i = 0; i < KEY_CNT; i++)
     {
         //KEY IS DOWN
-        if(keyMap[i])
+        if(_keyMap[i])
         {
-            auto it = listeners.begin();
-            while(it != listeners.end())
+            auto it = _listeners.begin();
+            while(it != _listeners.end())
             {
                 InputListener* listener = *it;
                 listener->OnKeyDown(i);
@@ -39,10 +39,10 @@ void InputSystem::Update()
         }
         else
         {
-            if(keyMap[i] != oldKeyMap[i])
+            if(_keyMap[i] != _oldKeyMap[i])
             {
-                auto it = listeners.begin();
-                while(it != listeners.end())
+                auto it = _listeners.begin();
+                while(it != _listeners.end())
                 {
                     InputListener* listener = *it;
                     listener->OnKeyUp(i);
@@ -51,8 +51,8 @@ void InputSystem::Update()
             }
             else
             {
-                auto it = listeners.begin();
-                while(it != listeners.end()) {
+                auto it = _listeners.begin();
+                while(it != _listeners.end()) {
                     InputListener *listener = *it;
                     listener->OnKeyNothing(i);
                     ++it;
@@ -60,10 +60,22 @@ void InputSystem::Update()
             }
         }
     }
-    ::memcpy(oldKeyMap, keyMap, sizeof(short) * KEY_CNT);
+    ::memcpy(_oldKeyMap, _keyMap, sizeof(short) * KEY_CNT);
 }
 
 InputSystem *InputSystem::get() {
     static InputSystem system;
     return &system;
+}
+
+std::string InputSystem::GetName() const {
+    return "InputSystem";
+}
+
+void InputSystem::Register(Entity &entity) {
+
+}
+
+void InputSystem::Unregister(Entity &entity) {
+
 }

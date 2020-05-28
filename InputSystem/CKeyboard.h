@@ -26,12 +26,12 @@ public:
     void GetKeyboardState(short* key_map);
 
 private:
-    pthread_t thread;
-    bool active;
-    int keyboard_fd;
-    input_event *keyboard_ev;
-    KeyBoardState *keyboard_st;
-    char name[256];
+    pthread_t _thread;
+    bool _active;
+    int _keyboardFd;
+    input_event *_keyboardEv;
+    KeyBoardState *_keyboardSt;
+    char _name[256];
 };
 
 #endif //GAMEENGINE_CKEYBOARD_H

@@ -3,6 +3,8 @@
 //
 
 #include "Core.h"
+#include "../InputSystem/Input.h"
+#include "../InputSystem/InputSystem.h"
 
 void Core::Start()
 {
@@ -156,6 +158,11 @@ void Core::Work()
             {
                 pair.second->Update();
             }
+        }
+
+        if(Input::GetKeyDown(KEY_ESC))
+        {
+            _isWork = false;
         }
     }
 }

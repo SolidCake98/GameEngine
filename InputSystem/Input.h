@@ -16,10 +16,10 @@ public:
     static bool GetKeyUp(int key);
 
 public:
-    static Input* get();
+    static Input* Get();
 
 private:
-    short keyStates[KEY_CNT];
+    short _keyStates[KEY_CNT];
 
 private:
     Input();

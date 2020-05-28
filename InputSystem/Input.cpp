@@ -7,27 +7,27 @@
 
 void Input::OnKeyDown(int key)
 {
-    keyStates[key] = 1;
+    _keyStates[key] = 1;
 }
 
 void Input::OnKeyUp(int key)
 {
-    keyStates[key] = 2;
+    _keyStates[key] = 2;
 }
 
 void Input::OnKeyNothing(int key)
 {
-    keyStates[key] = 0;
+    _keyStates[key] = 0;
 }
 
 bool Input::GetKeyDown(int key)
 {
-    return Input::get()->keyStates[key] == 1;
+    return Input::Get()->_keyStates[key] == 1;
 }
 
 bool Input::GetKeyUp(int key)
 {
-    return Input::get()->keyStates[key] == 2;
+    return Input::Get()->_keyStates[key] == 2;
 }
 
 Input::Input()
@@ -35,7 +35,7 @@ Input::Input()
     InputSystem::get()->AddListener(this);
 }
 
-Input *Input::get()
+Input *Input::Get()
 {
     static Input input;
     return &input;

@@ -12,7 +12,11 @@ public:
     CTimer();
     ~CTimer();
     double Elapsed(bool frame);
+    double GetDeltaTime();
+
 private:
     timespec process_start, frame_start, current;
+    double delta_time;
+    ;
 };
 #endif //GAMEENGINE_CTIMER_H

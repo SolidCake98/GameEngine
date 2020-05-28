@@ -6,6 +6,7 @@
 #include "EngineCore/Systems/GraphicsSystem.h"
 #include "EngineCore/Systems/TestSystem.h"
 #include "EngineCore/Systems/PhysicsSystem.h"
+#include "InputSystem/InputSystem.h"
 
 void TestInput()
 {
@@ -35,11 +36,15 @@ void TestGraphics()
 {
     Core core;
 
+    InputSystem* input = InputSystem::get();
+    core.AddSystem(*input, 0);
+
     GraphicsSystem graphics;
     core.AddSystem(graphics, 1);
 
     TestSystem test;
     core.AddSystem(test, 2);
+
 
 
     Entity e1;
@@ -67,7 +72,7 @@ void TestGraphics()
     e2.Add(sc2);
 
     graphics.Register(e2);
-    test.Register(e2);
+    //test.Register(e2);
 
 
     Entity e3;
@@ -82,7 +87,7 @@ void TestGraphics()
     e3.Add(sc3);
 
     graphics.Register(e3);
-    test.Register(e3);
+    //test.Register(e3);
 
     core.Start();
 }
@@ -104,7 +109,7 @@ void TestPhysics()
 
     PositionComponent pc(100, 100, 0);
     ShapeComponent sc(p);
-    VelocityComponent vc(10, 0, 0);
+    VelocityComponent vc(10, 2, 0);
     BodyComponent bc(2, 1);
 
     entity.Add(pc);
@@ -121,8 +126,8 @@ void TestPhysics()
 int main()
 {
     //TestInput();
-    //TestGraphics();
-    TestPhysics();
+    TestGraphics();
+    //TestPhysics();
 }
 
 
