@@ -102,23 +102,43 @@ void TestPhysics()
     GraphicsSystem graphics;
     core.AddSystem(graphics, 2);
 
-    Entity entity;
+    Entity entity1;
 
-    Point points[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
-    Polygon p(points, 3);
+    Point points1[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
+    Polygon poly1(points1, 3);
 
-    PositionComponent pc(100, 100, 0);
-    ShapeComponent sc(p);
-    VelocityComponent vc(100, 100, 0);
-    BodyComponent bc(2, 1);
+    PositionComponent pc1(100, 100, 0);
+    ShapeComponent sc1(poly1);
+    VelocityComponent vc1(100, 0, 0);
+    BodyComponent bc1(2, 1);
 
-    entity.Add(pc);
-    entity.Add(sc);
-    entity.Add(vc);
-    entity.Add(bc);
+    entity1.Add(pc1);
+    entity1.Add(sc1);
+    entity1.Add(vc1);
+    entity1.Add(bc1);
 
-    physics.Register(entity);
-    graphics.Register(entity);
+    physics.Register(entity1);
+    graphics.Register(entity1);
+
+
+    Entity entity2;
+
+    Point points2[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
+    Polygon poly2(points2, 3);
+
+    PositionComponent pc2(200, 100, 0);
+    ShapeComponent sc2(poly2);
+    VelocityComponent vc2(-100, 0, 0);
+    BodyComponent bc2(2, 1);
+
+    entity2.Add(pc2);
+    entity2.Add(sc2);
+    entity2.Add(vc2);
+    entity2.Add(bc2);
+
+    physics.Register(entity2);
+    graphics.Register(entity2);
+
 
     core.Start();
 }

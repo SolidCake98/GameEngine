@@ -18,6 +18,6 @@ BodyPair::BodyPair(Rigidbody* rb1, Rigidbody* rb2)
 
 bool BodyPair::operator< (const BodyPair& p) const
 {
-	return this->first < p.first || this->second < p.second
-		|| this->first < p.second || this->second < p.first;
+	return this->first < p.first && this->second < p.second
+		|| this->first < p.second && this->second < p.first;
 }
