@@ -116,6 +116,7 @@ PEngine::Rigidbody* PhysicsSystem::CreateRigidbody(PhysicsNode &node)
     rb->SetAngle(node.GetPosition().GetAngle());
     rb->SetV(PEngine::Point(node.GetVelocity().GetX(), node.GetVelocity().GetY()));
     rb->SetW(node.GetVelocity().GetW());
+    rb->SetIsStatic(node.GetBody().GetIsStatic());
 
     return rb;
 }

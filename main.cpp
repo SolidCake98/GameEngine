@@ -109,7 +109,7 @@ void TestPhysics()
 
     PositionComponent pc1(100, 100, 0);
     ShapeComponent sc1(poly1);
-    VelocityComponent vc1(100, 0, 0);
+    VelocityComponent vc1(10, 0, 0);
     BodyComponent bc1(2, 1);
 
     entity1.Add(pc1);
@@ -128,8 +128,9 @@ void TestPhysics()
 
     PositionComponent pc2(200, 100, 0);
     ShapeComponent sc2(poly2);
-    VelocityComponent vc2(-100, 0, 0);
-    BodyComponent bc2(2, 1);
+    VelocityComponent vc2(0, 0, 0);
+    //BodyComponent bc2(2, 1);
+    BodyComponent bc2(100, 1, true);
 
     entity2.Add(pc2);
     entity2.Add(sc2);
