@@ -69,7 +69,7 @@ void PhysicsEngine::Work()
 
 	while (_isWork)
 	{
-		const std::lock_guard<std::mutex> guard(bodyMutex);
+		const std::lock_guard<std::mutex> guard(bodyMutex);;
 
         accumulator += t.Elapsed(true);
 
@@ -80,6 +80,9 @@ void PhysicsEngine::Work()
 
 		while (accumulator > DT)
 		{
+		    if (!body.empty())
+		        int i = 0;
+
 			NarrowPhase(WidePhase());
 
 			for (auto b : body)
@@ -100,7 +103,7 @@ std::set<BodyPair> PhysicsEngine::WidePhase()
 	{
 		for (auto second : body)
 		{
-			if (&first != &second && CanCollided(*first, *second))
+			if (first != second && CanCollided(*first, *second))
 			{
 				potentials.insert(BodyPair(first, second));
 			}

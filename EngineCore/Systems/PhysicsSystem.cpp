@@ -36,12 +36,12 @@ void PhysicsSystem::Update()
     // TODO: применение импульсов
     for (auto pair : _nodeBodyPairs)
     {
-        auto position = pair.node->GetPosition();
+        PositionComponent& position = pair.node->GetPosition();
         position.SetX(pair.body->GetPosition().x);
         position.SetY(pair.body->GetPosition().y);
         position.SetAngle(pair.body->GetAngle());
 
-        auto velocity = pair.node->GetVelocity();
+        VelocityComponent& velocity = pair.node->GetVelocity();
         velocity.SetX(pair.body->GetV().x);
         velocity.SetY(pair.body->GetV().y);
         velocity.SetW(pair.body->GetW());

@@ -109,7 +109,7 @@ void TestPhysics()
 
     PositionComponent pc(100, 100, 0);
     ShapeComponent sc(p);
-    VelocityComponent vc(10, 2, 0);
+    VelocityComponent vc(100, 100, 0);
     BodyComponent bc(2, 1);
 
     entity.Add(pc);
@@ -126,8 +126,8 @@ void TestPhysics()
 int main()
 {
     //TestInput();
-    TestGraphics();
-    //TestPhysics();
+    //TestGraphics();
+    TestPhysics();
 }
 
 
