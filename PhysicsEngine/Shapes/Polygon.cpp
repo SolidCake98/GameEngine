@@ -41,6 +41,7 @@ Shape* Polygon::Paralax(const Point& p, float angle)
 	for (Vertex* v = _start->next; v != _start; v = v->next)
 	{
 		nv->next = new Vertex(Rotate(v->position, angle) + p);
+		nv = nv->next;
 	}
 
 	nv->next = newStart;
