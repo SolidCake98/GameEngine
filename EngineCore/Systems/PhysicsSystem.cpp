@@ -104,7 +104,7 @@ PEngine::Rigidbody* PhysicsSystem::CreateRigidbody(PhysicsNode &node)
     }
     else
     {
-        auto circle = (Circle&)node.GetShape();
+        auto circle = (Circle&)node.GetShape().GetShape();
 
         rb = new PEngine::Rigidbody(
                 *PEngine::ShapeFactory::CreateCircle(circle.GetCenter().x, circle.GetCenter().y, circle.GetR()),

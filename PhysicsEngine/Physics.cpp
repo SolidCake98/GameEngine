@@ -18,8 +18,11 @@ Point Physics::CenterOfMass(const Polygon& P)
 
 void Physics::UpdatePosition(Rigidbody& rb, float dt)
 {
-	rb.SetPosition(rb.GetPosition() + rb.GetV() * dt);
-	rb.SetAngle(rb.GetAngle() + rb.GetW() * dt);
+    if (!rb.GetIsStatic())
+    {
+        rb.SetPosition(rb.GetPosition() + rb.GetV() * dt);
+        rb.SetAngle(rb.GetAngle() + rb.GetW() * dt);
+    }
 }
 
 float Physics::CalculateImpulse(const Rigidbody& rb1, const Rigidbody& rb2, Point& cp, Point& n)

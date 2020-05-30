@@ -323,15 +323,26 @@ Polygon* Mathematics::CircleCircleIntersection(Circle& c1, Circle& c2)
 	Circle nc1 = Circle(Point(0, 0), c1.GetR()); // первая окружность, перенесенная в начало координат
 	Circle nc2 = Circle(c2.GetCenter() - c1.GetCenter(), c2.GetR()); // перенесенная соответственно вторая окружность�
 
-	Vertex* first;
-	Vertex* current;
-
 	float A = -2 * nc2.GetCenter().x;
 	float B = -2 * nc2.GetCenter().y;
 	float C = SQR(nc2.GetCenter().x) + SQR(nc2.GetCenter().y) + SQR(nc1.GetR()) - SQR(nc2.GetR());
 
 	Point p1(0, -C / B);
 	Point p2(-C / A, 0);
+
+	if (B == 0)
+	{
+	    Vertex* v = new Vertex(p2);
+	    v->next = v;
+	    return new Polygon(v);
+	}
+	if (A == 0)
+	{
+        Vertex* v = new Vertex(p1);
+        v->next = v;
+        return new Polygon(v);
+    }
+
 	Vertex* inters = CircleLineIntersection(nc1, p1, p2);
 
 	if (inters == nullptr) // нет пересечений
@@ -346,6 +357,9 @@ Polygon* Mathematics::CircleCircleIntersection(Circle& c1, Circle& c2)
 	}
 	else // 2 точки пересечения
 	{
+        Vertex* first;
+        Vertex* current;
+
 		current = first = new Vertex(SearchSectorHPoint(nc1, inters->position, inters->next->position) + c1.GetCenter());
 		current->next = new Vertex(inters->position + c1.GetCenter());
 		current = current->next;

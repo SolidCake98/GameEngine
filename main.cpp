@@ -102,43 +102,85 @@ void TestPhysics()
     GraphicsSystem graphics;
     core.AddSystem(graphics, 2);
 
-    Entity entity1;
-
-    Point points1[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
-    Polygon poly1(points1, 3);
-
-    PositionComponent pc1(100, 100, 0);
-    ShapeComponent sc1(poly1);
-    VelocityComponent vc1(10, 0, 0);
-    BodyComponent bc1(2, 1);
-
-    entity1.Add(pc1);
-    entity1.Add(sc1);
-    entity1.Add(vc1);
-    entity1.Add(bc1);
-
-    physics.Register(entity1);
-    graphics.Register(entity1);
 
 
-    Entity entity2;
+//    Entity entity1;
+//
+//    Point points1[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
+//    Polygon poly1(points1, 3);
+//
+//    PositionComponent pc1(100, 100, 0);
+//    ShapeComponent sc1(poly1);
+//    VelocityComponent vc1(10, 0, 0);
+//    BodyComponent bc1(2, 1);
+//
+//    entity1.Add(pc1);
+//    entity1.Add(sc1);
+//    entity1.Add(vc1);
+//    entity1.Add(bc1);
+//
+//    physics.Register(entity1);
+//    graphics.Register(entity1);
 
-    Point points2[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
-    Polygon poly2(points2, 3);
 
-    PositionComponent pc2(200, 100, 0);
-    ShapeComponent sc2(poly2);
-    VelocityComponent vc2(0, 0, 0);
-    //BodyComponent bc2(2, 1);
-    BodyComponent bc2(100, 1, true);
 
-    entity2.Add(pc2);
-    entity2.Add(sc2);
-    entity2.Add(vc2);
-    entity2.Add(bc2);
+//    Entity entity2;
+//
+//    Point points2[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
+//    Polygon poly2(points2, 3);
+//
+//    PositionComponent pc2(200, 100, 0);
+//    ShapeComponent sc2(poly2);
+//    VelocityComponent vc2(0, 0, 0);
+//    //BodyComponent bc2(2, 1);
+//    BodyComponent bc2(2, 1, true);
+//
+//    entity2.Add(pc2);
+//    entity2.Add(sc2);
+//    entity2.Add(vc2);
+//    entity2.Add(bc2);
+//
+//    physics.Register(entity2);
+//    graphics.Register(entity2);
 
-    physics.Register(entity2);
-    graphics.Register(entity2);
+
+
+    Entity entity3;
+
+    Circle circle1(Point(0, 0), 10);
+
+    PositionComponent pc3(200, 0, 0);
+    ShapeComponent sc3(circle1);
+    VelocityComponent vc3(0, 10, 0);
+    BodyComponent bc3(2, 1);
+
+    entity3.Add(pc3);
+    entity3.Add(sc3);
+    entity3.Add(vc3);
+    entity3.Add(bc3);
+
+    physics.Register(entity3);
+    graphics.Register(entity3);
+
+
+
+    Entity entity4;
+
+    Circle circle2(Point(0, 0), 10);
+
+    PositionComponent pc4(200, 200, 0);
+    ShapeComponent sc4(circle2);
+    VelocityComponent vc4(0, -10, 0);
+    BodyComponent bc4(2, 1);
+
+    entity4.Add(pc4);
+    entity4.Add(sc4);
+    entity4.Add(vc4);
+    entity4.Add(bc4);
+
+    physics.Register(entity4);
+    graphics.Register(entity4);
+
 
 
     core.Start();
