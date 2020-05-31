@@ -148,22 +148,10 @@ Polygon* Mathematics::ConvPolyConvPolyIntersection(ConvexPolygon& P, ConvexPolyg
 			}
 		}
 
-//		if (HalfPlain(p->position, p->next->position, q->next->position) == 0
-//		    && HalfPlain(q->position, q->next->position, p->next->position) == 0)
-//		{
-//		    if (inflag == InsideP)
-//		    {
-//                Advance(q, current, inflag == InsideQ);
-//		    }
-//		    else
-//            {
-//                Advance(p, current, inflag == InsideP);
-//            }
-//		}
-//		else
         if (AimTo(p->position, p->next->position, q->position, q->next->position) >= 0)
 		{
-			if (HalfPlain(p->position, p->next->position, q->next->position) > 0)
+            float hp = HalfPlain(p->position, p->next->position, q->next->position);
+			if (hp > 0)
 			{
 				Advance(p, current, inflag == InsideP);
 			}
@@ -174,7 +162,8 @@ Polygon* Mathematics::ConvPolyConvPolyIntersection(ConvexPolygon& P, ConvexPolyg
 		}
 		else
 		{
-			if (HalfPlain(q->position, q->next->position, p->next->position) > 0)
+            float hp = HalfPlain(q->position, q->next->position, p->next->position);
+			if (hp > 0)
 			{
 				Advance(q, current, inflag == InsideQ);
 			}
@@ -282,6 +271,7 @@ Polygon* Mathematics::CircleConvPolyIntersection(Circle& circle, ConvexPolygon& 
 	Vertex* current = first;
 	Vertex* prev;
 	int inflag = (IsDotInCircle(circle, v->position)) ? InCircle : OutCircle;
+	int vertexes = 0;
 
 	for (int i = 0; i < convPoly.GetPower(); i++, v = v->next)
 	{
@@ -291,7 +281,7 @@ Polygon* Mathematics::CircleConvPolyIntersection(Circle& circle, ConvexPolygon& 
 		current->next = CircleSegmentIntersection(circle, v->position, v->next->position);
 		int inters = 0;
 
-		for (; current->next != nullptr; current = current->next, inters++);
+		for (; current->next != nullptr; current = current->next, inters++, vertexes++);
 
 		if (inters == 1)
 		{
@@ -322,7 +312,7 @@ Polygon* Mathematics::CircleConvPolyIntersection(Circle& circle, ConvexPolygon& 
 	current->next = first->next;
 	delete first;
 
-	if (current == nullptr) { return nullptr; }
+	if (vertexes == 0) { return nullptr; }
 	else { return new Polygon(current); }
 }
 
