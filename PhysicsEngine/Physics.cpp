@@ -49,5 +49,6 @@ void Physics::ApplyImpulse(Rigidbody& rb, Point& cp, Point& n, float P)
 {
 	rb.SetV(rb.GetV() + n * P / rb.GetM());
 	Point Ra = cp - rb.GetActualRc();
-	rb.SetW(rb.GetW() + P * (n.y * Ra.x - n.x * Ra.y) / rb.GetI());
+    rb.SetW(rb.GetW() + P * (n.y * Ra.x - n.x * Ra.y) / rb.GetI());
+	//rb.SetW(rb.GetW() - P * (n.y * Ra.x - n.x * Ra.y) / rb.GetI());
 }

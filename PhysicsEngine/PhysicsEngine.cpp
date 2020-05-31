@@ -62,7 +62,7 @@ inline bool PhysicsEngine::Contain(Rigidbody& rb)
 
 void PhysicsEngine::Work()
 {
-    const double FPS = 60;
+    const double FPS = 30;
     const double DT = 1/FPS;
     CTimer t;
     double accumulator = 0;
@@ -128,6 +128,7 @@ void PhysicsEngine::NarrowPhase(std::set<BodyPair> potentials)
 		{
 			Point cp = Physics::CenterOfMass(*poly);
 			Point n = pair.second->GetActualRc() - pair.first->GetActualRc();
+			//Point n = pair.first->GetActualRc() - pair.second->GetActualRc();
 			float P = Physics::CalculateImpulse(*pair.first, *pair.second, cp, n);
 
 			if (!pair.first->GetIsStatic()) { Physics::ApplyImpulse(*pair.first, cp, n, -P); }

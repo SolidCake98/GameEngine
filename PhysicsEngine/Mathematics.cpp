@@ -303,13 +303,13 @@ Polygon* Mathematics::CircleCircleIntersection(Circle& c1, Circle& c2)
 
 	if (B == 0)
 	{
-	    Vertex* v = new Vertex(p2);
+	    Vertex* v = new Vertex(p2 + c1.GetCenter());
 	    v->next = v;
 	    return new Polygon(v);
 	}
 	if (A == 0)
 	{
-        Vertex* v = new Vertex(p1);
+        Vertex* v = new Vertex(p1 + c1.GetCenter());
         v->next = v;
         return new Polygon(v);
     }
