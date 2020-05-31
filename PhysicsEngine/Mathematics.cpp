@@ -264,49 +264,17 @@ Point Mathematics::SearchSectorHPoint(Circle& circle, Point& p1, Point& p2)
 
 Polygon* Mathematics::CircleConvPolyIntersection(Circle& circle, ConvexPolygon& convPoly)
 {
-	enum { InCircle, OutCircle };
-
 	Vertex* v = convPoly.GetStart();
 	Vertex* first = new Vertex();
 	Vertex* current = first;
 	Vertex* prev;
-	int inflag = (IsDotInCircle(circle, v->position)) ? InCircle : OutCircle;
 	int vertexes = 0;
 
 	for (int i = 0; i < convPoly.GetPower(); i++, v = v->next)
 	{
 		if (IsDotInCircle(circle, v->position)) { AddVertex(current, v->position); }
-
-		prev = current;
 		current->next = CircleSegmentIntersection(circle, v->position, v->next->position);
-		int inters = 0;
-
-		for (; current->next != nullptr; current = current->next, inters++, vertexes++);
-
-		if (inters == 1)
-		{
-			if (inflag == OutCircle)
-			{
-				Point p = SearchSectorHPoint(circle, current->position, prev->position);
-				AddVertex(current, current->position);
-				prev->next->position = p;
-				inflag = InCircle;
-			}
-			else
-			{
-				inflag = OutCircle;
-			}
-		}
-
-		if (inters == 2)
-		{
-			if (inflag == OutCircle)
-			{
-				Point p = SearchSectorHPoint(circle, current->position, prev->position);
-				AddVertex(current, current->position);
-				prev->next->position = p;
-			}
-		}
+		for (; current->next != nullptr; current = current->next, vertexes++);
 	}
 
 	current->next = first->next;
