@@ -148,7 +148,20 @@ Polygon* Mathematics::ConvPolyConvPolyIntersection(ConvexPolygon& P, ConvexPolyg
 			}
 		}
 
-		if (AimTo(p->position, p->next->position, q->position, q->next->position) >= 0)
+//		if (HalfPlain(p->position, p->next->position, q->next->position) == 0
+//		    && HalfPlain(q->position, q->next->position, p->next->position) == 0)
+//		{
+//		    if (inflag == InsideP)
+//		    {
+//                Advance(q, current, inflag == InsideQ);
+//		    }
+//		    else
+//            {
+//                Advance(p, current, inflag == InsideP);
+//            }
+//		}
+//		else
+        if (AimTo(p->position, p->next->position, q->position, q->next->position) >= 0)
 		{
 			if (HalfPlain(p->position, p->next->position, q->next->position) > 0)
 			{

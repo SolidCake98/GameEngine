@@ -112,7 +112,7 @@ void TestPhysics()
 //    PositionComponent pc1(100, 100, 0);
 //    ShapeComponent sc1(poly1);
 //    VelocityComponent vc1(10, 0, 0);
-//    BodyComponent bc1(2, 1);
+//    BodyComponent bc1(2, 2);
 //
 //    entity1.Add(pc1);
 //    entity1.Add(sc1);
@@ -124,42 +124,42 @@ void TestPhysics()
 
 
 // Треугольник
-    Entity entity2;
+//    Entity entity2;
+//
+//    Point points2[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
+//    Polygon poly2(points2, 3);
+//
+//    PositionComponent pc2(200, 100, 0);
+//    ShapeComponent sc2(poly2);
+//    VelocityComponent vc2(-10, 0, 0);
+//    BodyComponent bc2(2, 2);
+//
+//    entity2.Add(pc2);
+//    entity2.Add(sc2);
+//    entity2.Add(vc2);
+//    entity2.Add(bc2);
 
-    Point points2[] = {Point(-10, -10), Point(10, -10), Point(0, 10)};
-    Polygon poly2(points2, 3);
-
-    PositionComponent pc2(100, 100, 0);
-    ShapeComponent sc2(poly2);
-    VelocityComponent vc2(10, 0, 0);
-    BodyComponent bc2(2, 1);
-
-    entity2.Add(pc2);
-    entity2.Add(sc2);
-    entity2.Add(vc2);
-    entity2.Add(bc2);
-
-    physics.Register(entity2);
-    graphics.Register(entity2);
+//    physics.Register(entity2);
+//    graphics.Register(entity2);
 
 
 // Окружность
-    Entity entity3;
-
-    Circle circle1(Point(0, 0), 10);
-
-    PositionComponent pc3(200, 100, 0);
-    ShapeComponent sc3(circle1);
-    VelocityComponent vc3(-10, 0, 0);
-    BodyComponent bc3(2, 1);
-
-    entity3.Add(pc3);
-    entity3.Add(sc3);
-    entity3.Add(vc3);
-    entity3.Add(bc3);
-
-    physics.Register(entity3);
-    graphics.Register(entity3);
+//    Entity entity3;
+//
+//    Circle circle1(Point(0, 0), 10);
+//
+//    PositionComponent pc3(210, 100, 0);
+//    ShapeComponent sc3(circle1);
+//    VelocityComponent vc3(-10, 0, 0);
+//    BodyComponent bc3(2, 1);
+//
+//    entity3.Add(pc3);
+//    entity3.Add(sc3);
+//    entity3.Add(vc3);
+//    entity3.Add(bc3);
+//
+//    physics.Register(entity3);
+//    graphics.Register(entity3);
 
 
 // Окружность
@@ -180,6 +180,45 @@ void TestPhysics()
 //    physics.Register(entity4);
 //    graphics.Register(entity4);
 
+
+// Квадрат
+    Entity entity5;
+
+    Point points5[] = {Point(-10, 10), Point(10, 10), Point(10, -10), Point(-10, -10)};
+    Polygon poly5(points5, 4);
+
+    PositionComponent pc5(100, 110, 0);
+    ShapeComponent sc5(poly5);
+    VelocityComponent vc5(10, 0, 0);
+    BodyComponent bc5(2, 2);
+
+    entity5.Add(pc5);
+    entity5.Add(sc5);
+    entity5.Add(vc5);
+    entity5.Add(bc5);
+
+    physics.Register(entity5);
+    graphics.Register(entity5);
+
+
+// Квадрат
+    Entity entity6;
+
+    Point points6[] = {Point(-10, 10), Point(10, 10), Point(10, -10), Point(-10, -10)};
+    Polygon poly6(points6, 4);
+
+    PositionComponent pc6(200, 100, 0);
+    ShapeComponent sc6(poly6);
+    VelocityComponent vc6(-10, 0, 0);
+    BodyComponent bc6(2, 2);
+
+    entity6.Add(pc6);
+    entity6.Add(sc6);
+    entity6.Add(vc6);
+    entity6.Add(bc6);
+
+    physics.Register(entity6);
+    graphics.Register(entity6);
 
 
     core.Start();
