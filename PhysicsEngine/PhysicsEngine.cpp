@@ -115,7 +115,8 @@ std::set<BodyPair> PhysicsEngine::WidePhase()
 
 bool PhysicsEngine::CanCollided(Rigidbody& rb1, Rigidbody& rb2)
 {
-	return Mathematics::Distance(rb1.GetActualRc(), rb2.GetActualRc()) < rb1.GetBound()->GetR() + rb2.GetBound()->GetR();
+	return Mathematics::Distance(rb1.GetActualRc(), rb2.GetActualRc()) < rb1.GetBound()->GetR() + rb2.GetBound()->GetR()
+	    && !rb1.GetIsStatic() || !rb2.GetIsStatic();
 }
 
 void PhysicsEngine::NarrowPhase(std::set<BodyPair> potentials)

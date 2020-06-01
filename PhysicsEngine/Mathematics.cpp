@@ -81,11 +81,11 @@ bool Mathematics::SegmentIntersection(Point& a1, Point& a2, Point& b1, Point& b2
 
 void Mathematics::AddVertex(Vertex*& current, Point& p)
 {
-	//if (!EQU(current->position.x, p.x) || !EQU(current->position.y, p.y))
-	//{
-	current->next = new Vertex(p.x, p.y);
-	current = current->next;
-	//}
+	if (!EQU(current->position.x, p.x) || !EQU(current->position.y, p.y))
+	{
+        current->next = new Vertex(p.x, p.y);
+        current = current->next;
+	}
 }
 
 void Mathematics::Advance(Vertex*& v, Vertex*& current, bool needAdd)
