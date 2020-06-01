@@ -128,7 +128,6 @@ void PhysicsEngine::NarrowPhase(std::set<BodyPair> potentials)
 		{
 			Point cp = Physics::CenterOfMass(*poly);
 			Point n = pair.second->GetActualRc() - pair.first->GetActualRc();
-			//Point n = pair.first->GetActualRc() - pair.second->GetActualRc();
 			float P = Physics::CalculateImpulse(*pair.first, *pair.second, cp, n);
 
 			if (!pair.first->GetIsStatic()) { Physics::ApplyImpulse(*pair.first, cp, n, -P); }

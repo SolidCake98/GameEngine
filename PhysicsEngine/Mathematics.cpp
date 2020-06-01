@@ -15,7 +15,7 @@ inline bool Mathematics::EQU(float a, float b)
 Point Mathematics::UnitVector(const Point& vec)
 {
 	float l = sqrt(SQR(vec.x) + SQR(vec.y));
-	return Point(vec.x / l, vec.y / l);
+	return {vec.x / l, vec.y / l};
 }
 
 float Mathematics::Distance(const Point& p1, const Point& p2)
@@ -61,13 +61,13 @@ bool Mathematics::LinesIntersection(Point& a1, Point& a2, Point& b1, Point& b2, 
 
 bool Mathematics::IsPointInLineAABB(Point& a, Point& b, Point& c)
 {
-	float minX = a.x;
-	float minY = a.y;
-	float maxX = b.x;
-	float maxY = b.y;
+	float minX = a.x - EPS;
+	float minY = a.y - EPS;
+	float maxX = b.x + EPS;
+	float maxY = b.y + EPS;
 
-	if (a.x > b.x) { minX = b.x; maxX = a.x; }
-	if (a.y > b.y) { minY = b.y; maxY = a.y; }
+	if (a.x > b.x) { minX = b.x - EPS; maxX = a.x + EPS; }
+	if (a.y > b.y) { minY = b.y - EPS; maxY = a.y + EPS; }
 
 	return c.x >= minX && c.x <= maxX && c.y >= minY && c.y <= maxY;
 }
@@ -341,4 +341,13 @@ Polygon* Mathematics::CircleCircleIntersection(Circle& c1, Circle& c2)
 		current->next = first;
 		return new Polygon(first);
 	}
+}
+
+Point Mathematics::Rotate(const Point &p, float angle)
+{
+    float sinA = sin(angle);
+    float cosA = cos(angle);
+    float x = p.x * cosA - p.y * sinA;
+    float y = p.y * cosA + p.x * sinA;
+    return {x, y};
 }

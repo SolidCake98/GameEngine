@@ -93,6 +93,6 @@ bool Rigidbody::GetIsStatic() const { return _isStatic; }
 
 void Rigidbody::SetIsStatic(bool isStatic) { _isStatic = isStatic; }
 
-Point Rigidbody::GetActualRc() const { return _Rc + _position; }
+Point Rigidbody::GetActualRc() const { return Mathematics::Rotate(_Rc, _angle) + _position; }
 
 Shape* Rigidbody::GetActualShape() const { return _shape->Paralax(_position, _angle); }
