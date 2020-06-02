@@ -312,6 +312,31 @@ void TestDemo()
     graphics.Register(circleEntity1);
     demo.Register(circleEntity1);
 
+    // Окружность
+    Entity circleEntity2;
+
+    Circle circle2(Point(0, 0), 10);
+
+    PositionComponent circlePC2(500, 0, 0);
+    ShapeComponent circleSC2(circle1);
+    VelocityComponent circleVC2(0, 40, 0);
+    BodyComponent circleBC2(100, 5000);
+    VelocityChangeComponent circleVCC2;
+    TranslateComponent circleTC2;
+    DemoComponent circleDC2(500, 0, 0, 0, 50, 0, 500);
+
+    circleEntity2.Add(circlePC2);
+    circleEntity2.Add(circleSC2);
+    circleEntity2.Add(circleVC2);
+    circleEntity2.Add(circleBC2);
+    circleEntity2.Add(circleVCC2);
+    circleEntity2.Add(circleTC2);
+    circleEntity2.Add(circleDC2);
+
+    physics.Register(circleEntity2);
+    graphics.Register(circleEntity2);
+    demo.Register(circleEntity2);
+
     // Квадрат
     Entity squareEntity1;
 
@@ -339,26 +364,53 @@ void TestDemo()
     demo.Register(squareEntity1);
 
 
+    // Прямоугольник
+    Entity rectangleEntity1;
+
+    Point rectanglePoints1[] = {Point(-20, -10), Point(20, -10), Point(20, 10), Point(-20, 10)};
+    Polygon rectangle1(rectanglePoints1, 4);
+
+    PositionComponent rectanglePC1(100, 0, 0);
+    ShapeComponent rectangleSC1(rectangle1);
+    VelocityComponent rectangleVC1(0, 30, -10);
+    BodyComponent rectangleBC1(100, 2000);
+    VelocityChangeComponent rectangleVCC1;
+    TranslateComponent rectangleTC1;
+    DemoComponent rectangleDC1(100, 0, 0, 0, 30, -10, 500);
+
+    rectangleEntity1.Add(rectanglePC1);
+    rectangleEntity1.Add(rectangleSC1);
+    rectangleEntity1.Add(rectangleVC1);
+    rectangleEntity1.Add(rectangleBC1);
+    rectangleEntity1.Add(rectangleVCC1);
+    rectangleEntity1.Add(rectangleTC1);
+    rectangleEntity1.Add(rectangleDC1);
+
+    physics.Register(rectangleEntity1);
+    graphics.Register(rectangleEntity1);
+    demo.Register(rectangleEntity1);
+
+
     // Указатель
-    Entity circleEntity2;
+    Entity pointerEntity;
 
-    Circle circle2(Point(0, 0), 10);
+    Circle pointerCircle(Point(0, 0), 10);
 
-    PositionComponent circlePC2(400, 400, 0);
-    ShapeComponent circleSC2(circle2);
-    VelocityComponent circleVC2(0, 40, 0);
-    BodyComponent circleBC2(100, 5000);
-    VelocityChangeComponent circleVCC2;
+    PositionComponent pointerPC2(400, 400, 0);
+    ShapeComponent pointerSC2(pointerCircle);
+    VelocityComponent pointerVC2(0, 40, 0);
+    BodyComponent pointerBC2(100, 5000, true);
+    VelocityChangeComponent pointerVCC2;
 
-    circleEntity2.Add(circlePC2);
-    circleEntity2.Add(circleSC2);
-    circleEntity2.Add(circleVC2);
-    circleEntity2.Add(circleBC2);
-    circleEntity2.Add(circleVCC2);
+    pointerEntity.Add(pointerPC2);
+    pointerEntity.Add(pointerSC2);
+    pointerEntity.Add(pointerVC2);
+    pointerEntity.Add(pointerBC2);
+    pointerEntity.Add(pointerVCC2);
 
-    physics.Register(circleEntity2);
-    graphics.Register(circleEntity2);
-    control.Register(circleEntity2);
+    physics.Register(pointerEntity);
+    graphics.Register(pointerEntity);
+    control.Register(pointerEntity);
 
 
     core.Start();

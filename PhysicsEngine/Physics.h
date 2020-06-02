@@ -35,6 +35,6 @@ namespace PEngine
 
     private:
         static constexpr float E = 0.5;
-        static constexpr float MIN_V = 10;
+        static constexpr float MIN_V = 30;
     };
 }
