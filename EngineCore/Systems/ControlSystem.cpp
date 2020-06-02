@@ -28,6 +28,7 @@ void ControlSystem::Update()
         VelocityChangeComponent& vc = pair.second->GetVelocityChange();
         vc.SetY(top ? -SPEED : bottom ? SPEED : 0);
         vc.SetX(left ? -SPEED : right ? SPEED : 0);
+        vc.SetW(0);
         vc.SetIsNeedChange(true);
     }
 }
