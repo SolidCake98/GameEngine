@@ -32,5 +32,9 @@ namespace PEngine
         // n - нормаль коллизии
         // P - величина импульса (скаляр)
         static void ApplyImpulse(Rigidbody& rb, Point& cp, Point& n, float P);
+
+    private:
+        static constexpr float E = 0.5;
+        static constexpr float MIN_V = 1;
     };
 }

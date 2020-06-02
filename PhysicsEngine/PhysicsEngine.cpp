@@ -62,7 +62,7 @@ inline bool PhysicsEngine::Contain(Rigidbody& rb)
 
 void PhysicsEngine::Work()
 {
-    const double FPS = 30;
+    const double FPS = 60;
     const double DT = 1/FPS;
     CTimer t;
     double accumulator = 0;
@@ -115,8 +115,7 @@ std::set<BodyPair> PhysicsEngine::WidePhase()
 
 bool PhysicsEngine::CanCollided(Rigidbody& rb1, Rigidbody& rb2)
 {
-	return Mathematics::Distance(rb1.GetActualRc(), rb2.GetActualRc()) < rb1.GetBound()->GetR() + rb2.GetBound()->GetR()
-	    && !rb1.GetIsStatic() || !rb2.GetIsStatic();
+	return Mathematics::Distance(rb1.GetActualRc(), rb2.GetActualRc()) < rb1.GetBound()->GetR() + rb2.GetBound()->GetR();
 }
 
 void PhysicsEngine::NarrowPhase(std::set<BodyPair> potentials)
@@ -128,11 +127,11 @@ void PhysicsEngine::NarrowPhase(std::set<BodyPair> potentials)
 		if (poly != nullptr)
 		{
 			Point cp = Physics::CenterOfMass(*poly);
-			Point n = pair.second->GetActualRc() - pair.first->GetActualRc();
+			Point n = Mathematics::UnitVector(pair.first->GetActualRc() - pair.second->GetActualRc());
 			float P = Physics::CalculateImpulse(*pair.first, *pair.second, cp, n);
 
-			if (!pair.first->GetIsStatic()) { Physics::ApplyImpulse(*pair.first, cp, n, -P); }
-			if (!pair.second->GetIsStatic()) { Physics::ApplyImpulse(*pair.second, cp, n, P); }
+			if (!pair.first->GetIsStatic()) { Physics::ApplyImpulse(*pair.first, cp, n, P); }
+			if (!pair.second->GetIsStatic()) { Physics::ApplyImpulse(*pair.second, cp, n, -P); }
 		}
 	}
 }
