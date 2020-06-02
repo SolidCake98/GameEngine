@@ -21,7 +21,7 @@ public:
     void Unregister(Entity& entity) override;
 
 private:
-    const float SPEED = 50;
+    const float SPEED = 100;
     std::map<Entity*, ControlNode*> _registered;
 
 };

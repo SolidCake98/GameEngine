@@ -9,6 +9,7 @@ VelocityChangeComponent::VelocityChangeComponent(float x, float y, float W)
     _x = x;
     _y = y;
     _W = W;
+    _isNeeChange = false;
 }
 
 std::string VelocityChangeComponent::GetName() const { return "VelocityChangeComponent"; }
