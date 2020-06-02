@@ -152,8 +152,8 @@ void TestPhysics()
 
     PositionComponent pc3(100, 100, 0);
     ShapeComponent sc3(circle1);
-    VelocityComponent vc3(10, 0, 0);
-    BodyComponent bc3(2, 3);
+    VelocityComponent vc3(40, 0, 0);
+    BodyComponent bc3(100, 5000);
 
     entity3.Add(pc3);
     entity3.Add(sc3);
@@ -184,43 +184,43 @@ void TestPhysics()
 
 
 // Квадрат
-    Entity entity5;
-
-    Point points5[] = {Point(-20, -10), Point(20, -10), Point(20, 10), Point(-20, 10)};
-    Polygon poly5(points5, 4);
-
-    PositionComponent pc5(220, 215, 0);
-    ShapeComponent sc5(poly5);
-    VelocityComponent vc5(2, -10, 0);
-    BodyComponent bc5(300, 800);
-
-    entity5.Add(pc5);
-    entity5.Add(sc5);
-    entity5.Add(vc5);
-    entity5.Add(bc5);
-
-    physics.Register(entity5);
-    graphics.Register(entity5);
+//    Entity entity5;
+//
+//    Point points5[] = {Point(-20, -10), Point(20, -10), Point(20, 10), Point(-20, 10)};
+//    Polygon poly5(points5, 4);
+//
+//    PositionComponent pc5(220, 215, 0);
+//    ShapeComponent sc5(poly5);
+//    VelocityComponent vc5(2, -10, 0);
+//    BodyComponent bc5(100, 2000);
+//
+//    entity5.Add(pc5);
+//    entity5.Add(sc5);
+//    entity5.Add(vc5);
+//    entity5.Add(bc5);
+//
+//    physics.Register(entity5);
+//    graphics.Register(entity5);
 
 
 // Квадрат
-//    Entity entity6;
-//
-//    Point points6[] = {Point(-10, -10), Point(10, -10), Point(10, 10), Point(-10, 10)};
-//    Polygon poly6(points6, 4);
-//
-//    PositionComponent pc6(210, 100, 0);
-//    ShapeComponent sc6(poly6);
-//    VelocityComponent vc6(0, 10, 0);
-//    BodyComponent bc6(100, 400);
-//
-//    entity6.Add(pc6);
-//    entity6.Add(sc6);
-//    entity6.Add(vc6);
-//    entity6.Add(bc6);
-//
-//    physics.Register(entity6);
-//    graphics.Register(entity6);
+    Entity entity6;
+
+    Point points6[] = {Point(-10, -10), Point(10, -10), Point(10, 10), Point(-10, 10)};
+    Polygon poly6(points6, 4);
+
+    PositionComponent pc6(400, 100, 45);
+    ShapeComponent sc6(poly6);
+    VelocityComponent vc6(-10, 0, 0);
+    BodyComponent bc6(100, 2000);
+
+    entity6.Add(pc6);
+    entity6.Add(sc6);
+    entity6.Add(vc6);
+    entity6.Add(bc6);
+
+    physics.Register(entity6);
+    graphics.Register(entity6);
 
 
     core.Start();
@@ -321,7 +321,7 @@ void TestDemo()
     PositionComponent squarePC1(400, 0, 0);
     ShapeComponent squareSC1(square1);
     VelocityComponent squareVC1(0, 30, 10);
-    BodyComponent squareBC1(100, 1000);
+    BodyComponent squareBC1(100, 2000);
     VelocityChangeComponent squareVCC1;
     TranslateComponent squareTC1;
     DemoComponent squareDC1(400, 0, 0, 0, 30, 10, 500);

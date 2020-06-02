@@ -272,9 +272,22 @@ Polygon* Mathematics::CircleConvPolyIntersection(Circle& circle, ConvexPolygon& 
 
 	for (int i = 0; i < convPoly.GetPower(); i++, v = v->next)
 	{
-		if (IsDotInCircle(circle, v->position)) { AddVertex(current, v->position); }
-		current->next = CircleSegmentIntersection(circle, v->position, v->next->position);
-		for (; current->next != nullptr; current = current->next, vertexes++);
+		if (IsDotInCircle(circle, v->position))
+		{
+		    AddVertex(current, v->position);
+            vertexes++;
+		}
+
+		Vertex* intersections = CircleSegmentIntersection(circle, v->position, v->next->position);
+
+		while (intersections != nullptr)
+		{
+		    AddVertex(current, intersections->position);
+		    Vertex* prev = intersections;
+		    intersections = intersections->next;
+		    delete prev;
+		    vertexes++;
+		}
 	}
 
 	current->next = first->next;

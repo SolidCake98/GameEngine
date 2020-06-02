@@ -62,7 +62,7 @@ inline bool PhysicsEngine::Contain(Rigidbody& rb)
 
 void PhysicsEngine::Work()
 {
-    const double FPS = 60;
+    const double FPS = 100;
     const double DT = 1/FPS;
     CTimer t;
     double accumulator = 0;
