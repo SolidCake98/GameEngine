@@ -18,13 +18,8 @@ public:
     PhysicsNode(PositionComponent& position,
                 VelocityComponent& velocity,
                 BodyComponent& body,
-                ShapeComponent& shape);
-
-    PhysicsNode(PositionComponent& position,
-                VelocityComponent& velocity,
-                BodyComponent& body,
                 ShapeComponent& shape,
-                VelocityChangeComponent& velocityChange);
+                VelocityChangeComponent* velocityChange = nullptr);
 
     PositionComponent& GetPosition() const;
     VelocityComponent& GetVelocity() const;
@@ -38,11 +33,6 @@ private:
     BodyComponent* _body;
     ShapeComponent* _shape;
     VelocityChangeComponent* _velocityChange;
-
-    void Init(PositionComponent& position,
-              VelocityComponent& velocity,
-              BodyComponent& body,
-              ShapeComponent& shape);
 };
 
 

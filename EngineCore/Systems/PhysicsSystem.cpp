@@ -64,26 +64,12 @@ void PhysicsSystem::Register(Entity& entity)
         throw std::invalid_argument("Entity already registered!");
     }
 
-    PhysicsNode* node;
-
-    if (entity.Get("VelocityChangeComponent") != nullptr)
-    {
-        node = new PhysicsNode(
-                *((PositionComponent*)entity.Get("PositionComponent")),
-                *((VelocityComponent*)entity.Get("VelocityComponent")),
-                *((BodyComponent*)entity.Get("BodyComponent")),
-                *((ShapeComponent*)entity.Get("ShapeComponent")),
-                *((VelocityChangeComponent*)entity.Get("VelocityChangeComponent")));
-    }
-    else
-    {
-        node = new PhysicsNode(
-                *((PositionComponent*)entity.Get("PositionComponent")),
-                *((VelocityComponent*)entity.Get("VelocityComponent")),
-                *((BodyComponent*)entity.Get("BodyComponent")),
-                *((ShapeComponent*)entity.Get("ShapeComponent")));
-    }
-
+    auto node = new PhysicsNode(
+            *((PositionComponent*)entity.Get("PositionComponent")),
+            *((VelocityComponent*)entity.Get("VelocityComponent")),
+            *((BodyComponent*)entity.Get("BodyComponent")),
+            *((ShapeComponent*)entity.Get("ShapeComponent")),
+            ((VelocityChangeComponent*)entity.Get("VelocityChangeComponent")));
 
     _registeredEntitys[&entity] = node;
     auto rb = CreateRigidbody(*node);

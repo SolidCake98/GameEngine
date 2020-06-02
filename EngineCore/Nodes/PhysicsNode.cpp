@@ -5,17 +5,13 @@
 #include "PhysicsNode.h"
 
 PhysicsNode::PhysicsNode(PositionComponent& position, VelocityComponent& velocity,
-    BodyComponent& body, ShapeComponent& shape)
+    BodyComponent& body, ShapeComponent& shape, VelocityChangeComponent* velocityChange)
 {
-    Init(position, velocity, body, shape);
-    _velocityChange = nullptr;
-}
-
-PhysicsNode::PhysicsNode(PositionComponent& position, VelocityComponent& velocity,
-    BodyComponent& body, ShapeComponent& shape, VelocityChangeComponent& velocityChange)
-{
-    Init(position, velocity, body, shape);
-   _velocityChange = &velocityChange;
+    _position  = &position;
+    _velocity = &velocity;
+    _body = &body;
+    _shape = &shape;
+    _velocityChange = velocityChange;
 }
 
 PositionComponent& PhysicsNode::GetPosition() const { return *_position; }
@@ -24,13 +20,5 @@ BodyComponent& PhysicsNode::GetBody() const { return *_body; }
 ShapeComponent& PhysicsNode::GetShape() const { return *_shape; }
 VelocityChangeComponent *PhysicsNode::GetVelocityChange() const { return _velocityChange; }
 
-void PhysicsNode::Init(PositionComponent &position, VelocityComponent &velocity,
-        BodyComponent &body, ShapeComponent &shape)
-{
-    _position  = &position;
-    _velocity = &velocity;
-    _body = &body;
-    _shape = &shape;
-}
 
 
