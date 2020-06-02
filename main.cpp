@@ -251,12 +251,14 @@ void TestControl()
     VelocityComponent vc(-10, 0, 0);
     BodyComponent bc(100, 5000);
     VelocityChangeComponent vcc;
+    TranslateComponent tc;
 
     entity.Add(pc);
     entity.Add(sc);
     entity.Add(vc);
     entity.Add(bc);
     entity.Add(vcc);
+    entity.Add(tc);
 
     physics.Register(entity);
     graphics.Register(entity);

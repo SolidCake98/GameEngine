@@ -9,7 +9,7 @@ TranslateComponent::TranslateComponent(float x, float y, float angle)
     _x = x;
     _y = y;
     _angle = angle;
-    _isNeedTranslate = true;
+    _isNeedTranslate = false;
 }
 
 std::string TranslateComponent::GetName() const { return "TranslateComponent"; }
