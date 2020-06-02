@@ -54,6 +54,15 @@ void PhysicsSystem::Update()
             velocityChange->SetX(0);
             velocityChange->SetY(0);
         }
+
+        TranslateComponent* translateComponent = pair.node->GetTranslate();
+
+        if (translateComponent != nullptr && translateComponent->GetIsNeedTranslate())
+        {
+            pair.body->SetPosition(PEngine::Point(translateComponent->GetX(), translateComponent->GetY()));
+            pair.body->SetAngle(translateComponent->GetAngle());
+            translateComponent->SetIsNeedTranslate(false);
+        }
     }
 }
 
@@ -69,7 +78,8 @@ void PhysicsSystem::Register(Entity& entity)
             *((VelocityComponent*)entity.Get("VelocityComponent")),
             *((BodyComponent*)entity.Get("BodyComponent")),
             *((ShapeComponent*)entity.Get("ShapeComponent")),
-            ((VelocityChangeComponent*)entity.Get("VelocityChangeComponent")));
+            ((VelocityChangeComponent*)entity.Get("VelocityChangeComponent")),
+            ((TranslateComponent*)entity.Get("TranslateComponent")));
 
     _registeredEntitys[&entity] = node;
     auto rb = CreateRigidbody(*node);

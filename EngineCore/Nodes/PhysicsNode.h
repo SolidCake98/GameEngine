@@ -9,6 +9,7 @@
 #include "../Components/PositionComponent.h"
 #include "../Components/VelocityComponent.h"
 #include "../Components/VelocityChangeComponent.h"
+#include "../Components/TranslateComponent.h"
 #include "../Components/BodyComponent.h"
 #include "../Components/ShapeComponent.h"
 
@@ -19,13 +20,15 @@ public:
                 VelocityComponent& velocity,
                 BodyComponent& body,
                 ShapeComponent& shape,
-                VelocityChangeComponent* velocityChange = nullptr);
+                VelocityChangeComponent* velocityChange = nullptr,
+                TranslateComponent* translateComponent = nullptr);
 
     PositionComponent& GetPosition() const;
     VelocityComponent& GetVelocity() const;
     BodyComponent& GetBody() const;
     ShapeComponent& GetShape() const;
     VelocityChangeComponent* GetVelocityChange() const;
+    TranslateComponent* GetTranslate() const;
 
 private:
     PositionComponent* _position;
@@ -33,6 +36,7 @@ private:
     BodyComponent* _body;
     ShapeComponent* _shape;
     VelocityChangeComponent* _velocityChange;
+    TranslateComponent* _translateComponent;
 };
 
 

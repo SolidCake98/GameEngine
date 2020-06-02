@@ -98,7 +98,7 @@ set(SOURCE_FILES
         EngineCore/Nodes/GraphicsNode.cpp
         EngineCore/Nodes/GraphicsNode.h
         EngineCore/Systems/GraphicsSystem.cpp
-        EngineCore/Systems/GraphicsSystem.h EngineCore/Systems/TestSystem.cpp EngineCore/Systems/TestSystem.h EngineCore/Nodes/TestNode.cpp EngineCore/Nodes/TestNode.h EngineCore/Systems/ControlSystem.cpp EngineCore/Systems/ControlSystem.h EngineCore/Components/VelocityChangeComponent.cpp EngineCore/Components/VelocityChangeComponent.h EngineCore/Nodes/ControlNode.cpp EngineCore/Nodes/ControlNode.h)
+        EngineCore/Systems/GraphicsSystem.h EngineCore/Systems/TestSystem.cpp EngineCore/Systems/TestSystem.h EngineCore/Nodes/TestNode.cpp EngineCore/Nodes/TestNode.h EngineCore/Systems/ControlSystem.cpp EngineCore/Systems/ControlSystem.h EngineCore/Components/VelocityChangeComponent.cpp EngineCore/Components/VelocityChangeComponent.h EngineCore/Nodes/ControlNode.cpp EngineCore/Nodes/ControlNode.h EngineCore/Components/TranslateComponent.cpp EngineCore/Components/TranslateComponent.h)
         
 add_executable(GameEngine ${SOURCE_FILES})
 
