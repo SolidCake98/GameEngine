@@ -21,6 +21,21 @@ public:
 
     std::string GetName() const override;
 
+    float GetStartX() const;
+    void SetStartX(float startX);
+    float GetStartY() const;
+    void SetStartY(float startY);
+    float GetStartAngle() const;
+    void SetStartAngle(float startAngle);
+    float GetStartVx() const;
+    void SetStartVx(float startVx);
+    float GetStartVy() const;
+    void SetStartVy(float startVy);
+    float GetStartW() const;
+    void SetStartW(float startW);
+    float GetDistance() const;
+    void SetDistance(float distance);
+
 private:
     float _startX;
     float _startY;

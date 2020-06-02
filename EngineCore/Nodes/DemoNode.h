@@ -9,20 +9,27 @@
 #include "../Components/DemoComponent.h"
 #include "../Components/PositionComponent.h"
 #include "../Components/VelocityChangeComponent.h"
+#include "../Components/TranslateComponent.h"
 
 class DemoNode : public NodeBase
 {
 public:
-    DemoNode(DemoComponent& demo, PositionComponent& position, VelocityChangeComponent& velocityChange);
+    DemoNode(
+            DemoComponent& demo,
+            PositionComponent& position,
+            VelocityChangeComponent& velocityChange,
+            TranslateComponent& translateComponent);
 
     DemoComponent& GetDemo() const;
     PositionComponent& GetPosition() const;
     VelocityChangeComponent& GetVelocityChange() const;
+    TranslateComponent& GetTranslate() const;
 
 private:
     DemoComponent* _demo;
     PositionComponent* _position;
     VelocityChangeComponent* _velocityChange;
+    TranslateComponent* _translate;
 };
 
 
