@@ -50,6 +50,7 @@ void PhysicsSystem::Update()
         if (velocityChange != nullptr && velocityChange->GetIsNeedChange())
         {
             pair.body->SetV(PEngine::Point(velocityChange->GetX(), velocityChange->GetY()));
+            pair.body->SetW(velocityChange->GetW());
             velocityChange->SetX(0);
             velocityChange->SetY(0);
             velocityChange->SetIsNeedChange(false);

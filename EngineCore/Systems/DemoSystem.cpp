@@ -17,8 +17,8 @@ void DemoSystem::Update()
         {
             VelocityChangeComponent& velocityChange = pair.second->GetVelocityChange();
 
-            velocityChange.SetX(demo.GetStartX());
-            velocityChange.SetY(demo.GetStartY());
+            velocityChange.SetX(demo.GetStartVx());
+            velocityChange.SetY(demo.GetStartVy());
             velocityChange.SetW(demo.GetStartW());
             velocityChange.SetIsNeedChange(true);
 
