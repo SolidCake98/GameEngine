@@ -6,6 +6,7 @@
 #include "EngineCore/Systems/GraphicsSystem.h"
 #include "EngineCore/Systems/TestSystem.h"
 #include "EngineCore/Systems/PhysicsSystem.h"
+#include "EngineCore/Systems/ControlSystem.h"
 #include "InputSystem/InputSystem.h"
 
 void TestInput()
@@ -224,9 +225,12 @@ void TestPhysics()
     core.Start();
 }
 
-void TestScene()
+void TestControl()
 {
     Core core;
+
+    InputSystem* input = InputSystem::get();
+    core.AddSystem(*input, 0);
 
     PhysicsSystem physics;
     core.AddSystem(physics, 1);
@@ -234,126 +238,29 @@ void TestScene()
     GraphicsSystem graphics;
     core.AddSystem(graphics, 2);
 
-
-    // Левая стена
-    Entity LeftBorder;
-
-    Point LeftBorderPoints[] = {Point(0, 0), Point(10, 0), Point(10, 480), Point(0, 480)};
-    Polygon LeftBorderPoly(LeftBorderPoints, 4);
-
-    PositionComponent LeftBorderPC(0, 0, 0);
-    ShapeComponent LeftBorderSC(LeftBorderPoly);
-    VelocityComponent LeftBorderVC(0, 0, 0);
-    BodyComponent LeftBorderBC(2, 2, true);
-
-    LeftBorder.Add(LeftBorderPC);
-    LeftBorder.Add(LeftBorderSC);
-    LeftBorder.Add(LeftBorderVC);
-    LeftBorder.Add(LeftBorderBC);
-
-    physics.Register(LeftBorder);
-    graphics.Register(LeftBorder);
-
-
-    // Правая стена
-    Entity RightBorder;
-
-    Point RightBorderPoints[] = {Point(0, 0), Point(10, 0), Point(10, 480), Point(0, 480)};
-    Polygon RightBorderPoly(RightBorderPoints, 4);
-
-    PositionComponent RightBorderPC(630, 0, 0);
-    ShapeComponent RightBorderSC(LeftBorderPoly);
-    VelocityComponent RightBorderVC(0, 0, 0);
-    BodyComponent RightBorderBC(2, 2, true);
-
-    RightBorder.Add(RightBorderPC);
-    RightBorder.Add(RightBorderSC);
-    RightBorder.Add(RightBorderVC);
-    RightBorder.Add(RightBorderBC);
-
-    physics.Register(RightBorder);
-    graphics.Register(RightBorder);
-
-
-    // Нижняя стена
-    Entity BottomBorder;
-
-    Point BottomBorderPoints[] = {Point(0, 0), Point(620, 0), Point(620, 10), Point(0, 10)};
-    Polygon BottomBorderPoly(BottomBorderPoints, 4);
-
-    PositionComponent BottomBorderPC(10, 470, 0);
-    ShapeComponent BottomBorderSC(BottomBorderPoly);
-    VelocityComponent BottomBorderVC(0, 0, 0);
-    BodyComponent BottomBorderBC(2, 2, true);
-
-    BottomBorder.Add(BottomBorderPC);
-    BottomBorder.Add(BottomBorderSC);
-    BottomBorder.Add(BottomBorderVC);
-    BottomBorder.Add(BottomBorderBC);
-
-    physics.Register(BottomBorder);
-    graphics.Register(BottomBorder);
-
-
-    // Верхняя стена
-    Entity TopBorder;
-
-    Point TopBorderPoints[] = {Point(0, 0), Point(620, 0), Point(620, 10), Point(0, 10)};
-    Polygon TopBorderPoly(TopBorderPoints, 4);
-
-    PositionComponent TopBorderPC(10, 0, 0);
-    ShapeComponent TopBorderSC(TopBorderPoly);
-    VelocityComponent TopBorderVC(0, 0, 0);
-    BodyComponent TopBorderBC(2, 2, true);
-
-    TopBorder.Add(TopBorderPC);
-    TopBorder.Add(TopBorderSC);
-    TopBorder.Add(TopBorderVC);
-    TopBorder.Add(TopBorderBC);
-
-    physics.Register(TopBorder);
-    graphics.Register(TopBorder);
-
+    ControlSystem control;
+    core.AddSystem(control, 3);
 
     // Окружность
-//    Entity CircleBody1;
-//
-//    Circle Circle1(Point(0, 0), 10);
-//
-//    PositionComponent CircleBody1PC(100, 210, 0);
-//    ShapeComponent CircleBody1SC(Circle1);
-//    VelocityComponent CircleBody1VC(50, 10, 0);
-//    BodyComponent CircleBody3PC(2, 1);
-//
-//    CircleBody1.Add(CircleBody1PC);
-//    CircleBody1.Add(CircleBody1SC);
-//    CircleBody1.Add(CircleBody1VC);
-//    CircleBody1.Add(CircleBody3PC);
-//
-//    physics.Register(CircleBody1);
-//    graphics.Register(CircleBody1);
+    Entity entity;
 
+    Circle circle(Point(0, 0), 10);
 
-    // Квадрат
-    Entity SquareBody1;
+    PositionComponent pc(300, 110, 0);
+    ShapeComponent sc(circle);
+    VelocityComponent vc(-10, 0, 0);
+    BodyComponent bc(100, 5000);
+    VelocityChangeComponent vcc;
 
-    Point SquareBody1Points[] = {Point(10, 10), Point(-10, 10), Point(-10, -10), Point(10, -10)};
-    Polygon SquareBody1Poly(SquareBody1Points, 4);
+    entity.Add(pc);
+    entity.Add(sc);
+    entity.Add(vc);
+    entity.Add(bc);
+    entity.Add(vcc);
 
-    PositionComponent SquareBody1PC(300, 200, 0);
-    ShapeComponent SquareBody1SC(SquareBody1Poly);
-    VelocityComponent SquareBody1VC(0, 40, 0);
-    BodyComponent SquareBody1BC(2, 2);
-
-    SquareBody1.Add(SquareBody1PC);
-    SquareBody1.Add(SquareBody1SC);
-    SquareBody1.Add(SquareBody1VC);
-    SquareBody1.Add(SquareBody1BC);
-
-    physics.Register(SquareBody1);
-    graphics.Register(SquareBody1);
-
-
+    physics.Register(entity);
+    graphics.Register(entity);
+    control.Register(entity);
 
     core.Start();
 }
@@ -362,8 +269,8 @@ int main()
 {
     //TestInput();
     //TestGraphics();
-    TestPhysics();
-    //TestScene();
+    //TestPhysics();
+    TestControl();
 }
 
 

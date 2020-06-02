@@ -45,6 +45,15 @@ void PhysicsSystem::Update()
         velocity.SetX(pair.body->GetV().x);
         velocity.SetY(pair.body->GetV().y);
         velocity.SetW(pair.body->GetW());
+
+        VelocityChangeComponent* velocityChange = pair.node->GetVelocityChange();
+
+        if (velocityChange != nullptr)
+        {
+            pair.body->SetV(PEngine::Point(velocityChange->GetX(), velocityChange->GetY()));
+            velocityChange->SetX(0);
+            velocityChange->SetY(0);
+        }
     }
 }
 
@@ -55,11 +64,26 @@ void PhysicsSystem::Register(Entity& entity)
         throw std::invalid_argument("Entity already registered!");
     }
 
-    auto node = new PhysicsNode(
-            *((PositionComponent*)entity.Get("PositionComponent")),
-            *((VelocityComponent*)entity.Get("VelocityComponent")),
-            *((BodyComponent*)entity.Get("BodyComponent")),
-            *((ShapeComponent*)entity.Get("ShapeComponent")));
+    PhysicsNode* node;
+
+    if (entity.Get("VelocityChangeComponent") != nullptr)
+    {
+        node = new PhysicsNode(
+                *((PositionComponent*)entity.Get("PositionComponent")),
+                *((VelocityComponent*)entity.Get("VelocityComponent")),
+                *((BodyComponent*)entity.Get("BodyComponent")),
+                *((ShapeComponent*)entity.Get("ShapeComponent")),
+                *((VelocityChangeComponent*)entity.Get("VelocityChangeComponent")));
+    }
+    else
+    {
+        node = new PhysicsNode(
+                *((PositionComponent*)entity.Get("PositionComponent")),
+                *((VelocityComponent*)entity.Get("VelocityComponent")),
+                *((BodyComponent*)entity.Get("BodyComponent")),
+                *((ShapeComponent*)entity.Get("ShapeComponent")));
+    }
+
 
     _registeredEntitys[&entity] = node;
     auto rb = CreateRigidbody(*node);
