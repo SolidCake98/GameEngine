@@ -23,7 +23,6 @@ public:
 private:
     std::map<std::string, ComponentBase*> _components;
 
-    void Remove(std::_Rb_tree_iterator<std::pair<const std::basic_string<char>, ComponentBase *>> iterator);
 };
 
 

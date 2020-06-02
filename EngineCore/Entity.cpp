@@ -10,7 +10,7 @@ void Entity::Add(ComponentBase& component)
 
     if (it != _components.end())
     {
-        Remove(it);
+        _components.erase(it);
     }
 
     _components[component.GetName()] = &component;
@@ -22,7 +22,7 @@ void Entity::Remove(std::string componentName)
 
     if (it != _components.end())
     {
-        Remove(it);
+        _components.erase(it);
     }
 }
 
@@ -32,7 +32,7 @@ void Entity::Remove(ComponentBase& component)
     {
         if (it->second == &component)
         {
-            Remove(it);
+            _components.erase(it);
             break;
         }
     }
@@ -52,16 +52,5 @@ ComponentBase* Entity::Get(std::string componentName)
 
 void Entity::Clear()
 {
-    for (auto c : _components)
-    {
-        delete c.second;
-    }
-
     _components.clear();
-}
-
-void Entity::Remove(std::_Rb_tree_iterator<std::pair<const std::basic_string<char>, ComponentBase *>> iterator)
-{
-    delete iterator->second;
-    _components.erase(iterator);
 }
