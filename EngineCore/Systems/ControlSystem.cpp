@@ -28,6 +28,7 @@ void ControlSystem::Update()
         VelocityChangeComponent& vc = pair.second->GetVelocityChange();
         vc.SetY(top ? -SPEED : bottom ? SPEED : 0);
         vc.SetX(left ? -SPEED : right ? SPEED : 0);
+        vc.SetIsNeedChange(true);
     }
 }
 
@@ -35,7 +36,9 @@ void ControlSystem::Register(Entity &entity)
 {
     if (_registered.find(&entity) == _registered.end())
     {
-        _registered[&entity] = new ControlNode(*(VelocityChangeComponent*)entity.Get("VelocityChangeComponent"));
+        _registered[&entity] = new ControlNode(
+                *(VelocityChangeComponent*)entity.Get("VelocityChangeComponent"),
+                *(PositionComponent*)entity.Get("PositionComponent"));
     }
 }
 

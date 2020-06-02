@@ -19,11 +19,14 @@ public:
     void SetY(float y);
     float GetW() const;
     void SetW(float W);
+    bool GetIsNeedChange() const;
+    void SetIsNeedChange(bool isNeedChange);
 
 private:
     float _x; // скорость по оси абсцисс
     float _y; // скорость по оси ординат
     float _W; // угловая скорость
+    bool _isNeeChange;
 };
 
 

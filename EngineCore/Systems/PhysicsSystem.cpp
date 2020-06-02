@@ -33,7 +33,6 @@ std::string PhysicsSystem::GetName() const { return "PhysicsSystem"; }
 
 void PhysicsSystem::Update()
 {
-    // TODO: применение импульсов
     for (auto pair : _nodeBodyPairs)
     {
         PositionComponent& position = pair.node->GetPosition();
@@ -48,11 +47,12 @@ void PhysicsSystem::Update()
 
         VelocityChangeComponent* velocityChange = pair.node->GetVelocityChange();
 
-        if (velocityChange != nullptr)
+        if (velocityChange != nullptr && velocityChange->GetIsNeedChange())
         {
             pair.body->SetV(PEngine::Point(velocityChange->GetX(), velocityChange->GetY()));
             velocityChange->SetX(0);
             velocityChange->SetY(0);
+            velocityChange->SetIsNeedChange(false);
         }
 
         TranslateComponent* translateComponent = pair.node->GetTranslate();

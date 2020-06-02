@@ -21,3 +21,6 @@ void VelocityChangeComponent::SetY(float y) { _y = y; }
 
 float VelocityChangeComponent::GetW() const { return _W; }
 void VelocityChangeComponent::SetW(float W) { _W = W; }
+
+bool VelocityChangeComponent::GetIsNeedChange() const { return _isNeeChange; }
+void VelocityChangeComponent::SetIsNeedChange(bool isNeedChange) { _isNeeChange = isNeedChange; }

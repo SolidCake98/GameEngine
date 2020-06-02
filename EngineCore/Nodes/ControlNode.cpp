@@ -4,12 +4,11 @@
 
 #include "ControlNode.h"
 
-ControlNode::ControlNode(VelocityChangeComponent &velocityChange)
+ControlNode::ControlNode(VelocityChangeComponent& velocityChange, PositionComponent& positionComponent)
 {
     _velocityChange = &velocityChange;
+    _positionComponent = &positionComponent;
 }
 
-VelocityChangeComponent &ControlNode::GetVelocityChange()
-{
-    return *_velocityChange;
-}
+VelocityChangeComponent &ControlNode::GetVelocityChange() const { return *_velocityChange; }
+PositionComponent &ControlNode::GetPosition() const { return *_positionComponent; }

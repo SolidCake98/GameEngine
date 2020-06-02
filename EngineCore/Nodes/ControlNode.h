@@ -7,15 +7,19 @@
 
 #include "NodeBase.h"
 #include "../Components/VelocityChangeComponent.h"
+#include "../Components/PositionComponent.h"
 
 class ControlNode : NodeBase
 {
 public:
-    ControlNode(VelocityChangeComponent& velocityChange);
-    VelocityChangeComponent& GetVelocityChange();
+    ControlNode(VelocityChangeComponent& velocityChange, PositionComponent& positionComponent);
+    VelocityChangeComponent& GetVelocityChange() const;
+    PositionComponent& GetPosition() const;
 
 private:
     VelocityChangeComponent* _velocityChange;
+    PositionComponent* _positionComponent;
+
 };
 
 
