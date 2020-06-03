@@ -11,13 +11,9 @@ PhysicsEngine::~PhysicsEngine()
 {
     _isWork = false;
 
-    if(physicsThread->joinable())
+    if (physicsThread != nullptr)
     {
         physicsThread->join();
-        delete physicsThread;
-    }
-    else
-    {
         delete physicsThread;
     }
 }
@@ -32,6 +28,8 @@ void PhysicsEngine::Stop()
 {
 	_isWork = false;
     physicsThread->join();
+    delete physicsThread;
+    physicsThread = nullptr;
 }
 
 PhysicsEngine::const_iterator PhysicsEngine::begin()
