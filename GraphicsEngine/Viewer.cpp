@@ -8,7 +8,7 @@ namespace GraphicsEngine {
         m_Height = height;
 
         initOG(m_Width, m_Height);
-
+\
         counter = 0;
     }
 
@@ -102,7 +102,9 @@ namespace GraphicsEngine {
     }
 
     Viewer::~Viewer() {
-        //delete
+        m_ObjectsVect->clear();
+        delete m_ObjectsVect;
+        glfwTerminate();
     }
 
     void Viewer::clear() {
@@ -116,5 +118,9 @@ namespace GraphicsEngine {
         }
         glfwSwapBuffers(window);
         glfwPollEvents();
+    }
+
+    bool Viewer::isWindowClose() {
+        return glfwWindowShouldClose(window);
     }
 }

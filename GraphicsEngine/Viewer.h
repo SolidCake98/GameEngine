@@ -42,6 +42,8 @@ namespace GraphicsEngine {
 
         ViewObject *getObjectByID(int);
 
+        bool isWindowClose();
+
         void clear();
 
         void draw();

@@ -26,6 +26,8 @@ public:
     void Register(Entity&) override;
     void Unregister(Entity&) override;
 
+    bool GetWinState();
+
 private:
     struct GNodeVOPair
     {
@@ -35,7 +37,9 @@ private:
         GNodeVOPair(GraphicsNode*, GraphicsEngine::ViewObject*);
     };
 
-    std::map<Entity*, GNodeVOPair*> m_registeredEntitys;
+    bool m_State;
+
+    std::map<Entity*, GNodeVOPair*> m_RegisteredEntitys;
     GraphicsEngine::Viewer* m_Viewer;
 };
 

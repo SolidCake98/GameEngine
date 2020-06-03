@@ -43,10 +43,11 @@ namespace GraphicsEngine {
 
         glm::mat4 m_MVP;
 
-        bool zip();
+        void zip();
 
     public:
         ViewObject();
+        ~ViewObject();
 
         int getID();
 

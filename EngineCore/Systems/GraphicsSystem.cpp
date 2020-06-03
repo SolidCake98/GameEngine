@@ -7,6 +7,7 @@
 GraphicsSystem::GraphicsSystem(int _width, int _height) : ScreenHeight(_height), ScreenWidth(_width)
 {
     m_Viewer = new GraphicsEngine::Viewer(ScreenWidth, ScreenHeight);
+    m_State = true;
 }
 
 GraphicsSystem::~GraphicsSystem()
@@ -21,9 +22,14 @@ std::string GraphicsSystem::GetName() const
 
 void GraphicsSystem::Update()
 {
+    if(m_Viewer->isWindowClose())
+    {
+        m_State = false;
+        return;
+    }
     m_Viewer->clear();
 
-    for(auto updVO : m_registeredEntitys)
+    for(auto updVO : m_RegisteredEntitys)
     {
         auto position = updVO.second->gn->GetPosition();
         updVO.second->vo->setPosition(glm::vec3(position.GetX(), position.GetY(), 0));
@@ -37,7 +43,7 @@ void GraphicsSystem::Update()
 
 void GraphicsSystem::Register(Entity& entity)
 {
-    if (m_registeredEntitys.find(&entity) != m_registeredEntitys.end())
+    if (m_RegisteredEntitys.find(&entity) != m_RegisteredEntitys.end())
     {
         throw std::invalid_argument("Entity already registered!");
     }
@@ -91,20 +97,24 @@ void GraphicsSystem::Register(Entity& entity)
         }
     }
 
-    m_registeredEntitys[&entity] = new GNodeVOPair(node, vo);
+    m_RegisteredEntitys[&entity] = new GNodeVOPair(node, vo);
 }
 
 void GraphicsSystem::Unregister(Entity& entity)
 {
-    if(m_registeredEntitys.find(&entity) == m_registeredEntitys.end())
+    if(m_RegisteredEntitys.find(&entity) == m_RegisteredEntitys.end())
     {
         std::cout << "There is no Entity like that in [RegisteredEntitys]\n";
         return;
     }
 
-    delete m_registeredEntitys[&entity]->vo;
-    delete m_registeredEntitys[&entity]->gn;
-    m_registeredEntitys.erase(&entity);
+    delete m_RegisteredEntitys[&entity]->vo;
+    delete m_RegisteredEntitys[&entity]->gn;
+    m_RegisteredEntitys.erase(&entity);
+}
+
+bool GraphicsSystem::GetWinState() {
+    return m_State;
 }
 
 GraphicsSystem::GNodeVOPair::GNodeVOPair(GraphicsNode* _gn, GraphicsEngine::ViewObject* _vo)

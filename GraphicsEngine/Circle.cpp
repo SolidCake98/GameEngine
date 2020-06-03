@@ -12,9 +12,9 @@ namespace GraphicsEngine {
 
         GLfloat doublePi = 2.0f * M_PI;
 
-        GLfloat *circleVerticesX = new GLfloat[fNumVer];
-        GLfloat *circleVerticesY = new GLfloat[fNumVer];
-        GLfloat *circleVerticesZ = new GLfloat[fNumVer];
+        auto circleVerticesX = new GLfloat[fNumVer];
+        auto circleVerticesY = new GLfloat[fNumVer];
+        auto circleVerticesZ = new GLfloat[fNumVer];
 
         circleVerticesX[0] = x;
         circleVerticesY[0] = y;
