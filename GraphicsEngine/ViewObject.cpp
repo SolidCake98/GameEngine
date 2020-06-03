@@ -10,7 +10,7 @@ namespace GraphicsEngine {
         m_Color = new float[3]{1.0, 1.0, 1.0};
 
 	m_MVP = glm::mat4(1.0f);
-	m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
+	//m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
 	m_Position = glm::vec3(1.f, 1.f, 1.f);
 	m_Scale = glm::vec3(1.f, 1.f, 1.f);
 	m_Angle = 0;
@@ -38,10 +38,18 @@ namespace GraphicsEngine {
         m_MVP = mat;
     }
 
+    void ViewObject::setScreenPosition(int _w, int _h) {
+        m_MVP = glm::mat4(1.0f);
+        m_MVP = glm::ortho(0.f, (float)_w, (float)_h, 0.f, 0.f, 100.f);
+        m_MVP = glm::translate(m_MVP, m_Position);
+        m_MVP = glm::scale(m_MVP, m_Scale);
+        m_MVP = glm::rotate(m_MVP, glm::radians(m_Angle), glm::vec3(0.f,0.f,1.f));
+    }
+
     void ViewObject::setRotation(float angle, glm::vec3 vec) {
         m_Angle = angle;
         m_MVP = glm::mat4(1.0f);
-        m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
+        //m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
         m_MVP = glm::translate(m_MVP, m_Position);
         m_MVP = glm::scale(m_MVP, m_Scale);
         m_MVP = glm::rotate(m_MVP, glm::radians(angle), vec);
@@ -51,7 +59,7 @@ namespace GraphicsEngine {
     {
         m_Position = vec;
         m_MVP = glm::mat4(1.0f);
-        m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
+        //m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
         m_MVP = glm::translate(m_MVP, vec);
         m_MVP = glm::scale(m_MVP, m_Scale);
         m_MVP = glm::rotate(m_MVP, glm::radians(m_Angle), glm::vec3(0.f, 0.f, 1.f));
@@ -61,7 +69,7 @@ namespace GraphicsEngine {
     {
         m_Scale = vec;
         m_MVP = glm::mat4(1.0f);
-        m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
+        //m_MVP = glm::ortho(0.f, 640.f, 480.f, 0.f, 0.f, 100.f);
         m_MVP = glm::translate(m_MVP, m_Position);
         m_MVP = glm::scale(m_MVP, vec);
         m_MVP = glm::rotate(m_MVP, glm::radians(m_Angle), glm::vec3(0.f, 0.f, 1.f));
@@ -95,4 +103,6 @@ namespace GraphicsEngine {
         renderer.Draw(*m_VA, *m_IB, *m_Shader);
         m_Shader->Unbind();
     }
+
+
 }

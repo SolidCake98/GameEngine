@@ -58,8 +58,9 @@ namespace GraphicsEngine {
 
         void setMVP(glm::mat4);
 
+        void setScreenPosition(int, int);
+
         void setRotation(float, glm::vec3);
-        void setRotation(float, glm::vec3, glm::vec3);
 
         void setPosition(glm::vec3);
 

@@ -15,14 +15,16 @@
 
 class GraphicsSystem : public SystemBase {
 public:
-    GraphicsSystem();
+    const int ScreenWidth;
+    const int ScreenHeight;
+
+    GraphicsSystem(int, int);
     ~GraphicsSystem();
 
     std::string GetName() const override;
     void Update() override;
     void Register(Entity&) override;
     void Unregister(Entity&) override;
-    void Start();
 
 private:
     struct GNodeVOPair
@@ -35,8 +37,6 @@ private:
 
     std::map<Entity*, GNodeVOPair*> m_registeredEntitys;
     GraphicsEngine::Viewer* m_Viewer;
-
-
 };
 
 

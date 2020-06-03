@@ -41,7 +41,7 @@ void TestGraphics()
     InputSystem* input = InputSystem::get();
     core.AddSystem(*input, 0);
 
-    GraphicsSystem graphics;
+    GraphicsSystem graphics(640, 480);
     core.AddSystem(graphics, 1);
 
     TestSystem test;
@@ -101,7 +101,7 @@ void TestPhysics()
     PhysicsSystem physics;
     core.AddSystem(physics, 1);
 
-    GraphicsSystem graphics;
+    GraphicsSystem graphics(640, 480);
     core.AddSystem(graphics, 2);
 
 
@@ -236,7 +236,7 @@ void TestControl()
     PhysicsSystem physics;
     core.AddSystem(physics, 1);
 
-    GraphicsSystem graphics;
+    GraphicsSystem graphics(640, 480);
     core.AddSystem(graphics, 2);
 
     ControlSystem control;
@@ -278,7 +278,7 @@ void TestDemo()
     PhysicsSystem physics;
     core.AddSystem(physics, 1);
 
-    GraphicsSystem graphics;
+    GraphicsSystem graphics(640, 480);
     core.AddSystem(graphics, 2);
 
     DemoSystem demo;
