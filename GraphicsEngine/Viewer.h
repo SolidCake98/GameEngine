@@ -24,8 +24,6 @@
 namespace GraphicsEngine {
     class Viewer {
     private:
-        bool m_IsWork;
-
         int counter;
 
         GLFWwindow *window;
@@ -35,18 +33,10 @@ namespace GraphicsEngine {
         int m_Width;
         int m_Height;
 
-        std::thread* m_GraphicsThread;
-        std::mutex m_BodyMutex;
-
         int initOG(int, int);
-
-        void gameCycle();
-
     public:
         Viewer(int, int);
         ~Viewer();
-
-        void run();
 
         std::vector<ViewObject *> *getAllObjects();
 
@@ -65,6 +55,5 @@ namespace GraphicsEngine {
         int addRectToPool(Point, GLfloat[]);
 
         int addTriangleToPool(Point, GLfloat[]);
-
     };
 }

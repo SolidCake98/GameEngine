@@ -23,6 +23,7 @@ namespace GraphicsEngine {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        glfwWindowHint(GLFW_RESIZABLE , GL_FALSE);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
         window = glfwCreateWindow(m_Width, m_Height, "Window", NULL, NULL);
@@ -49,30 +50,6 @@ namespace GraphicsEngine {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         return 0;
-    }
-
-    void Viewer::gameCycle() {
-        //initOG(m_Width, m_Height);
-
-        do {
-            glClear(GL_COLOR_BUFFER_BIT);
-
-            for (auto obj : *m_ObjectsVect) {
-                obj->draw();
-            }
-            glfwSwapBuffers(window);
-            glfwPollEvents();
-
-        } while (m_IsWork && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-                 glfwWindowShouldClose(window) == 0);
-
-        glfwTerminate();
-    }
-
-    void Viewer::run() {
-        m_IsWork = true;
-        gameCycle();
-        //m_GraphicsThread = new std::thread(&Viewer::gameCycle, this);
     }
 
     std::vector<ViewObject *> *Viewer::getAllObjects() {
@@ -125,9 +102,7 @@ namespace GraphicsEngine {
     }
 
     Viewer::~Viewer() {
-        m_IsWork = false;
-        m_GraphicsThread->join();
-        delete m_GraphicsThread;
+        //delete
     }
 
     void Viewer::clear() {
@@ -136,7 +111,7 @@ namespace GraphicsEngine {
 
     void Viewer::draw() {
         for (auto obj : *m_ObjectsVect) {
-            //obj->setRotation(10.f, glm::vec3(0.f), glm::vec3(0.f, 1.f, 0.f));
+            obj->setScreenPosition(m_Width, m_Height);
             obj->draw();
         }
         glfwSwapBuffers(window);

@@ -2,13 +2,11 @@
 // Created by kiku on 26.05.2020.
 //
 
-
-
 #include "GraphicsSystem.h"
 
-GraphicsSystem::GraphicsSystem()
+GraphicsSystem::GraphicsSystem(int _width, int _height) : ScreenHeight(_height), ScreenWidth(_width)
 {
-    m_Viewer = new GraphicsEngine::Viewer(640, 480);
+    m_Viewer = new GraphicsEngine::Viewer(ScreenWidth, ScreenHeight);
 }
 
 GraphicsSystem::~GraphicsSystem()
@@ -107,10 +105,6 @@ void GraphicsSystem::Unregister(Entity& entity)
     delete m_registeredEntitys[&entity]->vo;
     delete m_registeredEntitys[&entity]->gn;
     m_registeredEntitys.erase(&entity);
-}
-
-void GraphicsSystem::Start() {
-    m_Viewer->run();
 }
 
 GraphicsSystem::GNodeVOPair::GNodeVOPair(GraphicsNode* _gn, GraphicsEngine::ViewObject* _vo)
