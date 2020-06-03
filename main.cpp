@@ -292,7 +292,7 @@ void TestDemo()
 
     Circle circle1(Point(0, 0), 10);
 
-    PositionComponent circlePC1(200, 0, 0);
+    PositionComponent circlePC1(200, -20, 0);
     ShapeComponent circleSC1(circle1);
     VelocityComponent circleVC1(0, 40, 0);
     BodyComponent circleBC1(100, 5000);
@@ -317,7 +317,7 @@ void TestDemo()
 
     Circle circle2(Point(0, 0), 10);
 
-    PositionComponent circlePC2(500, 0, 0);
+    PositionComponent circlePC2(500, -20, 0);
     ShapeComponent circleSC2(circle1);
     VelocityComponent circleVC2(0, 40, 0);
     BodyComponent circleBC2(100, 5000);
@@ -343,7 +343,7 @@ void TestDemo()
     Point squarePoints1[] = {Point(-10, -10), Point(10, -10), Point(10, 10), Point(-10, 10)};
     Polygon square1(squarePoints1, 4);
 
-    PositionComponent squarePC1(400, 0, 0);
+    PositionComponent squarePC1(400, -20, 0);
     ShapeComponent squareSC1(square1);
     VelocityComponent squareVC1(0, 30, 10);
     BodyComponent squareBC1(100, 2000);
@@ -370,10 +370,10 @@ void TestDemo()
     Point rectanglePoints1[] = {Point(-20, -10), Point(20, -10), Point(20, 10), Point(-20, 10)};
     Polygon rectangle1(rectanglePoints1, 4);
 
-    PositionComponent rectanglePC1(100, 0, 0);
+    PositionComponent rectanglePC1(100, -20, 0);
     ShapeComponent rectangleSC1(rectangle1);
     VelocityComponent rectangleVC1(0, 30, -10);
-    BodyComponent rectangleBC1(100, 2000);
+    BodyComponent rectangleBC1(100, 3000);
     VelocityChangeComponent rectangleVCC1;
     TranslateComponent rectangleTC1;
     DemoComponent rectangleDC1(100, 0, 0, 0, 30, -10, 500);
