@@ -4,6 +4,12 @@
 
 #include "ControlSystem.h"
 
+ControlSystem::ControlSystem(int width, int height)
+{
+    _width = width;
+    _height = height;
+}
+
 ControlSystem::~ControlSystem()
 {
     for (auto pair : _registered)
@@ -25,10 +31,17 @@ void ControlSystem::Update()
 
     for (auto pair : _registered)
     {
+        PositionComponent& pc = pair.second->GetPosition();
         VelocityChangeComponent& vc = pair.second->GetVelocityChange();
-        vc.SetY(top ? -SPEED : bottom ? SPEED : 0);
-        vc.SetX(left ? -SPEED : right ? SPEED : 0);
+        vc.SetX(0);
+        vc.SetY(0);
         vc.SetW(0);
+
+        if (pc.GetY() > 0 && top && !bottom) vc.SetY(-SPEED);
+        if (pc.GetY() < _height && bottom && !top) vc.SetY(SPEED);
+        if (pc.GetX() > 0 && left && !right) vc.SetX(-SPEED);
+        if (pc.GetX() < _width && right && !left) vc.SetX(SPEED);
+
         vc.SetIsNeedChange(true);
     }
 }
@@ -53,5 +66,7 @@ void ControlSystem::Unregister(Entity &entity)
         _registered.erase(it);
     }
 }
+
+
 
 

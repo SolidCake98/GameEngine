@@ -13,6 +13,7 @@
 class ControlSystem : public SystemBase
 {
 public:
+    ControlSystem(int width, int height);
     ~ControlSystem();
 
     std::string GetName() const override;
@@ -23,7 +24,8 @@ public:
 private:
     const float SPEED = 100;
     std::map<Entity*, ControlNode*> _registered;
-
+    int _width;
+    int _height;
 };
 
 

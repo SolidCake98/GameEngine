@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 #include "InputSystem/CKeyboard.h"
 #include "CTimer/CTimer.h"
 #include "FakeWindow.h"
@@ -239,7 +240,7 @@ void TestControl()
     GraphicsSystem graphics(640, 480);
     core.AddSystem(graphics, 2);
 
-    ControlSystem control;
+    ControlSystem control(640, 480);
     core.AddSystem(control, 3);
 
     // Окружность
@@ -284,7 +285,7 @@ void TestDemo()
     DemoSystem demo;
     core.AddSystem(demo, 3);
 
-    ControlSystem control;
+    ControlSystem control(640, 480);
     core.AddSystem(control, 4);
 
     // Окружность
@@ -411,7 +412,6 @@ void TestDemo()
     physics.Register(pointerEntity);
     graphics.Register(pointerEntity);
     control.Register(pointerEntity);
-
 
     core.Start();
 }

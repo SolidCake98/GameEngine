@@ -35,7 +35,7 @@ Rigidbody::Rigidbody(Circle& circle, float M, float I, bool isStatic)
 {
 	Init(M, I, isStatic);
 	_shape = &circle;
-	_bound = &circle;
+	_bound = new Circle(circle.GetCenter(), circle.GetR());
 	_Rc = circle.GetCenter();
 }
 
