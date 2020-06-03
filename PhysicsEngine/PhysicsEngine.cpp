@@ -10,8 +10,16 @@ PhysicsEngine::PhysicsEngine()
 PhysicsEngine::~PhysicsEngine()
 {
     _isWork = false;
-    physicsThread->join();
-    delete physicsThread;
+
+    if(physicsThread->joinable())
+    {
+        physicsThread->join();
+        delete physicsThread;
+    }
+    else
+    {
+        delete physicsThread;
+    }
 }
 
 void PhysicsEngine::Start()
@@ -24,7 +32,6 @@ void PhysicsEngine::Stop()
 {
 	_isWork = false;
     physicsThread->join();
-    delete physicsThread;
 }
 
 PhysicsEngine::const_iterator PhysicsEngine::begin()
