@@ -11,53 +11,53 @@ PhysicsEngine::~PhysicsEngine()
 {
     _isWork = false;
 
-    if (physicsThread != nullptr)
+    if (_physicsThread != nullptr)
     {
-        physicsThread->join();
-        delete physicsThread;
+        _physicsThread->join();
+        delete _physicsThread;
     }
 }
 
 void PhysicsEngine::Start()
 {
 	_isWork = true;
-	physicsThread = new std::thread(&PhysicsEngine::Work, this);
+    _physicsThread = new std::thread(&PhysicsEngine::Work, this);
 }
 
 void PhysicsEngine::Stop()
 {
 	_isWork = false;
-    physicsThread->join();
-    delete physicsThread;
-    physicsThread = nullptr;
+    _physicsThread->join();
+    delete _physicsThread;
+    _physicsThread = nullptr;
 }
 
 PhysicsEngine::const_iterator PhysicsEngine::begin()
 {
-	return body.begin();
+	return _body.begin();
 }
 
 PhysicsEngine::const_iterator PhysicsEngine::end()
 {
-	return body.end();
+	return _body.end();
 }
 
 void PhysicsEngine::Remove(Rigidbody& rb)
 {
-	const std::lock_guard<std::mutex> guard(bodyMutex);
-	body.erase(&rb);
+	const std::lock_guard<std::mutex> guard(_bodyMutex);
+	_body.erase(&rb);
 }
 
 void PhysicsEngine::Add(Rigidbody& rb)
 {
-	const std::lock_guard<std::mutex> guard(bodyMutex);
-	if (!Contain(rb)) { body.insert(&rb); }
+	const std::lock_guard<std::mutex> guard(_bodyMutex);
+	if (!Contain(rb)) { _body.insert(&rb); }
 }
 
 void PhysicsEngine::Clear()
 {
-    const std::lock_guard<std::mutex> guard(bodyMutex);
-    body.clear();
+    const std::lock_guard<std::mutex> guard(_bodyMutex);
+    _body.clear();
 }
 
 inline bool PhysicsEngine::Contain(Rigidbody& rb)
@@ -74,7 +74,7 @@ void PhysicsEngine::Work()
 
 	while (_isWork)
 	{
-		const std::lock_guard<std::mutex> guard(bodyMutex);;
+		const std::lock_guard<std::mutex> guard(_bodyMutex);;
 
         accumulator += t.Elapsed(true);
 
@@ -85,12 +85,12 @@ void PhysicsEngine::Work()
 
 		while (accumulator > DT)
 		{
-		    if (!body.empty())
+		    if (!_body.empty())
 		        int i = 0;
 
 			NarrowPhase(WidePhase());
 
-			for (auto b : body)
+			for (auto b : _body)
 			{
 				Physics::UpdatePosition(*b, DT);
 			}
@@ -104,9 +104,9 @@ std::set<BodyPair> PhysicsEngine::WidePhase()
 {
 	std::set<BodyPair> potentials;
 
-	for (auto first : body)
+	for (auto first : _body)
 	{
-		for (auto second : body)
+		for (auto second : _body)
 		{
 			if (first != second && CanCollided(*first, *second))
 			{
