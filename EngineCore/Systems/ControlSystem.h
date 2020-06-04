@@ -18,14 +18,15 @@ public:
 
     std::string GetName() const override;
     void Update() override;
-    void Register(Entity& entity) override;
-    void Unregister(Entity& entity) override;
 
 private:
     const float SPEED = 100;
     std::map<Entity*, ControlNode*> _registered;
     int _width;
     int _height;
+
+    void Register(Entity& entity) override;
+    void Unregister(Entity& entity) override;
 };
 
 

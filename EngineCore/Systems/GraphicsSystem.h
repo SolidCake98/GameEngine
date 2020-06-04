@@ -23,12 +23,13 @@ public:
 
     std::string GetName() const override;
     void Update() override;
-    void Register(Entity&) override;
-    void Unregister(Entity&) override;
 
     bool GetWinState();
 
 private:
+    void Register(Entity&) override;
+    void Unregister(Entity&) override;
+
     struct GNodeVOPair
     {
         GraphicsNode* gn;

@@ -28,12 +28,16 @@ public:
     void RemoveEntity(Entity& entity);
     void RegisterEntity(Entity& entity, SystemBase& system);
     void RegisterEntity(Entity& entity, std::string systemName);
+    void UnregisterEntity(Entity& entity, SystemBase& system);
+    void UnregisterEntity(Entity& entity, std::string systemName);
 
 private:
     std::set<Entity*> _entitys;
     std::map<int, SystemBase*> _systems;
     bool _isWork;
 
+    bool IsSystemAdded(SystemBase &system);
+    SystemBase* IsSystemAdded(std::string systemName);
     void Work();
 };
 

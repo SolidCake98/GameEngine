@@ -4,8 +4,6 @@
 #include "Shapes/ConvexPolygon.h"
 #include "Shapes/Circle.h"
 
-#define EPS 1E-3
-
 namespace PEngine
 {
     class Mathematics
@@ -152,5 +150,8 @@ namespace PEngine
         static Polygon* CircleCircleIntersection(Circle& c1, Circle& c2);
 
         static Point Rotate(const Point& p, float angle);
+
+    private:
+        static constexpr float EPS = 1E-3;
     };
 }

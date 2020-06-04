@@ -25,8 +25,6 @@ public:
 
     std::string GetName() const override;
     void Update() override;
-    void Register(Entity& entity) override;
-    void Unregister(Entity& entity) override;
 
 private:
     struct NodeBodyPair
@@ -40,6 +38,9 @@ private:
     std::map<Entity*, PhysicsNode*> _registeredEntitys;
     std::list<NodeBodyPair> _nodeBodyPairs;
     PEngine::PhysicsEngine _pEnginde;
+
+    void Register(Entity& entity) override;
+    void Unregister(Entity& entity) override;
 
     PEngine::Rigidbody* CreateRigidbody(PhysicsNode& node);
 };

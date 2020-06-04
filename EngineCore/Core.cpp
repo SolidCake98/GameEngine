@@ -106,16 +106,9 @@ void Core::RemoveEntity(Entity &entity)
 
 void Core::RegisterEntity(Entity &entity, SystemBase &system)
 {
-    if (_entitys.find(&entity) != _entitys.end())
+    if (_entitys.find(&entity) != _entitys.end() && IsSystemAdded(system))
     {
-        for (auto pair : _systems)
-        {
-            if (pair.second == &system)
-            {
-                system.Register(entity);
-                break;
-            }
-        }
+        system.Register(entity);
     }
 }
 
@@ -123,15 +116,60 @@ void Core::RegisterEntity(Entity &entity, std::string systemName)
 {
     if (_entitys.find(&entity) != _entitys.end())
     {
-        for (auto pair : _systems)
+        SystemBase* system;
+
+        if ((system = IsSystemAdded(systemName)) != nullptr)
         {
-            if (pair.second->GetName() == systemName)
-            {
-                pair.second->Register(entity);
-                break;
-            }
+            system->Register(entity);
         }
     }
+}
+
+void Core::UnregisterEntity(Entity &entity, SystemBase &system)
+{
+    if (_entitys.find(&entity) != _entitys.end() && IsSystemAdded(system))
+    {
+        system.Unregister(entity);
+    }
+}
+
+void Core::UnregisterEntity(Entity &entity, std::string systemName)
+{
+    if (_entitys.find(&entity) != _entitys.end())
+    {
+        SystemBase* system;
+
+        if ((system = IsSystemAdded(systemName)) != nullptr)
+        {
+            system->Unregister(entity);
+        }
+    }
+}
+
+bool Core::IsSystemAdded(SystemBase &system)
+{
+    for (auto pair : _systems)
+    {
+        if (pair.second == &system)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+SystemBase* Core::IsSystemAdded(std::string systemName)
+{
+    for (auto pair : _systems)
+    {
+        if (pair.second->GetName() == systemName)
+        {
+            return pair.second;
+        }
+    }
+
+    return nullptr;
 }
 
 void Core::Work()

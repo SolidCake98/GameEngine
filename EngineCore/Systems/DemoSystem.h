@@ -15,11 +15,12 @@ class DemoSystem : public SystemBase
 public:
     std::string GetName() const override;
     void Update() override;
-    void Register(Entity& entity) override;
-    void Unregister(Entity& entity) override;
 
 private:
     std::map<Entity*, DemoNode*> _registered;
+
+    void Register(Entity& entity) override;
+    void Unregister(Entity& entity) override;
 
     float CalculateDistance(float x1, float y1, float x2, float y2);
     float sqr(float n);

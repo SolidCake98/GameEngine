@@ -17,6 +17,8 @@ class TestSystem : public SystemBase
 public:
     std::string GetName() const override;
     void Update() override;
+
+private:
     void Register(Entity& entity) override;
     void Unregister(Entity& entity) override;
 
