@@ -20,8 +20,6 @@ namespace PEngine
     public:
         typedef std::set<Rigidbody*>::const_iterator const_iterator;
 
-        std::set<Rigidbody*> _body;
-
         PhysicsEngine();
         ~PhysicsEngine();
 
@@ -58,6 +56,7 @@ namespace PEngine
         typedef Polygon* (*pfunc)(const Rigidbody&, const Rigidbody&);
 
         bool _isWork;
+        std::set<Rigidbody*> _body;
         std::thread* _physicsThread;
         std::mutex _bodyMutex;
 
