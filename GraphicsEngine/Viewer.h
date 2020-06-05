@@ -21,11 +21,22 @@
 
 #include "Types.h"
 
-namespace GraphicsEngine {
-    class Viewer {
-    private:
-        int counter;
+namespace GraphicsEngine
+{
+    class Viewer
+    {
+    public:
+        Viewer(int, int);
+        ~Viewer();
 
+        bool IsWindowClose();
+
+        void Clear();
+        void Draw();
+
+        void AddObjectToPool(ViewObject*);
+
+    private:
         GLFWwindow *window;
 
         std::vector<ViewObject *> *m_ObjectsVect;
@@ -33,29 +44,6 @@ namespace GraphicsEngine {
         int m_Width;
         int m_Height;
 
-        int initOG(int, int);
-    public:
-        Viewer(int, int);
-        ~Viewer();
-
-        std::vector<ViewObject *> *getAllObjects();
-
-        ViewObject *getObjectByID(int);
-
-        bool isWindowClose();
-
-        void clear();
-
-        void draw();
-
-        int generateId();
-
-        void addObjectToPool(ViewObject*);
-
-        int addCircleToPool(Point, float);
-
-        int addRectToPool(Point, GLfloat[]);
-
-        int addTriangleToPool(Point, GLfloat[]);
+        int InitOG();
     };
 }

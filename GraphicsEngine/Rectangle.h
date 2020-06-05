@@ -16,8 +16,10 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
-namespace GraphicsEngine {
-    class Rectangle : public ViewObject {
+namespace GraphicsEngine
+{
+    class Rectangle : public ViewObject
+    {
     public:
         Rectangle(float, float, GLfloat[]);
     };

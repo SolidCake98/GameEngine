@@ -8,8 +8,10 @@
 #include "VertexArray.h"
 #include "Shader.h"
 
-namespace GraphicsEngine {
-    class Renderer {
+namespace GraphicsEngine
+{
+    class Renderer
+    {
     public:
         void Draw(const VertexArray &, const IndexBuffer &, const Shader &) const;
     };

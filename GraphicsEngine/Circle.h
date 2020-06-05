@@ -21,8 +21,10 @@
 
 #include "ViewObject.h"
 
-namespace GraphicsEngine {
-    class Circle : public ViewObject {
+namespace GraphicsEngine
+{
+    class Circle : public ViewObject
+    {
     public:
         Circle(GLfloat, GLfloat, GLfloat, GLfloat);
     };

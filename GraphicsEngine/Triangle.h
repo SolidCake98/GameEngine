@@ -16,8 +16,10 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
-namespace GraphicsEngine {
-    class Triangle : public ViewObject {
+namespace GraphicsEngine
+{
+    class Triangle : public ViewObject
+    {
     public:
         Triangle(float, float, GLfloat[]);
     };

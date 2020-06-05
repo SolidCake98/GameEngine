@@ -17,41 +17,9 @@
 
 namespace GraphicsEngine {
     class ViewObject {
-    protected:
-        int m_ID;
-
-        Types m_Type;
-        glm::vec3 m_Position;
-        glm::vec3 m_Scale;
-        float m_Angle;
-
-        unsigned int m_Dem;
-        unsigned int m_CountVert;
-        unsigned int m_CountInd;
-
-
-        GLfloat *m_VertexBufferData;
-        unsigned int *m_Indeces;
-
-        VertexArray *m_VA;
-        VertexBuffer *m_VB;
-        IndexBuffer *m_IB;
-        VertexBufferLayout *m_Layout;
-
-        Shader *m_Shader;
-        float *m_Color;
-
-        glm::mat4 m_MVP;
-
-        void zip();
-
     public:
         ViewObject();
         ~ViewObject();
-
-        int getID();
-
-        void setID(int);
 
         void setColor(float[]);
 
@@ -69,5 +37,30 @@ namespace GraphicsEngine {
 
         void draw();
 
+    protected:
+        Types m_Type;
+        glm::vec3 m_Position;
+        glm::vec3 m_Scale;
+        glm::vec3 m_VecRot;
+        float m_Angle;
+
+        unsigned int m_Dem;
+        unsigned int m_CountVert;
+        unsigned int m_CountInd;
+
+        GLfloat *m_VertexBufferData;
+        unsigned int *m_Indeces;
+
+        VertexArray *m_VA;
+        VertexBuffer *m_VB;
+        IndexBuffer *m_IB;
+        VertexBufferLayout *m_Layout;
+
+        Shader *m_Shader;
+        float *m_Color;
+
+        glm::mat4 m_MVP;
+
+        void zip();
     };
 }

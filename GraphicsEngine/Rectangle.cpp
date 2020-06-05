@@ -1,10 +1,12 @@
 #include "Rectangle.h"
 
-namespace GraphicsEngine {
-    Rectangle::Rectangle(float x, float y, GLfloat _vp[]) {
+namespace GraphicsEngine
+{
+    Rectangle::Rectangle(float _x, float _y, GLfloat _vp[])
+    {
         m_Type = T_Rectangle;
 
-        m_Position = glm::vec3(x, y, 0);
+        m_Position = glm::vec3(_x, _y, 0);
 
         m_Dem = 3;
 

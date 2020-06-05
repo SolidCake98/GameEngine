@@ -1,11 +1,11 @@
 #include "Renderer.h"
 
-namespace GraphicsEngine {
-    void Renderer::Draw(const VertexArray &va, const IndexBuffer &ib, const Shader &shader) const {
-        //shader.Bind();
-        va.Bind();
-        ib.Bind();
-        glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
-        //glDrawElements(GL_LINES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+namespace GraphicsEngine
+{
+    void Renderer::Draw(const VertexArray &_va, const IndexBuffer &_ib, const Shader &_shader) const
+    {
+        _va.Bind();
+        _ib.Bind();
+        glDrawElements(GL_TRIANGLES, _ib.GetCount(), GL_UNSIGNED_INT, nullptr);
     }
 }

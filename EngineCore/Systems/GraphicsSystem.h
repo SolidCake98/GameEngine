@@ -13,7 +13,8 @@
 #include "../Shapes/Polygon.h"
 #include "../Shapes/Circle.h"
 
-class GraphicsSystem : public SystemBase {
+class GraphicsSystem : public SystemBase
+{
 public:
     const int ScreenWidth;
     const int ScreenHeight;

@@ -22,12 +22,12 @@ std::string GraphicsSystem::GetName() const
 
 void GraphicsSystem::Update()
 {
-    if(m_Viewer->isWindowClose())
+    if(m_Viewer->IsWindowClose())
     {
         m_State = false;
         return;
     }
-    m_Viewer->clear();
+    m_Viewer->Clear();
 
     for(auto updVO : m_RegisteredEntitys)
     {
@@ -38,7 +38,7 @@ void GraphicsSystem::Update()
         updVO.second->vo->setRotation(rotation, glm::vec3(0.f,0.f,1.f));
     }
 
-    m_Viewer->draw();
+    m_Viewer->Draw();
 }
 
 void GraphicsSystem::Register(Entity& entity)
@@ -60,7 +60,7 @@ void GraphicsSystem::Register(Entity& entity)
         auto circle = ((const Circle&)node->GetShape().GetShape());
         vo = new GraphicsEngine::Circle(
                 circle.GetCenter().x, circle.GetCenter().y, 0, circle.GetR());
-        m_Viewer->addObjectToPool(vo);
+        m_Viewer->AddObjectToPool(vo);
     }
     else if(name == "Polygon")
     {
@@ -77,7 +77,7 @@ void GraphicsSystem::Register(Entity& entity)
                     pos[(i * 3) + 2] = 0;
                 }
                 vo = new GraphicsEngine::Rectangle(node->GetPosition().GetX(), node->GetPosition().GetY(), pos);
-                m_Viewer->addObjectToPool(vo);
+                m_Viewer->AddObjectToPool(vo);
                 break;
             }
             case 3: {
@@ -89,7 +89,7 @@ void GraphicsSystem::Register(Entity& entity)
                     pos[(i * 3) + 2] = 0;
                 }
                 vo = new GraphicsEngine::Triangle(node->GetPosition().GetX(), node->GetPosition().GetY(), pos);
-                m_Viewer->addObjectToPool(vo);
+                m_Viewer->AddObjectToPool(vo);
                 break;
             }
             default:
@@ -117,8 +117,8 @@ bool GraphicsSystem::GetWinState() {
     return m_State;
 }
 
-GraphicsSystem::GNodeVOPair::GNodeVOPair(GraphicsNode* _gn, GraphicsEngine::ViewObject* _vo)
+GraphicsSystem::GNodeVOPair::GNodeVOPair(GraphicsNode* gn, GraphicsEngine::ViewObject* vo)
 {
-    this->gn = _gn;
-    this->vo = _vo;
+    this->gn = gn;
+    this->vo = vo;
 }

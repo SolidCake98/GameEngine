@@ -1,11 +1,9 @@
 #pragma once
 
-namespace GraphicsEngine {
-    class IndexBuffer {
-    private:
-        unsigned int m_RendererID;
-        unsigned int m_Count;
-
+namespace GraphicsEngine
+{
+    class IndexBuffer
+    {
     public:
         IndexBuffer(const unsigned int *, unsigned int);
 
@@ -16,5 +14,9 @@ namespace GraphicsEngine {
         void Unbind() const;
 
         inline unsigned int GetCount() const { return m_Count; }
+
+    private:
+        unsigned int m_RendererID;
+        unsigned int m_Count;
     };
 }
